@@ -1,0 +1,39 @@
+---
+title: "SUBSTRING()"
+old_id: substring
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# SUBSTRING()
+
+## Версии сервера
+| 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.0.3 | 2.0.4 | 2.0.5 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| - | - | + | + | + | + | + | + | + | + | + | + |
+
+## Доступно в
+[DSQL](/raznovidnosti_jazyka_sql/),  [ESQL](/raznovidnosti_jazyka_sql/),  [ISQL](/raznovidnosti_jazyka_sql/),  [PSQL](/raznovidnosti_jazyka_sql/)
+
+## Формат
+SUBSTRING( <строка> FROM <с позиции> [FOR <кол-во символов>])
+
+## Описание
+Встроенная функция.
+Возвращает подстроку строки <строка>, начиная с символа <с позиции>  и длиной максимум <кол-во символов>, если <кол-во символов> не указано, то до конца строки.
+
+## Пример
+```sql
+  select substring('ААБВГГ' FROM 2 FOR 4) from rdb$database
+```
+результат
+АБВГ
+## См. также
+[LEFT()](/left/),  [RIGHT()](/right/),  [OVERLAY()](/overlay/),  [POSITION()](/position/),  [CHAR_LENGTH()](/char_length/)
+
+## Источник
+%firebird%\doc\sql.extensions\README.builtin_functions.txt

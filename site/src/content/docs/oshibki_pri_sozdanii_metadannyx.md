@@ -1,0 +1,117 @@
+---
+title: "Ошибки при создании метаданных"
+old_id: oshibki_pri_sozdanii_metadannyx
+section: errors
+type: article
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# Ошибки при создании метаданных
+
+При создании метаданных (таблицы, тригеры, домены и т.д.) мы можем получить ошибки которые будут не очень понятны начинающему пользователю
+
+## Создание индекса с существующим именем
+
+```sql
+CREATE INDEX COUNTRY_IDX1 ON COUNTRY (CURRENCY);
+CREATE INDEX COUNTRY_IDX1 ON COUNTRY (CURRENCY);
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+STORE RDB$INDICES failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_5".
+
+## Создание генератора с существующим именем
+
+```sql
+create generator test;
+create generator test;
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+DEFINE GENERATOR failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_11".
+
+## Создание таблицы с одноименными полями
+
+```sql
+create table test(x int, x varchar(30));
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+STORE RDB$RELATION_FIELDS failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_15".
+
+## Создание процедуры с одноименными полями
+
+```sql
+create procedure test (t int) returns (t varchar(30))
+as 
+begin
+end;
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+STORE RDB$PROCEDURE_PARAMETERS failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_18".
+
+## Создание домена с существующим именем
+
+```sql
+create domain test smallint;
+create domain test smallint;
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+STORE RDB$FIELDS failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_2".
+
+## Создание триггера с существующим именем
+
+```sql
+CREATE trigger country_bi0 for country
+active before insert position 0
+AS
+begin
+  /* Trigger text */
+end;
+CREATE trigger country_bi0 for country
+active before insert position 0
+AS
+begin
+  /* Trigger text */
+end;
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+DEFINE TRIGGER failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_8".
+
+## Создание UDF с существующим именем
+
+```sql
+DECLARE EXTERNAL FUNCTION DIV
+    INTEGER,
+    INTEGER
+RETURNS DOUBLE PRECISION BY VALUE
+ENTRY_POINT 'IB_UDF_div' MODULE_NAME 'ib_udf';
+DECLARE EXTERNAL FUNCTION DIV
+    INTEGER,
+    INTEGER
+RETURNS DOUBLE PRECISION BY VALUE
+ENTRY_POINT 'IB_UDF_div' MODULE_NAME 'ib_udf';
+```
+
+This operation is not defined for system tables.\
+unsuccessful metadata update.\
+DEFINE FUNCTION failed.\
+attempt to store duplicate value (visible to active transactions) in unique index "RDB$INDEX_9".

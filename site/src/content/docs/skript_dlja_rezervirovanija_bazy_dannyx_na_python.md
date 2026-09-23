@@ -1,0 +1,83 @@
+---
+title: "Скрипт для резервирования базы данных на Python"
+old_id: skript_dlja_rezervirovanija_bazy_dannyx_na_python
+section: install
+type: article
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# Скрипт для резервирования базы данных на Python
+
+```python
+import subprocess
+from datetime import datetime
+
+# 2008-03-30
+# A little script to backup firebird databases
+# Author: Alisson Sales 
+
+# path to gbak (firebird backup utility)
+FB_GBAK       = ‘gbak’
+
+# parameters for gbak (list)
+FB_PARAMS     = [FB_GBAK, ‘-t’, ‘-user’, ‘SYSDBA’, ‘-pas’, ‘masterkey’]
+
+# full path to database’s directory
+FB_DB_DIR     = ‘/var/lib/firebird/2.0/data/’
+
+# a tuple of databases to backup
+FB_DATABASES  = (
+    ‘DATABASE1.GDB’,
+    ‘DATABASE2.GDB’
+)
+
+# full path to backup directory
+FB_BACKUP_DIR = ‘/home/alisson/backup/firebird/’;
+
+# path to data compressor (bzip2, zip, rar, gzip)
+COMPRESSOR = ‘bzip2′
+
+# just a shortcut
+timestamp = lambda: datetime.now().strftime(’%Y-%m-%d %H:%M:%S’)
+
+for db in FB_DATABASES:
+
+    # sufix to backup filename
+    sufix = ‘.’ + datetime.now().strftime(’%Y%m%d_%H%M%S’) + ‘.fbk’
+
+    print “[%s] Starting backup of file %s” % (timestamp(), db)
+
+    backup = []
+    backup.extend(FB_PARAMS)
+    backup.append(FB_DB_DIR + db)
+    backup.append(FB_BACKUP_DIR + db + sufix)
+    p = subprocess.Popen(backup, stderr=subprocess.PIPE)
+    p.wait()
+    error = p.communicate()[1]
+
+    if not error:
+        print “[%s] Backup is done.” % timestamp()
+    else:
+        print “[%s] Error:\n%s” % (timestamp(), error)
+
+    print “[%s] Starting compression of backup file %s” % (timestamp(), db + sufix)
+
+    compress = []
+    compress.append(COMPRESSOR)
+    compress.append(FB_BACKUP_DIR + db + sufix)
+    p = subprocess.Popen(compress, stderr=subprocess.PIPE)
+    # preventing too much use of CPU, compressing 1 file per time
+    p.wait()
+    error = p.communicate()[1]
+
+    if not error:
+        print “[%s] Compression is done.\n” % timestamp()
+    else:
+        print “[%s] Error:\n%s” % (timestamp(), error)
+```
+
+## Источник
+[Allison Sales](http://alisson.zusee.com/blog/2008/03/30/script-em-python-para-backup-de-bancos-de-dados-firebird/)

@@ -1,0 +1,50 @@
+---
+title: "WHILE"
+old_id: while
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# WHILE
+
+## Версии сервера
+| 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.0.3 | 2.0.4 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Да | Да | Да | Да | Да | Да | Да | Да | Да | Да | ? |
+
+## Доступно в
+[PSQL](/raznovidnosti_jazyka_sql/)
+
+## Формат
+WHILE **(**<*условие*>**)** DO <*команда*>
+
+## Описание
+WHILE это цикл котрый выполняется пока <*условие*> верно.
+
+как только <*условие*> перестает быть верным происходит выход из цикла
+
+в случае если в цикле надо выполнять несколько команд, то они обрамляются в BEGIN .. END
+
+## Пример
+```sql
+CREATE PROCEDURE SUM_INT (I INTEGER) 
+RETURNS (S INTEGER)
+AS
+BEGIN
+  s = 0;
+  WHILE(i > 0)DO
+  BEGIN
+    s = s + i;
+    i = i - 1;
+  END
+END
+```
+
+SELECT S FROM SUM_INT(4);
+
+## Источник
+DataDef.pdf

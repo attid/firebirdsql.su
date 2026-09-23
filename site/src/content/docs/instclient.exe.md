@@ -1,0 +1,52 @@
+---
+title: "instclient.exe"
+old_id: instclient.exe
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# instclient.exe
+
+## Версии сервера
+Firebird 1.5, Firebird 2.0 
+
+## Формат
+instclient i[nstall] [ -f[orce] ] library
+q[uery] library
+r[emove] library
+-z
+где 
+
+i[nstall] установить клиент
+-f[orce]  непроверять версию
+q[uery]   запрос версии клиента и кол-во установок
+r[emove]  удалить клиент
+library : f[bclient] | g[ds32]
+
+## Описание
+утилита для установки клиентской библиотеки,
+должна запускаться из подкаталога 'bin' каталога установки сервера
+
+утилита копирует клиентскую библиотеку в системную директорию windows 
+в зависимости от ключей это будет или родная библиотека fbclient.dll
+или gds32.dll для поддержки старых приложений
+
+gds32.dll это переименованная fbclient.dll с изменением версии на 6.3.*
+
+Версия библиотеки проверяется автоматом, но может быть отменена ключом -f[orce].
+
+⚠️ Помните что использование ключа -f[orce] может потребовать перезагрузки компьютера
+и может повредить работоспособность других программ работающих с Firebird или InterBase(R).
+
+## Пример
+instclient.exe i f
+instclient.exe i -f g
+instclient.exe q g
+instclient.exe q f
+
+## Источник
+%Firebird%\bin\instclient.exe

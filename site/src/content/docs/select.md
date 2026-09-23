@@ -1,0 +1,108 @@
+---
+title: "SELECT"
+old_id: select
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# SELECT
+
+## Версии сервера
+| 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.0.3 | 2.0.4 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Да | Да | Да | Да | Да | Да | Да | Да | Да | Да | Да |
+
+⚠️ Внимание! Почти с каждым новым релизом сервера Firebird в оператор SELECT добавлялась новая возможность или параметр. В связи с этим, смотрите версию сервера напротив описания каждого параметра оператора. 
+
+## Формат
+```
+<select statement> ::= 
+  <select expression> [FOR UPDATE] [WITH LOCK]
+
+<select_expression> ::= 
+  <select_expr_body>
+  [ ORDER BY <sort_value_list> ]
+  [ ROWS     <record_number> [TO <record_number>] ]
+
+<select_expr_body> ::=
+  { <query_specification> | <select_expr_body> UNION [DISTINCT | ALL] <query_specification> }
+
+<query_specification> ::=
+  SELECT 
+    [DISTINCT | ALL] 
+    [FIRST {<record_number> | (:param_recordnumber) } [SKIP <record_number> | (:param_recordnumber) ] ] 
+    <select_list>
+  FROM     <reference_expression_list>
+  [ WHERE    <search condition>   ]
+  [ GROUP BY <group_value_list>   ]
+  [ HAVING   <group_condition>    ]
+  [ PLAN     <plan_item_list>     ]
+
+<select_list> ::=
+  {  <constant> 
+   | <column_name>[<array_dim>]
+   | <expression>
+   | <function> ([<select_list>])
+   | <UDF> ([<select_list>])
+   | NULL
+   | {CURRENT_USER | CURRENT_ROLE | CURRENT_TIMESTAMP | CURRENT_CONNECTION | CURRENT_XXX }
+   | RDB$DB_KEY
+  } [COLLATE <collate>] [AS <column_alias_name>]
+
+<reference_expression_list> ::= 
+  {<table name> | <view name> | <procedure name> | <joined table> | <derived table> }
+
+<derived table> ::= 
+  '(' <select expression> ')'
+
+<joined table> ::= 
+  { <cross_join> | <qualified_join> }
+
+<cross_join> ::= 
+  <reference_expression_list> CROSS JOIN <reference_expression_list>
+
+<qualified_join> ::=
+  <reference_expression_list> [{INNER | {LEFT | RIGHT | FULL} [OUTER]}] JOIN <reference_expression_list> ON <join condition>
+
+<search_condition> ::=
+    <val> <operator> { <val> | <singletone_select> }
+  | <val> [NOT] BETWEEN <val> AND <val>
+  | <val> [NOT] LIKE <val> [ESCAPE <val>]
+  | <val> [NOT] CONTAINING <val>
+  | <val> [NOT] STARTING WITH <val> 
+  | <val> [NOT] IN ( { <val> [,<val> ] | <select expression> } )
+  | <val> IS [NOT] NULL
+  | {ALL | SOME | ANY} (<select expression>)
+  | EXISTS (<select expression>)
+  | SINGULAR (<select expression>)
+  | {AND | OR} [NOT] (<search condition>)
+    
+<operator> ::=
+  { = | < | > | <= | >= | !< | !> | <> | != }
+
+<sort_value_list> ::=
+  {<column_name> | <column_number | expression> } [COLLATE <collation> ] [ASC[ENDING] | DESC[ENDING] [NULLS {FIRST|LAST}] ] [, <sort_value_list>]
+```
+
+## Описание
+
+Для передачи параметра в предложения First, Skip и Rows параметр надо заключать в скобки:
+select first (:param) <список выбираемых полей> from my_table
+
+## Пример
+```sql
+
+```
+
+## См. также
+[Встроенные функции](/vstroennye_funkcii/), UDF, [CURSOR](/declare_cursor/), [INSERT](/insert/), [UPDATE](/update/), [DELETE](/delete/), COLLATE, FOR, RDB$DB_KEY, [JOIN](/join/)
+
+[CONTAINING](/containing/), [LIKE](/like/)
+## Источник
+LangRef.pdf, Firebird 1.5 Language Reference Update
+
+($firebird)/doc/sql.extension/README.select_expressions.txt

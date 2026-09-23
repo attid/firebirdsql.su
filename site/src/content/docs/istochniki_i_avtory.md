@@ -1,0 +1,24 @@
+---
+title: "Источники и Авторы"
+old_id: istochniki_i_avtory
+section: intro
+type: article
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# Источники и Авторы
+
+## Источники
+
+  - http://www.destructor.de/firebird/index.htm
+  - http://www.netcity.ru/~alexpanf/books/ibsql зеркало http://cylib.iit.nau.edu.ua/Books/DB/IBSQL/start.htm
+  - http://www.sql.ru/forum/interbase
+  - http://www.ibase.ru/develop.htm
+  - http://www.ibaseforum.ru/
+  - file:///c:/Program%20Files/Firebird/Firebird_2_0/doc/
+  - http://www.firebirdsql.org/en/documentation/
+
+## Авторы

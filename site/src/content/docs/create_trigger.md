@@ -1,0 +1,75 @@
+---
+title: "CREATE TRIGGER"
+old_id: create_trigger
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# CREATE TRIGGER
+
+## Версии сервера
+| 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.0.3 | 2.0.4 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Да | Да | Да | Да | Да | Да | Да | Да | Да | ? | ? |
+
+## Доступно в
+[DSQL](/raznovidnosti_jazyka_sql/)  [ESQL](/raznovidnosti_jazyka_sql/)
+
+## Формат
+```
+Для версии 1.5 и выше:
+CREATE TRIGGER name FOR {table | view}
+   [ACTIVE | INACTIVE]
+   {BEFORE | AFTER} <action_list>
+   [POSITION number]
+   AS
+   <trigger_body>
+
+<action_list>  ::=  <action> [OR <action> [OR <action>]]
+<action>       ::=  INSERT | UPDATE | DELETE
+
+Для версий ниже 1.5:
+CREATE TRIGGER name FOR {table | view}
+   [ACTIVE | INACTIVE]
+   {BEFORE | AFTER} {INSERT | UPDATE | DELETE}
+   [POSITION number]
+   AS
+   <trigger_body>
+```
+
+| Аргумент | Описание |
+|---|---|
+| name | Имя создаваемого триггера. |
+| ACTIVE | Определяет, что действие триггера дает эффект, когда тот запускается (по умолчанию). |
+| INACTIVE | Определяет, что действие триггера не дает эффекта. |
+| BEFORE | Определяет, что триггер срабатывает перед ассоциированной операцией. |
+| AFTER | Определяет, что триггер срабатывает после ассоциированной операции. |
+| DELETE, INSERT, UPDATE | Определяет операцию над таблицей, при которой срабатывает триггер. |
+| POSITION number | Определяет порядок в котором срабатывают триггеры перед или после того же самого действия. number должен быть целым от 0 до 32767. Триггер с меньшим номером срабатывает раньше. Триггеры для того же самого действия, с тем же самым позиционным номером, будут запущены в случайном порядке. |
+| trigger_body | Тело триггера, блок инструкций на языке процедур и триггеров. |
+| terminator | Терминатор, определенный для ISQL командой [SET TERM](/set_term/), указывающий на конец тела триггера. |
+
+## Описание
+
+Создает триггер, то есть блок [PSQL](/raznovidnosti_jazyka_sql/) кода, который выполняется автоматически перед или после изменения таблицы или отображения.
+
+## Пример
+Триггер, использующий значения генератора, для значений поля, при вставке записей.
+```sql
+set term !!;
+create trigger gen_reader_id_trg for reader before insert
+as begin
+   new.reader_id = gen_id(gen_reader_id, 1);
+end!!
+set term ;!!
+```
+
+## См. также
+[ALTER TRIGGER](/alter_trigger/), [DROP TRIGGER](/drop_trigger/)
+
+## Источник
+[Firebird 2.0 Language Ref. Update](http://firebirdsql.org/refdocs/langrefupd20.html)

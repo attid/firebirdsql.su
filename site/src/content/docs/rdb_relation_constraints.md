@@ -1,0 +1,37 @@
+---
+title: "RDB$RELATION_CONSTRAINTS"
+old_id: rdb_relation_constraints
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# RDB$RELATION_CONSTRAINTS
+
+## Версии сервера
+| 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.0.3 | 2.0.4 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ? | ? | ? | ? | ? | ? | ? | ? | ? | + | + |
+
+## Формат
+
+## Описание
+Системная таблица RDB$RELATION_CONSTRAINTS содержит информацию об ограничениях целостности на уровне таблицы.
+
+| Имя столбца | Тип | Описание |
+|---|---|---|
+| RDB$CONSTRAINT_NAME | CHAR(31) | Имя ограничения на уровне таблицы |
+| RDB$CONSTRAINT_TYPE | CHAR(11) | Первичный ключ/уникальный ключ/внешний ключ/ограничение CHECK/NOT NULL |
+| RDB$RELATION_NAME | CHAR(31) | Имя таблицы, к которой применяется это ограничение |
+| RDB$DEFERRABLE | CHAR(3) | В настоящий момент во всех случаях NO. Зарезервировано на будущее |
+| RDB$INITIALLY_DEFERRED | CHAR(3) | то же |
+| RDB$INDEX_NAME | CHAR(31) | Имя индекса, который поддерживает это ограничение(применимо, если ограничением является PRIMARY KEY, UNIQUE или FOREIGN KEY) |
+
+## Пример
+
+## См. также
+
+## Источник

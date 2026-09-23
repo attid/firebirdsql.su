@@ -1,0 +1,119 @@
+---
+title: "Скрипт для резервирования базы данных на shell"
+old_id: skript_dlja_rezervirovanija_bazy_dannyx_na_shell
+section: install
+type: article
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# Скрипт для резервирования базы данных на shell
+
+```bash
+#!/bin/sh
+
+clear
+
+# Firebird binary directory
+ibbindir=/opt/firebird/bin
+# Firebird database directory
+dbdir=/var/db/firebird
+# Firebird backup directory
+bkdir=$dbdir/backup
+
+#username and password
+username="SYSDBA"
+password="masterkey"
+
+#Date
+suffix=`date +%y%m%d%H`
+day=`date +%d`
+hour=`date +%k`
+
+dayname=`date +%u`
+increment="10";
+namedel="";
+
+# This is used to delete the files older than a week
+# hourly and daily are not necessary after a week (maybe are!)
+suffixdel=`date -d "8 days ago " +%y%m%d`
+
+echo "Starting ........."
+echo "-----------------------------------------"
+
+#Check if the first day of the month
+if [ $day == "01" ] && [ $hour -eq 6 ]
+then
+    echo "Monthly backup"
+    increment="0";
+
+
+#Check for a weekly backup
+elif [ $dayname == "7" ] && [ $hour -eq 7 ]
+then
+    echo "Weekly Backup"
+    increment="1";
+
+#Check for a daily backup
+elif [ $hour -eq 8 ]
+then
+    echo "Daily Backup"
+    increment="2"
+    namedel=${suffixdel}
+
+#Check the hourly backup, for me this is enough
+elif [ $hour -ge 9 ] && [ $hour -le 23 ]
+then
+    echo "Hourly Backup"
+    increment="3"
+    namedel=${suffixdel}
+
+#Well, we have a break, do nothing
+else
+    echo "Time to sleep, We are doing nothing"
+fi
+
+# Database directory
+
+
+#List the directory and backup each file on it
+for i in $(ls -C1d $dbdir/*.fdb)
+ do
+
+  #get the name of the Database
+  onlyname=$(echo $i | awk '{ gsub(/\w+\//,"", $1); print}')
+
+  dbfile=${dbdir}$onlyname
+  bkfile=${bkdir}$onlyname.${suffix}.${increment}.nbk
+
+  #security we need do nothing here
+  if [ $increment != "10" ]
+    then
+      echo "Starting backup....."
+      if  $ibbindir/nbackup -U $username -P $password  -B ${increment} ${dbfile} ${bkfile}
+      then
+         echo Backup for $onlyname
+         echo finished  `date` ...
+         echo "-----------------------------------------"
+         #tar zcvf ${bkfile}.tgz ${bkfile}
+         #Delete the file!!!
+         #rm $bkfile
+      fi
+
+      filetodelete=${bkdir}$onlyname.${namedel}`date +%H`.${increment}.nbk
+      if [ -e $filetodelete ]
+       then
+         echo "Deleting the old file" $filetodelete
+         rm $filetodelete
+     fi
+fi
+
+ done
+
+echo "Finish and going Home!!"
+```
+
+## Источник
+[Форум SQL.RU](http://sql.ru/forum/actualthread.aspx?tid=655908#7092683)

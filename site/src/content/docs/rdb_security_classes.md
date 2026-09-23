@@ -1,0 +1,47 @@
+---
+title: "RDB$SECURITY_CLASSES"
+old_id: rdb_security_classes
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# RDB$SECURITY_CLASSES
+
+## Версии сервера
+| 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.0.3 | 2.0.4 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Да | Да | Да | Да | Да | Да | Да | Да | Да | Да | Да |
+
+## Доступно в
+[DSQL](/raznovidnosti_jazyka_sql/),  [ESQL](/raznovidnosti_jazyka_sql/),  [ISQL](/raznovidnosti_jazyka_sql/),  [PSQL](/raznovidnosti_jazyka_sql/)
+
+## Формат
+```sql
+CREATE TABLE RDB$SECURITY_CLASSES (
+    RDB$SECURITY_CLASS  CHAR(31) CHARACTER SET UNICODE_FSS,
+    RDB$ACL             BLOB SUB_TYPE 3 SEGMENT SIZE 80,
+    RDB$DESCRIPTION     BLOB SUB_TYPE 1 SEGMENT SIZE 80 CHARACTER SET UNICODE_FSS
+);
+
+CREATE UNIQUE INDEX RDB$INDEX_7 ON RDB$SECURITY_CLASSES (RDB$SECURITY_CLASS);
+```
+
+## Описание
+Системная таблица RDB$SECURITY_CLASSES хранит и отслеживает списки управления доступом к базе данных. 
+
+| Имя столбца | Тип | Описание |
+|---|---|---|
+| RDB$SECURITY_CLASS | СНАR(З1) | Имя класса безопасности. Это имя должно быть согласованным во всех местах, где оно используется: RDB$DATABASE, RDB$RELATIONS, RDB$RELATION_FIELDS |
+| RDB$ACL | BLOB | Список управления доступом, связанный с классом безопасности. Перечисляет пользователей и их полномочия. |
+| RDB$DESCRIPTION | BLOB | Служит для пользовательской документации по классу безопасности |
+
+## Пример
+
+## См. также
+[Системные таблицы](/sistemnye_tablicy/)
+
+## Источник

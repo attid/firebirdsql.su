@@ -1,0 +1,88 @@
+---
+title: "ASCII_CHAR()"
+old_id: ascii_char
+section: glossary
+type: term
+firebird:
+  since: 
+  until: 
+  deprecated: false
+---
+
+# ASCII_CHAR()
+
+## Версии сервера
+|  | 0.9 | 1.0 | 1.5.3 | 1.5.4 | 1.5.5 | 2.0 | 2.1 | 2.5 | 3.0 |
+|---|---|---|---|---|---|---|---|---|---|
+| Как UDF | Да | Да | Да | Да | Да | Да | - | - | - |
+| Как встроенная функция | - | - | - | - | - | - | Да | Да | Да |
+
+## Доступно в
+[DSQL](/raznovidnosti_jazyka_sql/),   [ISQL](/raznovidnosti_jazyka_sql/),   [PSQL](/raznovidnosti_jazyka_sql/)
+
+## Формат
+```
+ASCII_CHAR( < аргумент > )
+```
+| Аргумент | Описание |
+|---|---|
+| < аргумент > | [INTEGER](/tipy_dannyx/) код символа в таблице символов кодировки |
+| Возвращает | [CHAR(1)](/tipy_dannyx/) |
+
+## Описание
+Функция ASCII_CHAR возвращает символ по его коду, переданного в качестве параметра < аргумент >.
+
+⚠️ В Firebird версии младше 2.1 для того, чтобы пользоваться этой функцией, ее небходимо подключить к базе данных как UDF.
+
+## Объявление
+1. В Firebird версии младше 2.1 функция объявляется как UDF в внешнем модуле "ib_udf".
+```sql
+DECLARE EXTERNAL FUNCTION ASCII_CHAR
+  INTEGER
+RETURNS
+  CHAR(1)
+ENTRY_POINT "IB_UDF_ascii_char" MODULE_NAME "ib_udf";
+```
+
+2. В Firebird версии 2.1 и старше является встроенной функцией при соглашении объявления ее как:
+```sql
+DECLARE EXTERNAL FUNCTION ASCII_CHAR
+  INTEGER
+RETURNS
+  CHAR(1)
+ENTRY_POINT "ascii_char" MODULE_NAME SYSTEM;
+```
+
+## Пример
+Допустим, существует таблица CUSTOMERS с доменами ID [INTEGER](/tipy_dannyx/) и NAME [VARCHAR(80)](/tipy_dannyx/).
+
+Требуется выбрать из таблицы все записи с ID < 10, вернув их в виде списка, разделенного точкой с запятой.
+
+[PSQL](/raznovidnosti_jazyka_sql/)
+```sql
+SET TERM !!!;
+
+CREATE OR ALTER PROCEDURE CUST_LIST RETURNS (
+  CUSTS  BLOB SUB_TYPE TEXT
+)AS
+  DECLARE VARIABLE P_CUST_NAME VRACHAR(80);
+BEGIN
+  CUSTS = '';
+  FOR
+    SELECT C.NAME
+    FROM   CUSTOMERS C
+    WHERE  (C.ID < 10)
+    INTO   :P_CUST_NAME
+  DO
+    CUSTS = :CUSTS || :P_CUST_NAME || ASCII_CHAR(59);
+  SUSPEND;
+END !!!
+
+SET TERM ; !!!
+```
+
+## См. также
+UDF, [Встроенные функции](/vstroennye_funkcii/)
+
+## Источник
+langref.pdf
