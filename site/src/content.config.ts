@@ -17,6 +17,10 @@ const docs = defineCollection({
     old_id: z.string(),
     section: z.enum(["glossary", "intro", "install", "errors", "sql", "groups"]),
     type: z.enum(["term", "article", "landing"]),
+    // Даты для страницы «Что нового»: новые статьи обязаны нести date,
+    // у legacy-страниц даты нет (миграция одним днём) — поля опциональны
+    date: z.string().nullish(),
+    updated: z.string().nullish(),
     firebird: z.object({
       since: z.string().nullish(),
       until: z.string().nullish(),

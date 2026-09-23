@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// «Что нового»: статьи с датой в frontmatter, свежие сверху.
+// Legacy-страницы без даты не показываются — это витрина нового контента.
+const docs = await getCollection("docs", ({ data }) => Boolean(data.date));
+const sorted = docs.sort((a, b) => (a.data.date! < b.data.date! ? 1 : -1));
+
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<BaseLayout
+  title="Что нового"
+  description="Новые статьи и страницы справочника Firebird: свежие материалы, обновления и дополнения."
+>
+  <article class="doc-content">
+    <h1>Что нового</h1>
+    <p>Здесь собираются статьи и крупные обновления справочника. Подписаться на них можно через <a href="/search/">поиск</a> и страничку комментариев ниже.</p>
+    <ul class="feed">
+      {sorted.map((entry) => (
+        <li>
+          <span class="date">{fmt(entry.data.date!)}{entry.data.updated && entry.data.updated !== entry.data.date ? ` (обновлено ${fmt(entry.data.updated)})` : ""}</span>
+          <a href={`/${entry.id}/`}>{entry.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </article>
+</BaseLayout>
+
+<style>
+  .feed { list-style: none; padding: 0; }
+  .feed li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .date { color: var(--fg-muted); font-size: 0.85rem; white-space: nowrap; }
+</style>
