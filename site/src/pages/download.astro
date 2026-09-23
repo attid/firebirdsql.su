@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const branches = [
+  {
+    ver: "Firebird 5.0",
+    status: "Актуальная стабильная ветка",
+    desc: "Рекомендуется для новых проектов: существенно переработан оптимизатор, ускорены соединения и массовые операции.",
+  },
+  {
+    ver: "Firebird 4.0",
+    status: "Поддерживаемая ветка",
+    desc: "Появились оконные функции, PSQL-пакеты, тип BOOLEAN, расширенные таймстампы. Обновления безопасности выходят.",
+  },
+  {
+    ver: "Firebird 3.0",
+    status: "Legacy",
+    desc: "Ветвь на минимальной поддержке. Если вы всё ещё на ней — планируйте переход на 5.x.",
+  },
+  {
+    ver: "Firebird 2.5",
+    status: "Legacy",
+    desc: "Официальная поддержка давно закончилась. Держится только ради старых проектов, включая связки с 1С.",
+  },
+];
+---
+
+<BaseLayout
+  title="Скачать Firebird"
+  description="Где скачать Firebird: официальные бинарники всех поддерживаемых веток — Windows и Linux, сервер и клиент, актуальные сборки на firebirdsql.org."
+>
+  <article class="doc-content">
+    <h1>Скачать Firebird</h1>
+    <p>
+      Мы не храним бинарники — все сборки всегда берите с официального сайта:
+      <a href="https://firebirdsql.org/en/downloads/" rel="noopener">
+        firebirdsql.org/en/downloads
+      </a>.
+      Там же — исходники, старые релизы и nightly-сборки.
+    </p>
+
+    <h2>Ветки сервера</h2>
+    <table>
+      <thead>
+        <tr><th>Ветка</th><th>Статус</th><th>Что важно знать</th></tr>
+      </thead>
+      <tbody>
+        {branches.map((b) => (
+          <tr>
+            <td><strong>{b.ver}</strong></td>
+            <td>{b.status}</td>
+            <td>{b.desc}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <h2>Прямые ссылки</h2>
+    <ul>
+      <li>
+        <a href="https://firebirdsql.org/en/downloads/" rel="noopener">
+          Скачать Firebird (актуальные версии)
+        </a> — сервер, клиент, embed для Windows и Linux
+      </li>
+      <li>
+        <a href="https://firebirdsql.org/en/firebird-5-0/" rel="noopener">
+          Страница ветки Firebird 5.0
+        </a>
+      </li>
+      <li>
+        <a href="https://firebirdsql.org/en/firebird-4-0/" rel="noopener">
+          Страница ветки Firebird 4.0
+        </a>
+      </li>
+      <li>
+        <a href="https://firebirdsql.org/en/previous-releases/" rel="noopener">
+          Предыдущие релизы (3.0, 2.5 и старше)
+        </a>
+      </li>
+    </ul>
+
+    <h2>После установки</h2>
+    <p>
+      Загляните в разделы
+      <a href="/ustanovka_firebird_na_linux/">Установка Firebird на Linux</a> и
+      <a href="/skript_dlja_rezervirovanija_bazy_dannyx_na_shell/">
+        резервное копирование БД
+      </a> — а глоссарий целиком начинается
+      <a href="/glossarij/">здесь</a>.
+    </p>
+  </article>
+</BaseLayout>

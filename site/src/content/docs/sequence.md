@@ -1,5 +1,5 @@
 ---
-title: "GENERATOR\SEQUENCE"
+title: "GENERATOR\\SEQUENCE"
 old_id: sequence
 section: glossary
 type: term

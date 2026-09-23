@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const docs = await getCollection("docs");
+const count = docs.length;
+
+const sections = [
+  { href: "/glossarij/", title: "Глоссарий", desc: "Операторы, функции и конструкции SQL-сервера Firebird — от ALTER DOMAIN до WHERE." },
+  { href: "/vstroennye_funkcii/", title: "Встроенные функции", desc: "ABS, COALESCE, DATEADD и остальные функции ядра с таблицами поддержки версий." },
+  { href: "/sistemnye_tablicy/", title: "Системные таблицы", desc: "RDB$-таблицы метаданных: что где лежит и как этим пользоваться." },
+  { href: "/gdscodes/", title: "Коды ошибок", desc: "GDSCODE и gdscodes — расшифровка кодов ошибок Firebird." },
+  { href: "/matematicheskie_operacii_s_datoj/", title: "SQL-рецепты", desc: "Проверенные решения типовых задач: даты, деревья, штрих-коды, обмен данными." },
+  { href: "/raznovidnosti_jazyka_sql/", title: "Введение", desc: "Разновидности SQL, типы данных, соглашения синтаксиса — старт для новичков." },
+];
+---
+
+<BaseLayout title="Словарик по FireBird">
+  <section class="hero">
+    <h1>Словарик по FireBird</h1>
+    <p>
+      Русскоязычный справочник по СУБД Firebird: {count} страниц — глоссарий
+      SQL-конструкций, встроенные функции, системные таблицы, коды ошибок,
+      статьи и готовые SQL-рецепты.
+    </p>
+    <p class="search-hint">
+      Ищете конкретную конструкцию? <a href="/search/">Поиск по всему справочнику →</a>
+    </p>
+  </section>
+
+  <section class="cards">
+    {sections.map((s) => (
+      <a class="card" href={s.href}>
+        <h2>{s.title}</h2>
+        <p>{s.desc}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

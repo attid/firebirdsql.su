@@ -100,6 +100,11 @@ def clean_id(raw: str) -> str:
     return re.sub(r"[^a-z0-9_.:\-]", "", s)
 
 
+def yaml_escape(s: str) -> str:
+    """Экранирование для YAML-строки в двойных кавычках."""
+    return s.replace("\\", "\\\\").replace('"', '\\"')
+
+
 def section_for(pid: str) -> str:
     if pid in _section_of:
         return _section_of[pid]
@@ -294,7 +299,7 @@ class Converter:
         ptype = type_for(pid, section)
         front = (
             "---\n"
-            f'title: "{title}"\n'
+            f'title: "{yaml_escape(title)}"\n'
             f"old_id: {pid}\n"
             f"section: {section}\n"
             f"type: {ptype}\n"

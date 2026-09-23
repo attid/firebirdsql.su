@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Поиск"
+  description="Полнотекстовый поиск по справочнику Firebird: глоссарий, функции, системные таблицы, статьи и SQL-рецепты."
+>
+  <h1>Поиск по справочнику</h1>
+  <div id="search"></div>
+  <p class="hint">
+    Индекс строится при сборке сайта (Pagefind) и работает полностью локально,
+    без внешних сервисов.
+  </p>
+</BaseLayout>
+
+<style>
+  .hint { color: var(--fg-muted); font-size: 0.85rem; margin-top: 1rem; }
+</style>
+
+<script>
+  // Pagefind-индекс появляется после первого `npm run build`.
+  // В dev-режиме его нет — показываем подсказку вместо падения.
+  // pagefind-ui.js — классический скрипт: грузим тегом, не через import().
+  (async () => {
+    const el = document.getElementById("search");
+    const load = (src) =>
+      new Promise((res, rej) => {
+        const s = document.createElement("script");
+        s.src = src;
+        s.onload = res;
+        s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    try {
+      await load("/pagefind/pagefind-ui.js");
+      new PagefindUI({
+        element: "#search",
+        showImages: false,
+        translations: {
+          placeholder: "Например: coalesce, rdb$relations, unlock…",
+          clear_search: "Очистить",
+          load_more: "Показать ещё",
+          search_label: "Поиск по справочнику",
+          zero_results: "Ничего не найдено по «[SEARCH_TERM]»",
+        },
+      });
+    } catch {
+      el.innerHTML =
+        "<p>Поисковый индекс ещё не построен. Выполните <code>npm run build</code> и откройте <code>dist/search/</code>, либо запустите <code>npm run preview</code>.</p>";
+    }
+  })();
+</script>

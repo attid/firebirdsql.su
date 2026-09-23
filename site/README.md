@@ -1,15 +1,29 @@
 # site/ — новый сайт на Astro
 
-Каркас появляется на этапе 1 (см. ROADMAP.md). Решения: Astro + Pagefind,
-контент в Markdown в `src/content/`, конвертируется из `legacy/raw/`
-скриптом `tools/convert_dokuwiki.py`.
+Каркас этапа 1. Контент — Markdown в `src/content/docs/` (конвертируется из
+`legacy/raw/` скриптом `tools/convert_dokuwiki.py`).
 
-Схема URL: `/<slug>/`, плоская, честное 1:1 с ID страниц DokuWiki
-(вся старая вика лежит в корневом пространстве имён: `abs` → `/abs/`).
-Разделы сайта (глоссарий, FAQ, SQL-рецепты) — навигацией и коллекциями
-контента, не вложенностью URL.
+- Схема URL: `/<old_id>/` — плоская, точный 1:1 с ID страниц DokuWiki
+  (id = имя файла без слагификации, см. `generateId` в `src/content.config.ts`).
+- Разделы (глоссарий/FAQ/SQL-рецепты/утилиты) — навигацией и коллекциями,
+  не вложенностью URL.
+- Поиск: Pagefind (локальный индекс, строится в `npm run build` после Astro).
+- Тёмная/светлая тема: `data-theme` + localStorage, без мигания.
+- Подсветка SQL: Shiki dual themes (`github-light`/`github-dark`).
+- Кнопка «копировать» на код-блоках.
+- `/download/` — страница загрузки со ссылками на официальные бинарники.
+- `/en/` — зарезервированное пространство под будущую локализацию (noindex).
 
-Сборка (появится с каркасом):
+## Команды
 
     npm install
-    npm run build   # astro build + pagefind
+    npm run build     # astro build + pagefind --site dist
+    npm run preview   # локальный просмотр dist
+    npm run dev       # dev-сервер (поискового индекса в dev нет — это норма)
+
+## Контентная схема
+
+Frontmatter каждой страницы: `title`, `old_id`, `section`
+(glossary|intro|install|errors|sql|groups), `type` (term|article|landing),
+`firebird.{since,until,deprecated}` (ADR-0005; поля могут быть пустыми,
+удалять нельзя). Валидируется зодом-схемой при сборке.

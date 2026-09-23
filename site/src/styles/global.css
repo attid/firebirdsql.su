@@ -1,0 +1,196 @@
+/* firebirdsql.su — базовые стили.
+   Тема: CSS-переменные + data-theme на <html> (light/dark),
+   системный шрифтовой стек, никакой тяжёлой UI-библиотеки. */
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f6f8fa;
+  --fg: #1f2328;
+  --fg-muted: #59636e;
+  --link: #0969da;
+  --border: #d1d9e0;
+  --code-bg: #f6f8fa;
+  --accent: #d9531e; /* «птичий» оранжевый Firebird */
+  --header-bg: #1c2128;
+  --header-fg: #f0f3f6;
+}
+
+[data-theme="dark"] {
+  --bg: #14181f;
+  --bg-soft: #1c2128;
+  --fg: #e6edf3;
+  --fg-muted: #9198a1;
+  --link: #6cb6ff;
+  --border: #333c47;
+  --code-bg: #1c2128;
+  --accent: #f0883e;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "PT Sans", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- шапка ---------- */
+
+.site-header {
+  background: var(--header-bg);
+  color: var(--header-fg);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.site-header .brand {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--header-fg);
+}
+.site-header .brand .flame { color: var(--accent); }
+.site-header nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.site-header nav a { color: var(--header-fg); opacity: 0.85; font-size: 0.95rem; }
+.site-header nav a:hover { opacity: 1; text-decoration: none; }
+.theme-toggle {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--header-fg);
+  color: var(--header-fg);
+  border-radius: 6px;
+  padding: 0.15rem 0.55rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+/* ---------- каркас страницы ---------- */
+
+.page {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+.breadcrumbs {
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- контент ---------- */
+
+.doc-content { overflow-wrap: break-word; }
+
+.doc-content h1 { font-size: 1.7rem; margin: 0.5rem 0 1rem; }
+.doc-content h2 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.doc-content h3 { font-size: 1.1rem; margin-top: 1.5rem; }
+
+.doc-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 0.92rem;
+  display: block;
+  overflow-x: auto;
+}
+.doc-content th, .doc-content td {
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.doc-content thead th { background: var(--bg-soft); }
+
+/* код: Shiki dual themes — переключение темами через переменные */
+.doc-content pre.astro-code {
+  position: relative;
+  padding: 0.9rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+[data-theme="dark"] .doc-content pre.astro-code span { color: var(--shiki-dark); }
+[data-theme="light"] .doc-content pre.astro-code span { color: var(--shiki-light); }
+
+.copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: var(--bg);
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+}
+pre.astro-code:hover .copy-btn { opacity: 1; }
+
+.doc-content code:not(pre code) {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  font-size: 0.9em;
+}
+
+.doc-content blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 1rem 0;
+  padding: 0.2rem 1rem;
+  color: var(--fg-muted);
+  background: var(--bg-soft);
+}
+
+/* ---------- главная ---------- */
+
+.hero { padding: 2rem 0 1rem; }
+.hero h1 { margin: 0 0 0.5rem; font-size: 2rem; }
+.hero p { color: var(--fg-muted); max-width: 40rem; }
+.hero .search-hint { margin-top: 1rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: var(--bg-soft);
+}
+.card h2 { margin: 0 0 0.4rem; font-size: 1.05rem; border: none; }
+.card p { margin: 0; color: var(--fg-muted); font-size: 0.9rem; }
+
+/* ---------- Pagefind ---------- */
+
+.pagefind-ui__search-input {
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 8px;
+}
