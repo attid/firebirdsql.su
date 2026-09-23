@@ -44,7 +44,8 @@ when 'shipped' then 'отгруженный'
 else 'ошибка определения!!'
 end
 from sales sl
-# Поисковый case
+
+Поисковый case
 
 select sl.po_number,
 case

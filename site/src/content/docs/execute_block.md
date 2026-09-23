@@ -69,7 +69,8 @@ begin
 end
 ```
 
-# Или
+Или
+
 ```sql
 execute block (pass1 varchar(255) = :pass1)
 as

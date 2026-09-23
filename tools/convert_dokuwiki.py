@@ -146,6 +146,9 @@ class Converter:
 
     def _inline(self, text: str) -> str:
         text = text.replace("[[]]", "")  # пустая ссылка: не рендерилась и у нас
+        # DokuWiki разрешает жирность с внутренними пробелами (** текст **),
+        # CommonMark — нет: подрезаем, иначе ** уходит в вывод литералом
+        text = re.sub(r"\*\*[ \t]+(\S(?:.*?\S)?)[ \t]+\*\*", r"**\1**", text)
         text = LINK_RE.sub(self._convert_link, text)
         text = ITALIC_RE.sub(r"*\1*", text)
         text = MONO_RE.sub(r"`\1`", text)
@@ -260,7 +263,10 @@ class Converter:
         text = INCLUDE_RE.sub(stash_include, text)
 
         # заголовки: первый H1 уходит в frontmatter и убирается из тела;
-        # хвост после закрывающих = переносится на отдельную строку
+        # хвост после закрывающих = переносится на отдельную строку.
+        # Предварительно отрываем маркер, склеенный с текстом («a===== X =====»):
+        # без этого HEADING_RE его не видит и === утекает в вывод литералом.
+        text = re.sub(r"(?<=[^\s=])(={3,6}[ \t]*\S)", r"\n\1", text)
         def heading(m: re.Match) -> str:
             lvl, txt, tail = len(m.group(1)), m.group(2), m.group(4)
             if not txt and not tail:
@@ -293,6 +299,10 @@ class Converter:
             out.extend(self._table(table_buf, stashed))
 
         text = "\n".join(out)
+        # Жирность, разорванная переводом строки («**\nтекст**»): DokuWiki
+        # так умеет, CommonMark — нет. Склеиваем перед финальной сборкой.
+        text = re.sub(r"\*\*[ \t]*\n[ \t]*(\S(?:[^\n]*?\S)?)[ \t]*\*\*",
+                      r"**\1**", text)
         text = re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
 
         for i, block in enumerate(stashed["code"]):

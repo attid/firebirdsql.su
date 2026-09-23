@@ -55,7 +55,8 @@ rdb fields
 | RDB$CHARACTER_SET_ID | SMALLINT |  |
 | RDB$FIELD_PRECISION | SMALLINT |  |
 
-# Типы данных
+Типы данных
+
 | Код | Тип | Начиная с | Диалект |
 |---|---|---|---|
 | 7 | SHORT | - | 1-3 |
@@ -74,7 +75,8 @@ rdb fields
 | 45 | BLOB_ID | - |  |
 | 261 | BLOB | - | 1-3 |
 
-# Подтипы данных
+Подтипы данных
+
 | Код | Подтип |
 |---|---|
 | 0 | BINARY |

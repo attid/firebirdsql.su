@@ -25,9 +25,9 @@ firebird:
 
 С официального сайта [http://www.firebirdsql.org/en/downloads/](http://www.firebirdsql.org/en/downloads/) ставим подходящую сборку сервера **FireBird** 
 
-Устанавливаем сервер **Apache** и поддержку **PHP** (как вариант для Mandriva Linux разумно провести установку пакета **urpmi task-lamp**   подробнее см. [http://wiki.mandriva.com/ru/Linux-Apache-MySQL-PHP](http://wiki.mandriva.com/ru/Linux-Apache-MySQL-PHP)) 
+Устанавливаем сервер **Apache**и поддержку**PHP**(как вариант для Mandriva Linux разумно провести установку пакета**urpmi task-lamp**   подробнее см. [http://wiki.mandriva.com/ru/Linux-Apache-MySQL-PHP](http://wiki.mandriva.com/ru/Linux-Apache-MySQL-PHP)) 
 
-После установки серверов **FireBird**, **Apache** и **PHP** подключаем поддержку FireBird через PHP.
+После установки серверов **FireBird**, **Apache**и**PHP** подключаем поддержку FireBird через PHP.
 
 Для этого, устанавливаем пакет **php-interbase**.
 Если таковой отсутствует в репозитории, нужный пакет можно скачать с RPM-Finder [http://rpmfind.net/linux/rpm2html/search.php](http://rpmfind.net/linux/rpm2html/search.php).
