@@ -44,6 +44,13 @@ services:
       - TIME_ZONE=${TIME_ZONE:-Europe/Moscow}
       - EMOJI=true
       - DEBUG=false
+      # --- уведомления админу (по умолчанию выключены у remark42!) ---
+      # NOTIFY_ADMINS=telegram: каждый новый комментарий постом в канал;
+      # канал должен существовать, бот — быть его админом; ID канала
+      # отрицательный (-100...), берётся из getUpdates бота.
+      - NOTIFY_ADMINS=${NOTIFY_ADMINS:-telegram}
+      - NOTIFY_TELEGRAM_CHAN=${NOTIFY_TELEGRAM_CHAN:-}
+      # NOTIFY_USERS=telegram — ответы комментаторам в личку (по желанию)
     volumes:
       - remark42-data:/srv/var
     expose:
