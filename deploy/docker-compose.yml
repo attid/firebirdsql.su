@@ -23,23 +23,25 @@ services:
     image: umputun/remark42:latest
     restart: unless-stopped
     environment:
+      # Имена переменных сверены с https://remark42.com/docs/configuration/parameters/
+      # ВНИМАНИЕ: префикс REMARK_ непоследователен (REMARK_URL есть,
+      # REMARK_SITE не существует); провайдеры Яндекс/Google включаются
+      # фактом наличия CID/CSEC, отдельных флагов нет.
       # --- обязательные ---
       - REMARK_URL=${REMARK_URL:-https://firebirdsql.su/remark42}
       - SECRET=${SECRET:?задайте SECRET, например openssl rand -hex 32}
+      - SITE=firebirdsql
       # --- авторизация (ADR-0006): Telegram + Яндекс + Google ---
       - AUTH_TELEGRAM=${AUTH_TELEGRAM:-true}
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN:-}
-      - AUTH_YANDEX=${AUTH_YANDEX:-false}
       - AUTH_YANDEX_CID=${AUTH_YANDEX_CID:-}
       - AUTH_YANDEX_CSEC=${AUTH_YANDEX_CSEC:-}
-      - AUTH_GOOGLE=${AUTH_GOOGLE:-false}
       - AUTH_GOOGLE_CID=${AUTH_GOOGLE_CID:-}
       - AUTH_GOOGLE_CSEC=${AUTH_GOOGLE_CSEC:-}
       # --- прочее ---
       - REMARK_PORT=8080
-      - REMARK_SITE=firebirdsql
       - ADMIN_SHARED_ID=${ADMIN_SHARED_ID:-}
-      - TZ=${TZ:-Europe/Moscow}
+      - TIME_ZONE=${TIME_ZONE:-Europe/Moscow}
       - EMOJI=true
       - DEBUG=false
     volumes:

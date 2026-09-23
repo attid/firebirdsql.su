@@ -14,9 +14,13 @@
 2. **Сервер — Portainer** (файлы .env на сервере запрещены):
    Stacks → Add stack → вставить содержимое `docker-compose.yml` →
    в разделе **Environment** задать переменные (обязательные помечены
-   в файле): `SECRET`, `TELEGRAM_TOKEN`, `AUTH_YANDEX_CID/CSEC`,
-   `AUTH_GOOGLE_CID/CSEC`, `ADMIN_SHARED_ID`, опционально `REMARK_URL`,
-   `TZ`. Deploy stack.
+   в файле): `SECRET`, `SITE=firebirdsql`, `TELEGRAM_TOKEN`,
+   `AUTH_YANDEX_CID/CSEC`, `AUTH_GOOGLE_CID/CSEC`, `ADMIN_SHARED_ID`,
+   опционально `REMARK_URL`, `TIME_ZONE`. Deploy stack.
+   Имена переменных сверены с
+   [доками remark42](https://remark42.com/docs/configuration/parameters/):
+   SITE (не REMARK_SITE!), TIME_ZONE (не TZ), Яндекс/Google включаются
+   наличием ключей CID/CSEC.
 3. Сайт поднимается на `127.0.0.1:8081` — наружу его выводит существующий
    реверс-прокси хоста. Обновление: в Portainer → Stack → Recreate
    (образ :latest перетянется), либо Press «Pull and redeploy».
