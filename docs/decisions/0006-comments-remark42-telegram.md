@@ -14,7 +14,7 @@ OAuth Яндекса и Google добавлены решением владел�
 remark42 (self-hosted, свой контейнер в том же compose):
 
 - включённые провайдеры авторизации:
-  - Telegram (`AUTH_TELEGRAM=true`, `AUTH_TELEGRAM_TOKEN` — токен бота
+  - Telegram (`AUTH_TELEGRAM=true`, `TELEGRAM_TOKEN` — токен бота
     от @BotFather);
   - Яндекс (`AUTH_YANDEX=true` + ключи приложения Яндекс.OAuth);
   - Google (`AUTH_GOOGLE=true` + OAuth-клиент Google Cloud Console;

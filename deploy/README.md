@@ -14,8 +14,8 @@
 2. **Сервер — Portainer** (файлы .env на сервере запрещены):
    Stacks → Add stack → вставить содержимое `docker-compose.yml` →
    в разделе **Environment** задать переменные (обязательные помечены
-   в файле): `SECRET`, `AUTH_TELEGRAM_TOKEN`, `AUTH_YANDEX_CID/CSECRET`,
-   `AUTH_GOOGLE_CID/CSECRET`, `ADMIN_SHARED_ID`, опционально `REMARK_URL`,
+   в файле): `SECRET`, `TELEGRAM_TOKEN`, `AUTH_YANDEX_CID/CSEC`,
+   `AUTH_GOOGLE_CID/CSEC`, `ADMIN_SHARED_ID`, опционально `REMARK_URL`,
    `TZ`. Deploy stack.
 3. Сайт поднимается на `127.0.0.1:8081` — наружу его выводит существующий
    реверс-прокси хоста. Обновление: в Portainer → Stack → Recreate

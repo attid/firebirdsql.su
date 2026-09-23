@@ -28,13 +28,13 @@ services:
       - SECRET=${SECRET:?задайте SECRET, например openssl rand -hex 32}
       # --- авторизация (ADR-0006): Telegram + Яндекс + Google ---
       - AUTH_TELEGRAM=${AUTH_TELEGRAM:-true}
-      - AUTH_TELEGRAM_TOKEN=${AUTH_TELEGRAM_TOKEN:-}
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN:-}
       - AUTH_YANDEX=${AUTH_YANDEX:-true}
       - AUTH_YANDEX_CID=${AUTH_YANDEX_CID:-}
-      - AUTH_YANDEX_CSECRET=${AUTH_YANDEX_CSECRET:-}
+      - AUTH_YANDEX_CSEC=${AUTH_YANDEX_CSEC:-}
       - AUTH_GOOGLE=${AUTH_GOOGLE:-true}
       - AUTH_GOOGLE_CID=${AUTH_GOOGLE_CID:-}
-      - AUTH_GOOGLE_CSECRET=${AUTH_GOOGLE_CSECRET:-}
+      - AUTH_GOOGLE_CSEC=${AUTH_GOOGLE_CSEC:-}
       # --- прочее ---
       - REMARK_PORT=8080
       - REMARK_SITE=firebirdsql
