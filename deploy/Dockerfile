@@ -16,4 +16,7 @@ COPY deploy/nginx.conf /etc/nginx/nginx.conf
 COPY deploy/redirects.map /etc/nginx/redirects.map
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
-HEALTHCHECK --interval=60s --timeout=3s CMD wget -q -O /dev/null http://localhost/ || exit 1
+# 127.0.0.1 явно (не localhost: бывает ::1, а слушаем только IPv4),
+# start-period+interval короче минуты — Portainer быстрее показывает healthy
+HEALTHCHECK --interval=15s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget -q -O /dev/null http://127.0.0.1/ || exit 1
