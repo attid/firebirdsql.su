@@ -80,10 +80,11 @@ const description = metaDescription(entry.body ?? "");
   .comments { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 </style>
 
-<script>
-  // Виджет remark42 (ADR-0006). Живёт за тем же nginx: /remark42/ -> контейнер.
-  // Локально в dev контейнера нет — скрипт тихо не грузится, секция остаётся пустой.
-  var remark_config = {
+<script is:inline>
+  // is:inline ОБЯЗАТЕЛЬНО: Astro упаковывает обычные <script> в ES-модули,
+  // где var не попадает в window — а embed.js ищет именно window.remark_config
+  // ("Cannot read properties of undefined (reading 'host')").
+  window.remark_config = {
     host: "/remark42",
     site_id: "firebirdsql",
     components: ["embed"],
@@ -97,5 +98,5 @@ const description = metaDescription(entry.body ?? "");
       d.defer = true;
       (document.head || document.body).appendChild(d);
     }
-  })(remark_config.components);
+  })(window.remark_config.components);
 </script>
