@@ -1,13 +1,18 @@
-# Развёртывание нового firebirdsql.su (этап 2, ADR-0002/0006/0007).
-# Запуск из корня репозитория:
-#   cd deploy && cp .env.example .env  # заполнить ключи remark42
-#   docker compose up -d --build
+# Развёртывание нового firebirdsql.su (ADR-0002/0006/0007).
+#
+# Два способа задания переменных remark42 — без обязательного .env:
+#   1. Portainer: вставить этот файл как Stack и задать переменные
+#      в разделе Environment (файлы .env на сервере запрещены политикой).
+#   2. Локально: положить deploy/.env рядом — compose подхватит его для
+#      подстановок ${...} автоматически (см. .env.example).
+#
+# Образ сайта собирает CI (GitHub Actions -> ghcr.io/attid/firebirdsql-site);
+# Portainer просто тянет его. Локальная сборка из исходника:
+#   docker build -f deploy/Dockerfile -t firebirdsql-site .
 
 services:
   site:
-    build:
-      context: ..
-      dockerfile: deploy/Dockerfile
+    image: ghcr.io/attid/firebirdsql-site:latest
     restart: unless-stopped
     ports:
       - "127.0.0.1:8081:80"   # наружу только через существующий реверс-прокси хоста
@@ -17,16 +22,24 @@ services:
   remark42:
     image: umputun/remark42:latest
     restart: unless-stopped
-    env_file: .env
     environment:
-      # REMARK_URL и секреты — в .env (см. .env.example)
+      # --- обязательные ---
+      - REMARK_URL=${REMARK_URL:-https://firebirdsql.su/remark42}
+      - SECRET=${SECRET:?задайте SECRET, например openssl rand -hex 32}
+      # --- авторизация (ADR-0006): Telegram + Яндекс + Google ---
+      - AUTH_TELEGRAM=${AUTH_TELEGRAM:-true}
+      - AUTH_TELEGRAM_TOKEN=${AUTH_TELEGRAM_TOKEN:-}
+      - AUTH_YANDEX=${AUTH_YANDEX:-true}
+      - AUTH_YANDEX_CID=${AUTH_YANDEX_CID:-}
+      - AUTH_YANDEX_CSECRET=${AUTH_YANDEX_CSECRET:-}
+      - AUTH_GOOGLE=${AUTH_GOOGLE:-true}
+      - AUTH_GOOGLE_CID=${AUTH_GOOGLE_CID:-}
+      - AUTH_GOOGLE_CSECRET=${AUTH_GOOGLE_CSECRET:-}
+      # --- прочее ---
       - REMARK_PORT=8080
       - REMARK_SITE=firebirdsql
-      # Провайдеры авторизации (ADR-0006): Telegram + Яндекс + Google
-      - AUTH_TELEGRAM=true
-      - AUTH_YANDEX=true
-      - AUTH_GOOGLE=true
-      # Прочие провайдеры (GitHub, email, аноним) — по желанию, добавить в .env
+      - ADMIN_SHARED_ID=${ADMIN_SHARED_ID:-}
+      - TZ=${TZ:-Europe/Moscow}
       - EMOJI=true
       - DEBUG=false
     volumes:
@@ -36,10 +49,10 @@ services:
 
   # Слот под ИИ-сервис (ADR-0007): включается без перестройки топологии.
   # ai:
-  #   build:
-  #     context: ../ai
+  #   image: ghcr.io/attid/firebirdsql-ai:latest
   #   restart: unless-stopped
-  #   env_file: .env
+  #   environment:
+  #     - AI_API_KEY=${AI_API_KEY:-}
   #   expose:
   #     - "8000"
 

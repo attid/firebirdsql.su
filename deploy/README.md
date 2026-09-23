@@ -2,6 +2,28 @@
 
 Готовый стек этапа 2: nginx + статика + карта 301 + remark42 за rate limiting.
 
+## Как это устроено
+
+1. **CI собирает образ**: каждый пуш в `main` — GitHub Actions
+   (`.github/workflows/docker.yml`) собирает образ из `deploy/Dockerfile`,
+   гоняет smoke-тест редиректов по всему `legacy/pages.json` и пушит в
+   реестр: `ghcr.io/attid/firebirdsql-site:latest` (+ тег `sha-…`).
+   Одноразово после первого пуша: сделать пакет публичным
+   (GitHub → Packages → firebirdsql-site → Package settings → Change
+   visibility → Public), чтобы сервер тянул без авторизации.
+2. **Сервер — Portainer** (файлы .env на сервере запрещены):
+   Stacks → Add stack → вставить содержимое `docker-compose.yml` →
+   в разделе **Environment** задать переменные (обязательные помечены
+   в файле): `SECRET`, `AUTH_TELEGRAM_TOKEN`, `AUTH_YANDEX_CID/CSECRET`,
+   `AUTH_GOOGLE_CID/CSECRET`, `ADMIN_SHARED_ID`, опционально `REMARK_URL`,
+   `TZ`. Deploy stack.
+3. Сайт поднимается на `127.0.0.1:8081` — наружу его выводит существующий
+   реверс-прокси хоста. Обновление: в Portainer → Stack → Recreate
+   (образ :latest перетянется), либо Press «Pull and redeploy».
+
+Локальная разработка без Portainer: `deploy/.env` рядом с compose
+(см. `.env.example`) — подстановки `${...}` compose делает сам.
+
 ## Файлы
 
 | Файл | Назначение |
