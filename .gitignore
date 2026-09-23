@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node / Astro
+node_modules/
+site/dist/
+site/.astro/
+
+# Карта кодовой базы (скилл codespaces) — генерируется, не версионится
+.belief_map.sexp
+belief_map.sexp
+
+# Мусор ОС
+.DS_Store
+Thumbs.db
