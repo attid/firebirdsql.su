@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://firebirdsql.su/sitemap-index.xml

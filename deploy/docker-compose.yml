@@ -1,0 +1,47 @@
+# Развёртывание нового firebirdsql.su (этап 2, ADR-0002/0006/0007).
+# Запуск из корня репозитория:
+#   cd deploy && cp .env.example .env  # заполнить ключи remark42
+#   docker compose up -d --build
+
+services:
+  site:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:80"   # наружу только через существующий реверс-прокси хоста
+    depends_on:
+      - remark42
+
+  remark42:
+    image: umputun/remark42:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # REMARK_URL и секреты — в .env (см. .env.example)
+      - REMARK_PORT=8080
+      - REMARK_SITE=firebirdsql
+      # Провайдеры авторизации (ADR-0006): Telegram + Яндекс + Google
+      - AUTH_TELEGRAM=true
+      - AUTH_YANDEX=true
+      - AUTH_GOOGLE=true
+      # Прочие провайдеры (GitHub, email, аноним) — по желанию, добавить в .env
+      - EMOJI=true
+      - DEBUG=false
+    volumes:
+      - remark42-data:/srv/var
+    expose:
+      - "8080"
+
+  # Слот под ИИ-сервис (ADR-0007): включается без перестройки топологии.
+  # ai:
+  #   build:
+  #     context: ../ai
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   expose:
+  #     - "8000"
+
+volumes:
+  remark42-data:

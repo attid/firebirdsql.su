@@ -1,6 +1,5 @@
 # Сгенерировано tools/make_redirect_map.py. Не редактировать руками.
-map $arg_id $fb_new_path {
-    default /;
+# Только записи; обёртка map{} и default — в deploy/nginx.conf.
     1glossarij /1glossarij/;
     abs /abs/;
     acos /acos/;
@@ -250,4 +249,3 @@ map $arg_id $fb_new_path {
     while /while/;
     year /year/;
     yearday /yearday/;
-}

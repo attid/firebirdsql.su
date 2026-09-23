@@ -14,3 +14,6 @@ belief_map.sexp
 # Мусор ОС
 .DS_Store
 Thumbs.db
+
+# Секреты деплоя
+deploy/.env

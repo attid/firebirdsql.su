@@ -20,9 +20,28 @@ const sectionTitles: Record<string, string> = {
 };
 const sectionTitle = sectionTitles[entry.data.section] ?? entry.data.section;
 const toc = headings.filter((h) => h.depth <= 3);
+
+// Мета-описание из первого содержательного абзаца тела: механически,
+// без редактуры (ADR-0004). Практически у всех страниц глоссария это
+// раздел «Описание» либо вводный абзац.
+function metaDescription(body: string): string {
+  const clean = body
+    .split("\n")
+    .filter((ln) => !/^\s*(#|\||```|\x00)/.test(ln)) // без заголовков/таблиц/кода
+    .join(" ")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // ссылки -> текст
+    .replace(/[*_`<>]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const cut = clean.slice(0, 160);
+  const dot = cut.lastIndexOf(".");
+  const out = (dot > 80 ? cut.slice(0, dot + 1) : cut).trim();
+  return out.length < 40 ? `${entry.data.title} — ${sectionTitle} справочника по Firebird` : out;
+}
+const description = metaDescription(entry.body ?? "");
 ---
 
-<BaseLayout title={entry.data.title}>
+<BaseLayout title={entry.data.title} description={description}>
   <div class="breadcrumbs">
     <a href="/">Главная</a> / <a href="/glossarij/">Справочник</a> / {sectionTitle}
   </div>
@@ -40,6 +59,11 @@ const toc = headings.filter((h) => h.depth <= 3);
       </nav>
     )}
     <Content />
+
+    <section class="comments" aria-label="Комментарии">
+      <h2>Обсуждение</h2>
+      <div id="remark42"></div>
+    </section>
   </article>
 </BaseLayout>
 
@@ -53,4 +77,25 @@ const toc = headings.filter((h) => h.depth <= 3);
     font-size: 0.9rem;
   }
   .toc ul { margin: 0.4rem 0 0; padding-left: 1rem; }
+  .comments { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 </style>
+
+<script>
+  // Виджет remark42 (ADR-0006). Живёт за тем же nginx: /remark42/ -> контейнер.
+  // Локально в dev контейнера нет — скрипт тихо не грузится, секция остаётся пустой.
+  var remark_config = {
+    host: "/remark42",
+    site_id: "firebirdsql",
+    components: ["embed"],
+    locale: "ru",
+  };
+  (function (c) {
+    for (var i = 0; i < c.length; i++) {
+      var d = document.createElement("script");
+      const name = c[i] === "embed" ? "web" : c[i];
+      d.src = "/remark42/" + name + ".js";
+      d.defer = true;
+      (document.head || document.body).appendChild(d);
+    }
+  })(remark_config.components);
+</script>

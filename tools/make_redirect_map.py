@@ -64,26 +64,26 @@ def main() -> int:
 
     entries.sort()
     map_lines = ["# Сгенерировано tools/make_redirect_map.py. Не редактировать руками.",
-                 "map $arg_id $fb_new_path {", "    default /;"]
+                 "# Только записи; обёртка map{} и default — в deploy/nginx.conf."]
     for pid, target in entries:
         map_lines.append(f"    {pid} {target};")
-    map_lines.append("}")
     DEPLOY.mkdir(exist_ok=True)
     (DEPLOY / "redirects.map").write_text("\n".join(map_lines) + "\n", "utf-8")
 
     conf = """# Сгенерировано tools/make_redirect_map.py. Не редактировать руками.
 # Обе старые формы URL уходят 301 на новые страницы (docs/seo-migration.md).
-
-map $arg_id $fb_new_path { ... }  # см. redirects.map — включить через include
+# Рабочий вариант конфигурации — deploy/nginx.conf; этот файл — краткая шпаргалка.
 
 server {
+    # map $arg_id -> путь: см. nginx.conf (обёртка) + redirects.map (записи)
+
     # Форма 1: /doku.php?id=<page_id> (основная форма старых внутренних ссылок)
     location = /doku.php {
         return 301 $fb_new_path;
     }
 
     # Форма 2: /<page_id> без doku.php (например /abs, /sql003.summa_propisju)
-    location ~ ^/(?<fb_path_id>[a-z0-9_.\\-]+)$ {
+    location ~ ^/(?:[a-z0-9_.\\-]+:)?(?<fb_path_id>[a-z0-9_.\\-]+)$ {
         return 301 /$fb_path_id/;
     }
 }
