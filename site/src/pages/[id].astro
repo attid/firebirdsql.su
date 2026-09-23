@@ -80,13 +80,18 @@ const description = metaDescription(entry.body ?? "");
   .comments { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 </style>
 
-<script is:inline>
+<script
+  is:inline
+  define:vars={{ remarkHost: new URL("/remark42", Astro.site).href, remarkSite: "firebirdsql" }}
+>
   // is:inline ОБЯЗАТЕЛЬНО: Astro упаковывает обычные <script> в ES-модули,
-  // где var не попадает в window — а embed.js ищет именно window.remark_config
-  // ("Cannot read properties of undefined (reading 'host')").
+  // где var не попадает в window — а embed.js ищет именно window.remark_config.
+  // host должен быть АБСОЛЮТНЫМ URL: виджет парсит его new URL() и на
+  // относительном "/remark42" падает "Invalid host URL".
+  // Должен совпадать с REMARK_URL контейнера remark42.
   window.remark_config = {
-    host: "/remark42",
-    site_id: "firebirdsql",
+    host: remarkHost,
+    site_id: remarkSite,
     components: ["embed"],
     locale: "ru",
   };
@@ -94,7 +99,7 @@ const description = metaDescription(entry.body ?? "");
     for (var i = 0; i < c.length; i++) {
       var d = document.createElement("script");
       // канонический путь виджета remark42: /web/<component>.js
-      d.src = "/remark42/web/" + c[i] + ".js";
+      d.src = window.remark_config.host + "/web/" + c[i] + ".js";
       d.defer = true;
       (document.head || document.body).appendChild(d);
     }
