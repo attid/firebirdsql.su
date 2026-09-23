@@ -93,6 +93,15 @@ def main() -> int:
         if code != 301 or got != want.rstrip("/"):
             fails.append(f"doku.php?id={colon}: {code} -> {loc!r}, ожидалось {want}")
 
+    # Связка прокси на remark42: 200 = апстрим отвечает; 502 = апстрим
+    # отсутствует (ожидаемо без соседа в CI/локально — резолв в момент
+    # запроса); 500 = сломана конфигурация (например, пустая переменная
+    # из-за rewrite ... break перед set) — это регрессия.
+    code, _ = probe(base, "/remark42/api/v1/ping")
+    total += 1
+    if code not in (200, 502):
+        fails.append(f"/remark42/api/v1/ping: {code}, ожидался 200 или 502")
+
     print(f"Проверено запросов: {total}, ошибок: {len(fails)}")
     for f in fails[:20]:
         print(f"  FAIL {f}")
