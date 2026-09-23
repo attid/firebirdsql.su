@@ -60,6 +60,12 @@ const description = metaDescription(entry.body ?? "");
     )}
     <Content />
 
+    <p class="edit-link">
+      <a href={`https://github.com/attid/firebirdsql.su/blob/main/site/src/content/docs/${entry.id}.md`}>
+        ✏️ Править эту статью на GitHub
+      </a>
+    </p>
+
     <section class="comments" aria-label="Комментарии">
       <h2>Обсуждение</h2>
       <div id="remark42"></div>
@@ -78,6 +84,7 @@ const description = metaDescription(entry.body ?? "");
   }
   .toc ul { margin: 0.4rem 0 0; padding-left: 1rem; }
   .comments { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .edit-link { margin: 2rem 0 0; font-size: 0.85rem; color: var(--fg-muted); }
 </style>
 
 <script
