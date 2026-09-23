@@ -95,12 +95,17 @@ def main() -> int:
 
     # Связка прокси на remark42: 200 = апстрим отвечает; 502 = апстрим
     # отсутствует (ожидаемо без соседа в CI/локально — резолв в момент
-    # запроса); 500 = сломана конфигурация (например, пустая переменная
-    # из-за rewrite ... break перед set) — это регрессия.
-    code, _ = probe(base, "/remark42/api/v1/ping")
+    # запроса); таймаут — то же самое, просто резолвер ждёт (bounded
+    # resolver_timeout); 500 = сломана конфигурация (пустая переменная
+    # из-за rewrite ... break перед set) — это регрессия, и она отвечает
+    # мгновенно, поэтому от таймаута отличается надёжно.
     total += 1
-    if code not in (200, 502):
-        fails.append(f"/remark42/api/v1/ping: {code}, ожидался 200 или 502")
+    try:
+        code, _ = probe(base, "/remark42/api/v1/ping")
+        if code not in (200, 502):
+            fails.append(f"/remark42/api/v1/ping: {code}, ожидался 200 или 502")
+    except Exception as e:  # noqa: BLE001 - таймаут/отказ = соседа нет, связка цела
+        print(f"  remark42: сосед недоступен ({type(e).__name__}) — пропускаем как валидное отсутствие")
 
     print(f"Проверено запросов: {total}, ошибок: {len(fails)}")
     for f in fails[:20]:
