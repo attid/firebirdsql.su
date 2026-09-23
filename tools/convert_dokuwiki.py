@@ -188,7 +188,15 @@ class Converter:
             cells.pop()  # фантом от замыкающего разделителя строки
         return cells
 
-    def _table(self, lines: list[str]) -> list[str]:
+    @staticmethod
+    def _code_inline(block: str) -> str:
+        """Код-блок -> инлайновый код для ячейки таблицы: MD-таблицы не
+        умеют многострочные fence внутри ячеек, переносы схлопываем."""
+        lines = block.split("\n")
+        body = " ".join(" ".join(lines[1:-1]).split()) if len(lines) > 2 else ""
+        return f"`{body}`" if body else ""
+
+    def _table(self, lines: list[str], stashed: dict) -> list[str]:
         rows = [[(self._inline(t), h) for t, h in self._split_cells(ln)]
                 for ln in lines]
         ncols = max(len(r) for r in rows)
@@ -200,6 +208,12 @@ class Converter:
             out = []
             for i in range(ncols):
                 txt, is_h = cells[i] if i < len(cells) else ("", False)
+                # код-блок, попавший в ячейку, становится инлайновым кодом
+                txt = re.sub(
+                    r"\x00CODE(\d+)\x00",
+                    lambda m: self._code_inline(stashed["code"][int(m.group(1))]),
+                    txt,
+                )
                 # \\ в ячейке DokuWiki = перенос строки внутри ячейки
                 txt = txt.replace("\\\\", "<br>")
                 txt = txt.replace("|", "\\|")
@@ -263,7 +277,7 @@ class Converter:
                 table_buf.append(ln)
                 continue
             if table_buf:
-                out.extend(self._table(table_buf))
+                out.extend(self._table(table_buf, stashed))
                 table_buf = []
             m = LIST_RE.match(ln)
             if m:
@@ -276,7 +290,7 @@ class Converter:
             ln = ln.lstrip(" ")                # DokuWiki игнорирует отступ простого текста
             out.append(self._inline(ln))
         if table_buf:
-            out.extend(self._table(table_buf))
+            out.extend(self._table(table_buf, stashed))
 
         text = "\n".join(out)
         text = re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
