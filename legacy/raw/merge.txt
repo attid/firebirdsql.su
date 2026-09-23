@@ -1,0 +1,60 @@
+﻿
+====== MERGE ======
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -    |  -    |  -    |  -  |  -    |  -    |  +  |  +  |  +  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]], [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+<code sql>
+  MERGE
+   INTO <table or view> [ [AS] <correlation name> ]
+   USING <table or view or derived table> [ [AS] <correlation name> ]
+   ON <condition>
+   [ merge when matched ]
+   [ merge when not matched ]
+</code>
+ merge when matched
+<code sql>
+  WHEN MATCHED THEN
+   UPDATE SET <assignment list>
+</code>
+ merge when not matched
+<code sql>
+  WHEN NOT MATCHED THEN
+   INSERT [ <left paren> <column list> <right paren> ]
+    VALUES <left paren> <value list> <right paren>
+</code>
+
+===== Описание =====
+MERGE читает данные из исходной (USING) таблицы и вставляет([[INSERT]]) или обновляет ([[UPDATE]]) данные в целевой (INTO) таблице, в зависимости от условия.
+
+Должна присутствовать хотя бы одна из двух секций **[merge when matched]** или **[merge when not matched]**, при чем не более одного раза каждая.
+
+===== Пример =====
+<code sql>
+MERGE
+   INTO customers c
+   USING (SELECT * FROM customers_delta WHERE id > 10) cd
+   ON (c.id = cd.id)
+   WHEN MATCHED THEN
+    UPDATE SET
+     name = cd.name
+   WHEN NOT MATCHED THEN
+    INSERT (id, name)
+     VALUES (cd.id, cd.name)
+</code>
+
+Замечание:
+Выполняется [[JOIN|правое внешнее соединение]] между таблицами, указанными в INTO и USING, по условию <condition>. Если слева запись есть, то производится обновление, иначе вставка. Если справа так же нет записей, соответствующих условию, то вставка не производится.
+
+===== См. также =====
+[[SELECT]], [[JOIN]], [[INSERT]], [[UPDATE]]
+
+===== Источник =====
+%Firebird%\doc\sql.extensions\README.merge.txt
+
+%Firebird%\doc\Firebird_v2.1.1.ReleaseNotes.pdf

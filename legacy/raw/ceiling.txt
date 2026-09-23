@@ -1,0 +1,59 @@
+﻿====== CEILING() ======
+
+
+
+
+===== Версии сервера =====
+^                       ^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.1 ^ 2.5 ^ 3.0 ^
+^Как [[UDF]]            |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  -  |  -  |  -  |
+^Как встроенная функция |  -  |  -  |  -  |  -  |  -  |  -  |  Да  |  Да  |  Да  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],   [[raznovidnosti_jazyka_sql|ISQL]],   [[raznovidnosti_jazyka_sql|PSQL]]
+
+
+===== Формат =====
+<code>CEILING( < аргумент > )</code>
+^ Аргумент ^ Описание ^
+| < аргумент >  | Любой тип данных, приводимый к [[tipy_dannyx|DOUBLE PRECISION]]  |
+| Возвращает | [[tipy_dannyx|DOUBLE PRECISION]] ближайшее большее целое число к переданному аргументу < аргумент > |
+
+
+===== Описание =====
+Функция CEILING() служит для банковского округления числа и возвращает ближайшее целое, превосходящее параметр обращения.
+
+:!: В Firebird версии младше 2.1 для того, чтобы пользоваться этой функцией, ее небходимо подключить к базе данных как [[UDF]].
+
+
+
+===== Объявление =====
+1. В Firebird версии младше 2.1 функция объявляется как [[UDF]] в внешнем модуле "ib_udf".
+<code sql>
+DECLARE EXTERNAL FUNCTION CEILING
+  DOUBLE PRECISION
+RETURNS
+  DOUBLE PRECISION BY VALUE
+ENTRY_POINT "IB_UDF_ceiling" MODULE_NAME "ib_udf";
+</code>
+
+2. В Firebird версии 2.1 и старше является встроенной функцией при соглашении объявления ее как:
+<code sql>
+DECLARE EXTERNAL FUNCTION CEILING
+  DOUBLE PRECISION
+RETURNS
+  DOUBLE PRECISION BY VALUE
+ENTRY_POINT "ceiling" MODULE_NAME SYSTEM;
+</code>
+
+===== Пример =====
+[[raznovidnosti_jazyka_sql|DSQL]],   [[raznovidnosti_jazyka_sql|ISQL]]
+<code sql>
+SELECT S.SAL_DATE, CEILING(S.SUM_SALES) AS SUM_SALES
+FROM   SALES S
+</code>
+
+===== См. также =====
+[[UDF]], [[TRUNC()]], [[ROUND()]], [[vstroennye_funkcii|Встроенные функции]]
+
+===== Источник =====
+langref.pdf

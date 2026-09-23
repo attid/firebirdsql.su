@@ -1,0 +1,84 @@
+﻿
+====== Математические операции с датой и временем ======
+
+
+Иногда возникает необходимость проводить с датой какие-либо операции что мы и попытаемся изложить.
+
+Для начала определимся, что у нас есть и что мы с этим можем сделать.
+
+Операции можно проводить со следующими типами данных: [[tipy_dannyx|DATE]], [[tipy_dannyx|TIME]], [[tipy_dannyx|TIMESTAMP ]]
+
+Операции которые могут нам понадобиться: это добавить(убавить) и найти разницу.
+
+С добавлением к [[tipy_dannyx|TIMESTAMP]] проще всего заниматься используя родные [[UDF]] fbudf [[ADDMILLISECOND()]], [[ADDSECOND()]], [[ADDMINUTE()]], [[ADDDAY()]], [[ADDWEEK]], [[ADDMONTH()]], [[ADDYEAR()]]
+
+С версии 2.1 доступна функция [[dateadd]].
+
+Если не хочется использовать [[UDF]] и не важна погрешность, то можно прибавлять все ручками 
+
+для [[tipy_dannyx|TIMESTAMP]] 1 (единица) это один день, соответственно 0.00001157407 это одна секунда
+
+для [[tipy_dannyx|DATE]] 1 (единица) это один день
+
+для [[tipy_dannyx|TIME]] 1 (единица) это одна секунда, 3600 это час  
+
+
+к примеру хотим добавить 30 секунд к [[tipy_dannyx|TIMESTAMP]]
+
+<code sql>SELECT current_timestamp, current_timestamp + (0.00001157407*30) FROM RDB$DATABASE </code>
+
+30 секунд к [[tipy_dannyx|TIME]]
+
+<code sql>select current_time, current_time + 30  from rdb$database</code>
+
+добавляем к дате 5 дней
+
+<code sql>select current_date , current_date + 5 from rdb$database</code>
+
+получить кол-во секунд с полночи можно так
+
+<code sql>select current_time - cast('0:00' as time) from rdb$database</code> 
+
+сколько прошло времени между 18:00 и 15:30  в часах и минутах (мы тут никогда не получим результат больше суток "25:15" потому что невозможно)
+
+<code sql>select cast('0:00' as time)+(cast('18:00' as time)-cast('15:30' as time)) from rdb$database</code>
+
+тоже самое но с [[tipy_dannyx|TIMESTAMP]] сравнивается только время, дата не учитывается никак
+
+<code sql>select cast('0:00' as time)+(cast('01.01.2001 18:00' as timestamp)-cast('02.02.2007 15:30' as timestamp))*24*60*60 from rdb$database</code>
+
+зато дату можно можно прибывать к другому [[tipy_dannyx|TIMESTAMP]]
+
+<code sql>select cast('03.03.2003' as timestamp) + (cast('05.02.2001 18:00' as timestamp)-cast('02.02.2001 15:30' as timestamp)) from rdb$database</code>
+
+также мы можем [[tipy_dannyx|TIME]] прибавит к [[tipy_dannyx|TIMESTAMP]]
+
+<code sql>select current_timestamp+(cast('2:00' as time)-cast('0:00' as time))/(60*60*24) from rdb$database</code>
+
+[[tipy_dannyx|TIME]] и [[tipy_dannyx|DATE]] складываются без шаманства
+
+<code sql>select current_date + current_time from rdb$database</code>
+
+получить разницу больше суток в часах можно при помощи следующей процедуры
+
+<code sql>create or alter procedure get_my_time (beg timestamp, ends timestamp)
+returns (_time varchar(20))
+as
+   declare variable interval double precision;
+   declare variable hours int;
+   declare variable mins int;
+   declare variable sec int;
+begin
+   interval = beg - ends;
+   if (interval < 0) then interval = -interval;
+   interval = interval*24;
+   if (cast(interval as int) > interval) then hours = interval - 1; else hours = interval;
+   interval = (interval - hours)*60;
+   if (cast(interval as int) > interval) then mins = interval - 1; else mins = interval;
+   sec = (interval - mins)*60;
+   if (sec = 60) then sec = 59; /* милисекунды могут сделать бяку, потому так */
+
+   _time = hours || ':' || case when mins>10 then mins else '0' || mins end || ':' || case when sec>10 then sec else '0' || sec end;
+   suspend;
+end
+</code>

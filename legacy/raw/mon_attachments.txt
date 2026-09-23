@@ -1,0 +1,42 @@
+﻿====== MON$ATTACHMENTS ======
+Эта виртуальная таблица содержит записи с информацией о активных подключениях БД.
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  Да  |  Да  |  ?  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|ESQL]],  [[raznovidnosti_jazyka_sql|ISQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Описание =====
+
+^Поле^Тип^Описание^Пример^
+|MON$ATTACHMENT_ID|[[INTEGER]]|Номер подключения с момента начала работы сервера| |
+|MON$SERVER_PID|[[INTEGER]]|ID процесса сервера |  |
+|MON$STATE|[[tipy_dannyx|SMALLINT]]|состояние подключения (0:idle/1: active)| |
+|MON$ATTACHMENT_NAME|[[tipy_dannyx|VARCHAR]](253)|Полное имя файла БД (алиас из aliases.conf) | D:\EMPLOYEE.FDB|
+|MON$USER|[[tipy_dannyx|CHAR]](31)|Имя юзера | [[SYSDBA]] |
+|MON$ROLE|[[tipy_dannyx|CHAR]](31)|Роль, под которой зашел юзер | NONE|
+|MON$REMOTE_PROTOCOL |[[tipy_dannyx|VARCHAR]](8)|Протокол соединения |TCPv4 |
+|MON$REMOTE_ADDRESS |[[tipy_dannyx|VARCHAR]](253)| IP машины юзера|192.168.0.1|
+|MON$REMOTE_PID|[[INTEGER]]| ID процесса клиента| |
+|MON$REMOTE_PROCESS|[[tipy_dannyx|VARCHAR]](253)|Полное имя файла клиентского ПО|c:\client.exe |
+|MON$CHARACTER_SET_ID|[[tipy_dannyx|SMALLINT]]| Код набора символов по умолчанию при подключении к БД| |
+|MON$TIMESTAMP|[[tipy_dannyx|TIMESTAMP]]| дата/время подключения|25.06.2008 15:20:33|
+|MON$GARBAGE_COLLECTION|[[tipy_dannyx|SMALLINT]]| :?:garbage collection flag| |
+|MON$STAT_ID|[[INTEGER]]|:?:statistics ID| |
+
+:!: SYSDBA и владелец базы могут просматривать информацию обо всех подключениях, обычным пользователям доступна информация только о своих подключениях.
+
+:!: При использовании Embedded-подключения поля MON$REMOTE_PROTOCOL и MON$REMOTE_ADDRESS будут иметь значение null.
+
+===== Пример =====
+<code sql>
+  SELECT * FROM MON$ATTACHMENTS
+</code>
+
+===== См. также =====
+[[tablicy_monitoringa|Таблицы мониторинга]]
+
+===== Источник =====
+README.monitoring_tables.txt

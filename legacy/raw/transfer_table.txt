@@ -1,0 +1,111 @@
+﻿====== transfer table ======
+
+===== Версии сервера =====
+^ 2.5 ^ 3.0 ^
+|  -  |  -  |  
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|ESQL]],  [[raznovidnosti_jazyka_sql|ISQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+Передача части таблицы от одного сервера другому.
+
+Суть проблемы.
+
+Есть центральная база данных и большое количество филиалов. Необходимо создать репликацию одной или нескольких таблиц с центральной БД.
+Эта проблема может быть решена применением [[EXECUTE STATEMENT]]. Однако за период накопления, в филиалах набирается большой объем данных. Передача их открытым трафиком приводит к серьезной загрузке канала, да и непрогнозируемым нагрузкам на центральный сервер БД.
+Более разумно сжимать передаваемый трафик архиватором, а обрабатывать посылки данных по расписанию.
+Для реализации такого обмена, данные из таблицы-источника сохраняются во внешней (EXTERNAL) таблице, которая находится в отдельном файле, который после формирования архивируется и передается в сжатом виде.
+Собственно, настоящая статья описывает процедуру формирования пакета для передачи.
+
+===== Описание =====
+Процедура принимает следующие входные данные 
+
+1. имя передаваемой таблицы
+
+2. условия отбора (секция WHERE запроса). В случае пустого значения этого параметра вся таблица передается полностью
+
+3. путь и имя/расширение создаваемого файла
+
+По окончании процедуры по указанному пути создается файл, содержащий запрошенные данные, и готовый к передачи другому серверу.
+
+__**ВНИМАНИЕ!**__ Для работы этой процедуры использована функция создания внешних (EXTERNAL) таблиц. По умолчанию эта возможность отключена в фале настроек firebird.conf
+Для работы этой процедуры параметру **ExternalFileAccess** необходимо установить значение  **Full**
+
+__**ВНИМАНИЕ!**__ для передачи данных создается внешняя (EXTERNAL) таблица на которую накладываются ограничения связанные с таким объектом. В частности невозможна передача объектов типа [[tipy_dannyx|BLOB]]. Подробности см. в соответствующей статье [[CREATE TABLE]]
+
+Часть кода взята из статьи [[RDB$FIELDS]]
+
+===== Пример =====
+<code sql>
+CREATE OR ALTER PROCEDURE TRANSFER (
+    table_name varchar(1000),
+    where_str varchar(1000),
+    path_file varchar(1000) = 'c:\transfer.db')
+as
+declare variable temp_s1 varchar(10000);
+declare variable i integer;
+declare variable res varchar(10000);
+begin
+res = 'CREATE TABLE ' || table_name ||'_REP EXTERNAL ' || ASCII_CHAR(39) || PATH_FILE || ASCII_CHAR(39) || ' (';
+SELECT count(*) FROM RDB$RELATIONS WHERE RDB$RELATION_NAME = :TABLE_NAME || '_REP' INTO i;
+
+if (i > 0 ) then begin
+            EXECUTE STATEMENT 'DROP TABLE ' || TABLE_NAME || '_REP'
+            WITH AUTONOMOUS TRANSACTION;
+            end
+i = 0;
+FOR
+SELECT TRIM(RDB$RELATION_FIELDS.RDB$FIELD_NAME) ||' '||
+TRIM( ( SELECT
+cast(
+       case T2.RDB$FIELD_TYPE
+        when 7 then 'SMALLINT'
+        when 8 then 'INTEGER'
+        when 12 then 'DATE'
+        when 13 then 'TIME'
+        when 14 then 'CHAR('||T2.rdb$field_length||')'
+        when 16 then
+          iif(T2.rdb$field_sub_type = 0,'BIGINT', 'NUMERIC('||T2.RDB$FIELD_PRECISION||','||(-1*T2.rdb$field_scale)||')')
+        when 35 then 'TIMESTAMP'
+        when 37 then 'VARCHAR('||T2.rdb$field_length||')'
+        when 261 then 'BLOB SUB_TYPE '||T2.rdb$field_sub_type||' SEGMENT SIZE '||T2.rdb$segment_length
+        else cast(T2.RDB$FIELD_TYPE AS varchar(10))
+    end
+    ||iif(T2.RDB$NULL_FLAG = 1,' NOT NULL ',' ')
+    ||coalesce(' '||RDB$DEFAULT_SOURCE,'')
+    ||coalesce(' '||rdb$validation_SOURCE,'')
+AS varchar(1000)) 
+FROM RDB$FIELDS  T2 
+WHERE T2.RDB$FIELD_NAME = RDB$RELATION_FIELDS.RDB$FIELD_SOURCE
+) )  AS SPECIFICATION
+FROM RDB$RELATION_FIELDS INNER JOIN RDB$FIELDS ON (RDB$FIELDS.RDB$FIELD_NAME = RDB$RELATION_FIELDS.RDB$FIELD_SOURCE), RDB$TYPES
+WHERE RDB$TYPES.RDB$TYPE = RDB$FIELDS.RDB$FIELD_TYPE AND RDB$TYPES.RDB$FIELD_NAME = 'RDB$FIELD_TYPE'
+AND RDB$RELATION_NAME = :TABLE_NAME
+ORDER BY RDB$FIELD_POSITION
+INTO TEMP_S1
+do
+BEGIN
+res = res || case when i > 0 then ', ' else '' end || TEMP_S1; i = i + 1;
+end
+            res = res || ');';
+            EXECUTE STATEMENT res
+            WITH AUTONOMOUS TRANSACTION;
+
+            temp_s1 = 'INSERT INTO ' || TABLE_NAME || '_REP SELECT ' || TABLE_NAME || '.* FROM ' || TABLE_NAME ||
+            case when CHAR_LENGTH(WHERE_STR) < 2 then ' ;' else ' where ' || WHERE_STR || ' ;' END;
+
+            EXECUTE STATEMENT temp_s1
+            WITH  AUTONOMOUS TRANSACTION;
+
+            EXECUTE STATEMENT 'DROP TABLE ' || TABLE_NAME || '_REP'
+            WITH AUTONOMOUS TRANSACTION;
+
+end
+</code>
+
+===== См. также =====
+[[EXECUTE STATEMENT]] [[CREATE TABLE]] [[create_table|EXTERNAL]] [[RDB$FIELDS]]
+
+===== Источник =====
+%Firebird%\doc\565

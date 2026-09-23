@@ -1,0 +1,1755 @@
+{
+ "source": "https://firebirdsql.su",
+ "fetched_at": "2026-09-23T12:04:58.485850+00:00",
+ "pages_total": 249,
+ "pages_ok": 249,
+ "pages_broken": [],
+ "media_total": 0,
+ "media_ok": 0,
+ "pages": [
+  {
+   "id": "1glossarij",
+   "ok": true,
+   "bytes": 10177,
+   "file": "raw/1glossarij.txt",
+   "cached": true
+  },
+  {
+   "id": "abs",
+   "ok": true,
+   "bytes": 2863,
+   "file": "raw/abs.txt",
+   "cached": true
+  },
+  {
+   "id": "acos",
+   "ok": true,
+   "bytes": 3421,
+   "file": "raw/acos.txt",
+   "cached": true
+  },
+  {
+   "id": "addday",
+   "ok": true,
+   "bytes": 1252,
+   "file": "raw/addday.txt",
+   "cached": true
+  },
+  {
+   "id": "addmillisecond",
+   "ok": true,
+   "bytes": 1299,
+   "file": "raw/addmillisecond.txt",
+   "cached": true
+  },
+  {
+   "id": "addminute",
+   "ok": true,
+   "bytes": 1262,
+   "file": "raw/addminute.txt",
+   "cached": true
+  },
+  {
+   "id": "addmonth",
+   "ok": true,
+   "bytes": 1261,
+   "file": "raw/addmonth.txt",
+   "cached": true
+  },
+  {
+   "id": "addsecond",
+   "ok": true,
+   "bytes": 1261,
+   "file": "raw/addsecond.txt",
+   "cached": true
+  },
+  {
+   "id": "addweek",
+   "ok": true,
+   "bytes": 1254,
+   "file": "raw/addweek.txt",
+   "cached": true
+  },
+  {
+   "id": "addyear",
+   "ok": true,
+   "bytes": 1243,
+   "file": "raw/addyear.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_character_set",
+   "ok": true,
+   "bytes": 1777,
+   "file": "raw/alter_character_set.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_database",
+   "ok": true,
+   "bytes": 2606,
+   "file": "raw/alter_database.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_domain",
+   "ok": true,
+   "bytes": 2940,
+   "file": "raw/alter_domain.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_exception",
+   "ok": true,
+   "bytes": 1239,
+   "file": "raw/alter_exception.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_external_function",
+   "ok": true,
+   "bytes": 949,
+   "file": "raw/alter_external_function.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_index",
+   "ok": true,
+   "bytes": 3005,
+   "file": "raw/alter_index.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_procedure",
+   "ok": true,
+   "bytes": 4282,
+   "file": "raw/alter_procedure.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_sequence",
+   "ok": true,
+   "bytes": 2910,
+   "file": "raw/alter_sequence.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_table",
+   "ok": true,
+   "bytes": 9541,
+   "file": "raw/alter_table.txt",
+   "cached": true
+  },
+  {
+   "id": "alter_trigger",
+   "ok": true,
+   "bytes": 5214,
+   "file": "raw/alter_trigger.txt",
+   "cached": true
+  },
+  {
+   "id": "array_dim",
+   "ok": true,
+   "bytes": 44,
+   "file": "raw/array_dim.txt",
+   "cached": true
+  },
+  {
+   "id": "ascii_char",
+   "ok": true,
+   "bytes": 2726,
+   "file": "raw/ascii_char.txt",
+   "cached": true
+  },
+  {
+   "id": "ascii_val",
+   "ok": true,
+   "bytes": 3279,
+   "file": "raw/ascii_val.txt",
+   "cached": true
+  },
+  {
+   "id": "asin",
+   "ok": true,
+   "bytes": 3434,
+   "file": "raw/asin.txt",
+   "cached": true
+  },
+  {
+   "id": "atan",
+   "ok": true,
+   "bytes": 2133,
+   "file": "raw/atan.txt",
+   "cached": true
+  },
+  {
+   "id": "atan2",
+   "ok": true,
+   "bytes": 2916,
+   "file": "raw/atan2.txt",
+   "cached": true
+  },
+  {
+   "id": "autoddl",
+   "ok": true,
+   "bytes": 757,
+   "file": "raw/autoddl.txt",
+   "cached": true
+  },
+  {
+   "id": "autonomous_transaction",
+   "ok": true,
+   "bytes": 3229,
+   "file": "raw/autonomous_transaction.txt",
+   "cached": true
+  },
+  {
+   "id": "avg",
+   "ok": true,
+   "bytes": 2165,
+   "file": "raw/avg.txt",
+   "cached": true
+  },
+  {
+   "id": "bin_and",
+   "ok": true,
+   "bytes": 974,
+   "file": "raw/bin_and.txt",
+   "cached": true
+  },
+  {
+   "id": "bin_not",
+   "ok": true,
+   "bytes": 815,
+   "file": "raw/bin_not.txt",
+   "cached": true
+  },
+  {
+   "id": "bin_or",
+   "ok": true,
+   "bytes": 982,
+   "file": "raw/bin_or.txt",
+   "cached": true
+  },
+  {
+   "id": "bin_shl",
+   "ok": true,
+   "bytes": 915,
+   "file": "raw/bin_shl.txt",
+   "cached": true
+  },
+  {
+   "id": "bin_shr",
+   "ok": true,
+   "bytes": 997,
+   "file": "raw/bin_shr.txt",
+   "cached": true
+  },
+  {
+   "id": "bin_xor",
+   "ok": true,
+   "bytes": 1008,
+   "file": "raw/bin_xor.txt",
+   "cached": true
+  },
+  {
+   "id": "bit_length",
+   "ok": true,
+   "bytes": 946,
+   "file": "raw/bit_length.txt",
+   "cached": true
+  },
+  {
+   "id": "break",
+   "ok": true,
+   "bytes": 568,
+   "file": "raw/break.txt",
+   "cached": true
+  },
+  {
+   "id": "case",
+   "ok": true,
+   "bytes": 1471,
+   "file": "raw/case.txt",
+   "cached": true
+  },
+  {
+   "id": "cast",
+   "ok": true,
+   "bytes": 2069,
+   "file": "raw/cast.txt",
+   "cached": true
+  },
+  {
+   "id": "ceiling",
+   "ok": true,
+   "bytes": 2382,
+   "file": "raw/ceiling.txt",
+   "cached": true
+  },
+  {
+   "id": "char_length",
+   "ok": true,
+   "bytes": 907,
+   "file": "raw/char_length.txt",
+   "cached": true
+  },
+  {
+   "id": "char_to_uuid",
+   "ok": true,
+   "bytes": 1236,
+   "file": "raw/char_to_uuid.txt",
+   "cached": true
+  },
+  {
+   "id": "coalesce",
+   "ok": true,
+   "bytes": 972,
+   "file": "raw/coalesce.txt",
+   "cached": true
+  },
+  {
+   "id": "comment",
+   "ok": true,
+   "bytes": 1056,
+   "file": "raw/comment.txt",
+   "cached": true
+  },
+  {
+   "id": "commit",
+   "ok": true,
+   "bytes": 2572,
+   "file": "raw/commit.txt",
+   "cached": true
+  },
+  {
+   "id": "connect",
+   "ok": true,
+   "bytes": 2575,
+   "file": "raw/connect.txt",
+   "cached": true
+  },
+  {
+   "id": "constraint",
+   "ok": true,
+   "bytes": 15859,
+   "file": "raw/constraint.txt",
+   "cached": true
+  },
+  {
+   "id": "containing",
+   "ok": true,
+   "bytes": 1027,
+   "file": "raw/containing.txt",
+   "cached": true
+  },
+  {
+   "id": "cos",
+   "ok": true,
+   "bytes": 2334,
+   "file": "raw/cos.txt",
+   "cached": true
+  },
+  {
+   "id": "cosh",
+   "ok": true,
+   "bytes": 2415,
+   "file": "raw/cosh.txt",
+   "cached": true
+  },
+  {
+   "id": "cot",
+   "ok": true,
+   "bytes": 2393,
+   "file": "raw/cot.txt",
+   "cached": true
+  },
+  {
+   "id": "count",
+   "ok": true,
+   "bytes": 1843,
+   "file": "raw/count.txt",
+   "cached": true
+  },
+  {
+   "id": "create_database",
+   "ok": true,
+   "bytes": 6880,
+   "file": "raw/create_database.txt",
+   "cached": true
+  },
+  {
+   "id": "create_domain",
+   "ok": true,
+   "bytes": 1165,
+   "file": "raw/create_domain.txt",
+   "cached": true
+  },
+  {
+   "id": "create_exception",
+   "ok": true,
+   "bytes": 1662,
+   "file": "raw/create_exception.txt",
+   "cached": true
+  },
+  {
+   "id": "create_generator",
+   "ok": true,
+   "bytes": 1185,
+   "file": "raw/create_generator.txt",
+   "cached": true
+  },
+  {
+   "id": "create_global_temporary_table",
+   "ok": true,
+   "bytes": 3711,
+   "file": "raw/create_global_temporary_table.txt",
+   "cached": true
+  },
+  {
+   "id": "create_index",
+   "ok": true,
+   "bytes": 3722,
+   "file": "raw/create_index.txt",
+   "cached": true
+  },
+  {
+   "id": "create_procedure",
+   "ok": true,
+   "bytes": 5189,
+   "file": "raw/create_procedure.txt",
+   "cached": true
+  },
+  {
+   "id": "create_role",
+   "ok": true,
+   "bytes": 1646,
+   "file": "raw/create_role.txt",
+   "cached": true
+  },
+  {
+   "id": "create_shadow",
+   "ok": true,
+   "bytes": 4498,
+   "file": "raw/create_shadow.txt",
+   "cached": true
+  },
+  {
+   "id": "create_table",
+   "ok": true,
+   "bytes": 21081,
+   "file": "raw/create_table.txt",
+   "cached": true
+  },
+  {
+   "id": "create_trigger",
+   "ok": true,
+   "bytes": 3406,
+   "file": "raw/create_trigger.txt",
+   "cached": true
+  },
+  {
+   "id": "create_view",
+   "ok": true,
+   "bytes": 617,
+   "file": "raw/create_view.txt",
+   "cached": true
+  },
+  {
+   "id": "current_connection",
+   "ok": true,
+   "bytes": 1449,
+   "file": "raw/current_connection.txt",
+   "cached": true
+  },
+  {
+   "id": "current_date",
+   "ok": true,
+   "bytes": 821,
+   "file": "raw/current_date.txt",
+   "cached": true
+  },
+  {
+   "id": "current_role",
+   "ok": true,
+   "bytes": 1126,
+   "file": "raw/current_role.txt",
+   "cached": true
+  },
+  {
+   "id": "current_timestamp",
+   "ok": true,
+   "bytes": 1226,
+   "file": "raw/current_timestamp.txt",
+   "cached": true
+  },
+  {
+   "id": "current_transaction",
+   "ok": true,
+   "bytes": 1479,
+   "file": "raw/current_transaction.txt",
+   "cached": true
+  },
+  {
+   "id": "current_user",
+   "ok": true,
+   "bytes": 1200,
+   "file": "raw/current_user.txt",
+   "cached": true
+  },
+  {
+   "id": "dateadd",
+   "ok": true,
+   "bytes": 1587,
+   "file": "raw/dateadd.txt",
+   "cached": true
+  },
+  {
+   "id": "datediff",
+   "ok": true,
+   "bytes": 1388,
+   "file": "raw/datediff.txt",
+   "cached": true
+  },
+  {
+   "id": "datetype",
+   "ok": true,
+   "bytes": 569,
+   "file": "raw/datetype.txt",
+   "cached": true
+  },
+  {
+   "id": "day",
+   "ok": true,
+   "bytes": 448,
+   "file": "raw/day.txt",
+   "cached": true
+  },
+  {
+   "id": "declare_cursor",
+   "ok": true,
+   "bytes": 7240,
+   "file": "raw/declare_cursor.txt",
+   "cached": true
+  },
+  {
+   "id": "declare_external_function",
+   "ok": true,
+   "bytes": 1436,
+   "file": "raw/declare_external_function.txt",
+   "cached": true
+  },
+  {
+   "id": "decode",
+   "ok": true,
+   "bytes": 1348,
+   "file": "raw/decode.txt",
+   "cached": true
+  },
+  {
+   "id": "delete",
+   "ok": true,
+   "bytes": 1973,
+   "file": "raw/delete.txt",
+   "cached": true
+  },
+  {
+   "id": "distinct",
+   "ok": true,
+   "bytes": 2482,
+   "file": "raw/distinct.txt",
+   "cached": true
+  },
+  {
+   "id": "dom_search_condition",
+   "ok": true,
+   "bytes": 492,
+   "file": "raw/dom_search_condition.txt",
+   "cached": true
+  },
+  {
+   "id": "dow",
+   "ok": true,
+   "bytes": 1741,
+   "file": "raw/dow.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_database",
+   "ok": true,
+   "bytes": 752,
+   "file": "raw/drop_database.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_domain",
+   "ok": true,
+   "bytes": 774,
+   "file": "raw/drop_domain.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_exception",
+   "ok": true,
+   "bytes": 875,
+   "file": "raw/drop_exception.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_generator",
+   "ok": true,
+   "bytes": 2218,
+   "file": "raw/drop_generator.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_procedure",
+   "ok": true,
+   "bytes": 800,
+   "file": "raw/drop_procedure.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_role",
+   "ok": true,
+   "bytes": 766,
+   "file": "raw/drop_role.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_shadow",
+   "ok": true,
+   "bytes": 1251,
+   "file": "raw/drop_shadow.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_table",
+   "ok": true,
+   "bytes": 1738,
+   "file": "raw/drop_table.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_trigger",
+   "ok": true,
+   "bytes": 1735,
+   "file": "raw/drop_trigger.txt",
+   "cached": true
+  },
+  {
+   "id": "drop_view",
+   "ok": true,
+   "bytes": 1187,
+   "file": "raw/drop_view.txt",
+   "cached": true
+  },
+  {
+   "id": "exception",
+   "ok": true,
+   "bytes": 1905,
+   "file": "raw/exception.txt",
+   "cached": true
+  },
+  {
+   "id": "execute_block",
+   "ok": true,
+   "bytes": 2079,
+   "file": "raw/execute_block.txt",
+   "cached": true
+  },
+  {
+   "id": "execute_procedure",
+   "ok": true,
+   "bytes": 1214,
+   "file": "raw/execute_procedure.txt",
+   "cached": true
+  },
+  {
+   "id": "execute_statement",
+   "ok": true,
+   "bytes": 27260,
+   "file": "raw/execute_statement.txt",
+   "cached": true
+  },
+  {
+   "id": "exists",
+   "ok": true,
+   "bytes": 1069,
+   "file": "raw/exists.txt",
+   "cached": true
+  },
+  {
+   "id": "exp",
+   "ok": true,
+   "bytes": 3594,
+   "file": "raw/exp.txt",
+   "cached": true
+  },
+  {
+   "id": "extract",
+   "ok": true,
+   "bytes": 3767,
+   "file": "raw/extract.txt",
+   "cached": true
+  },
+  {
+   "id": "fetch",
+   "ok": true,
+   "bytes": 8170,
+   "file": "raw/fetch.txt",
+   "cached": true
+  },
+  {
+   "id": "first",
+   "ok": true,
+   "bytes": 1156,
+   "file": "raw/first.txt",
+   "cached": true
+  },
+  {
+   "id": "floor",
+   "ok": true,
+   "bytes": 615,
+   "file": "raw/floor.txt",
+   "cached": true
+  },
+  {
+   "id": "funkcii_dlja_raboty_s_datoj_i_vremenem",
+   "ok": true,
+   "bytes": 1401,
+   "file": "raw/funkcii_dlja_raboty_s_datoj_i_vremenem.txt",
+   "cached": true
+  },
+  {
+   "id": "gbak",
+   "ok": true,
+   "bytes": 7509,
+   "file": "raw/gbak.txt",
+   "cached": true
+  },
+  {
+   "id": "gdscode",
+   "ok": true,
+   "bytes": 1531,
+   "file": "raw/gdscode.txt",
+   "cached": true
+  },
+  {
+   "id": "gdscodes",
+   "ok": true,
+   "bytes": 24059,
+   "file": "raw/gdscodes.txt",
+   "cached": true
+  },
+  {
+   "id": "gen_id",
+   "ok": true,
+   "bytes": 2417,
+   "file": "raw/gen_id.txt",
+   "cached": true
+  },
+  {
+   "id": "gen_uuid",
+   "ok": true,
+   "bytes": 1504,
+   "file": "raw/gen_uuid.txt",
+   "cached": true
+  },
+  {
+   "id": "gfix",
+   "ok": true,
+   "bytes": 17039,
+   "file": "raw/gfix.txt",
+   "cached": true
+  },
+  {
+   "id": "glossarij",
+   "ok": true,
+   "bytes": 10177,
+   "file": "raw/glossarij.txt",
+   "cached": true
+  },
+  {
+   "id": "grant",
+   "ok": true,
+   "bytes": 9511,
+   "file": "raw/grant.txt",
+   "cached": true
+  },
+  {
+   "id": "gsec",
+   "ok": true,
+   "bytes": 11537,
+   "file": "raw/gsec.txt",
+   "cached": true
+  },
+  {
+   "id": "hash",
+   "ok": true,
+   "bytes": 1263,
+   "file": "raw/hash.txt",
+   "cached": true
+  },
+  {
+   "id": "having",
+   "ok": true,
+   "bytes": 1383,
+   "file": "raw/having.txt",
+   "cached": true
+  },
+  {
+   "id": "hour",
+   "ok": true,
+   "bytes": 373,
+   "file": "raw/hour.txt",
+   "cached": true
+  },
+  {
+   "id": "if",
+   "ok": true,
+   "bytes": 2102,
+   "file": "raw/if.txt",
+   "cached": true
+  },
+  {
+   "id": "iif",
+   "ok": true,
+   "bytes": 1208,
+   "file": "raw/iif.txt",
+   "cached": true
+  },
+  {
+   "id": "index",
+   "ok": true,
+   "bytes": 4414,
+   "file": "raw/index.txt",
+   "cached": true
+  },
+  {
+   "id": "indices_maintenance",
+   "ok": true,
+   "bytes": 3246,
+   "file": "raw/indices_maintenance.txt",
+   "cached": true
+  },
+  {
+   "id": "insert",
+   "ok": true,
+   "bytes": 4827,
+   "file": "raw/insert.txt",
+   "cached": true
+  },
+  {
+   "id": "inserting_updating_deleting",
+   "ok": true,
+   "bytes": 2018,
+   "file": "raw/inserting_updating_deleting.txt",
+   "cached": true
+  },
+  {
+   "id": "instclient.exe",
+   "ok": true,
+   "bytes": 1793,
+   "file": "raw/instclient.exe.txt",
+   "cached": true
+  },
+  {
+   "id": "integer",
+   "ok": true,
+   "bytes": 949,
+   "file": "raw/integer.txt",
+   "cached": true
+  },
+  {
+   "id": "interval",
+   "ok": true,
+   "bytes": 1342,
+   "file": "raw/interval.txt",
+   "cached": true
+  },
+  {
+   "id": "is_not_distinct_from",
+   "ok": true,
+   "bytes": 2752,
+   "file": "raw/is_not_distinct_from.txt",
+   "cached": true
+  },
+  {
+   "id": "istochniki_i_avtory",
+   "ok": true,
+   "bytes": 488,
+   "file": "raw/istochniki_i_avtory.txt",
+   "cached": true
+  },
+  {
+   "id": "join",
+   "ok": true,
+   "bytes": 7164,
+   "file": "raw/join.txt",
+   "cached": true
+  },
+  {
+   "id": "kak_ustanovit_na_linux_vtoroj_ehkzempljar_firebird",
+   "ok": true,
+   "bytes": 4097,
+   "file": "raw/kak_ustanovit_na_linux_vtoroj_ehkzempljar_firebird.txt",
+   "cached": true
+  },
+  {
+   "id": "left",
+   "ok": true,
+   "bytes": 864,
+   "file": "raw/left.txt",
+   "cached": true
+  },
+  {
+   "id": "like",
+   "ok": true,
+   "bytes": 2096,
+   "file": "raw/like.txt",
+   "cached": true
+  },
+  {
+   "id": "list",
+   "ok": true,
+   "bytes": 3050,
+   "file": "raw/list.txt",
+   "cached": true
+  },
+  {
+   "id": "lower",
+   "ok": true,
+   "bytes": 1400,
+   "file": "raw/lower.txt",
+   "cached": true
+  },
+  {
+   "id": "lpad",
+   "ok": true,
+   "bytes": 970,
+   "file": "raw/lpad.txt",
+   "cached": true
+  },
+  {
+   "id": "matematicheskie_operacii_s_datoj",
+   "ok": true,
+   "bytes": 4447,
+   "file": "raw/matematicheskie_operacii_s_datoj.txt",
+   "cached": true
+  },
+  {
+   "id": "max",
+   "ok": true,
+   "bytes": 2019,
+   "file": "raw/max.txt",
+   "cached": true
+  },
+  {
+   "id": "merge",
+   "ok": true,
+   "bytes": 2302,
+   "file": "raw/merge.txt",
+   "cached": true
+  },
+  {
+   "id": "min",
+   "ok": true,
+   "bytes": 2021,
+   "file": "raw/min.txt",
+   "cached": true
+  },
+  {
+   "id": "minute",
+   "ok": true,
+   "bytes": 375,
+   "file": "raw/minute.txt",
+   "cached": true
+  },
+  {
+   "id": "mon_attachments",
+   "ok": true,
+   "bytes": 2654,
+   "file": "raw/mon_attachments.txt",
+   "cached": true
+  },
+  {
+   "id": "mon_database",
+   "ok": true,
+   "bytes": 4263,
+   "file": "raw/mon_database.txt",
+   "cached": true
+  },
+  {
+   "id": "mon_transactions",
+   "ok": true,
+   "bytes": 2486,
+   "file": "raw/mon_transactions.txt",
+   "cached": true
+  },
+  {
+   "id": "month",
+   "ok": true,
+   "bytes": 373,
+   "file": "raw/month.txt",
+   "cached": true
+  },
+  {
+   "id": "ne_ispolzuemye_kljuchevye_slova",
+   "ok": true,
+   "bytes": 1138,
+   "file": "raw/ne_ispolzuemye_kljuchevye_slova.txt",
+   "cached": true
+  },
+  {
+   "id": "new_old",
+   "ok": true,
+   "bytes": 1849,
+   "file": "raw/new_old.txt",
+   "cached": true
+  },
+  {
+   "id": "next_value_for",
+   "ok": true,
+   "bytes": 905,
+   "file": "raw/next_value_for.txt",
+   "cached": true
+  },
+  {
+   "id": "nullif",
+   "ok": true,
+   "bytes": 741,
+   "file": "raw/nullif.txt",
+   "cached": true
+  },
+  {
+   "id": "o_sajte",
+   "ok": true,
+   "bytes": 1690,
+   "file": "raw/o_sajte.txt",
+   "cached": true
+  },
+  {
+   "id": "obrabotka_oshibok",
+   "ok": true,
+   "bytes": 1395,
+   "file": "raw/obrabotka_oshibok.txt",
+   "cached": true
+  },
+  {
+   "id": "octet_length",
+   "ok": true,
+   "bytes": 1270,
+   "file": "raw/octet_length.txt",
+   "cached": true
+  },
+  {
+   "id": "operator",
+   "ok": true,
+   "bytes": 58,
+   "file": "raw/operator.txt",
+   "cached": true
+  },
+  {
+   "id": "operatory_konstrukcii_select",
+   "ok": true,
+   "bytes": 318,
+   "file": "raw/operatory_konstrukcii_select.txt",
+   "cached": true
+  },
+  {
+   "id": "oshibki_pri_sozdanii_metadannyx",
+   "ok": true,
+   "bytes": 3320,
+   "file": "raw/oshibki_pri_sozdanii_metadannyx.txt",
+   "cached": true
+  },
+  {
+   "id": "overlay",
+   "ok": true,
+   "bytes": 1483,
+   "file": "raw/overlay.txt",
+   "cached": true
+  },
+  {
+   "id": "pi",
+   "ok": true,
+   "bytes": 2503,
+   "file": "raw/pi.txt",
+   "cached": true
+  },
+  {
+   "id": "podkljuchenie_k_baze_dannyx_iz_1s",
+   "ok": true,
+   "bytes": 3571,
+   "file": "raw/podkljuchenie_k_baze_dannyx_iz_1s.txt",
+   "cached": true
+  },
+  {
+   "id": "polesnue_zaprosu",
+   "ok": true,
+   "bytes": 10621,
+   "file": "raw/polesnue_zaprosu.txt",
+   "cached": true
+  },
+  {
+   "id": "position",
+   "ok": true,
+   "bytes": 1019,
+   "file": "raw/position.txt",
+   "cached": true
+  },
+  {
+   "id": "power",
+   "ok": true,
+   "bytes": 2278,
+   "file": "raw/power.txt",
+   "cached": true
+  },
+  {
+   "id": "pravila",
+   "ok": true,
+   "bytes": 836,
+   "file": "raw/pravila.txt",
+   "cached": true
+  },
+  {
+   "id": "procedure",
+   "ok": true,
+   "bytes": 1265,
+   "file": "raw/procedure.txt",
+   "cached": true
+  },
+  {
+   "id": "rand",
+   "ok": true,
+   "bytes": 2269,
+   "file": "raw/rand.txt",
+   "cached": true
+  },
+  {
+   "id": "raznovidnosti_jazyka_sql",
+   "ok": true,
+   "bytes": 2054,
+   "file": "raw/raznovidnosti_jazyka_sql.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_check_constraints",
+   "ok": true,
+   "bytes": 1817,
+   "file": "raw/rdb_check_constraints.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_database",
+   "ok": true,
+   "bytes": 885,
+   "file": "raw/rdb_database.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_fields",
+   "ok": true,
+   "bytes": 3567,
+   "file": "raw/rdb_fields.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_generators",
+   "ok": true,
+   "bytes": 1592,
+   "file": "raw/rdb_generators.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_get_context",
+   "ok": true,
+   "bytes": 6143,
+   "file": "raw/rdb_get_context.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_index_segments",
+   "ok": true,
+   "bytes": 703,
+   "file": "raw/rdb_index_segments.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_indices",
+   "ok": true,
+   "bytes": 2455,
+   "file": "raw/rdb_indices.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_ref_constraints",
+   "ok": true,
+   "bytes": 1612,
+   "file": "raw/rdb_ref_constraints.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_relation_constraints",
+   "ok": true,
+   "bytes": 1408,
+   "file": "raw/rdb_relation_constraints.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_relation_fields",
+   "ok": true,
+   "bytes": 1122,
+   "file": "raw/rdb_relation_fields.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_relations",
+   "ok": true,
+   "bytes": 3403,
+   "file": "raw/rdb_relations.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_roles",
+   "ok": true,
+   "bytes": 1901,
+   "file": "raw/rdb_roles.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_security_classes",
+   "ok": true,
+   "bytes": 1850,
+   "file": "raw/rdb_security_classes.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_set_context",
+   "ok": true,
+   "bytes": 2177,
+   "file": "raw/rdb_set_context.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_transactions",
+   "ok": true,
+   "bytes": 1885,
+   "file": "raw/rdb_transactions.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_trigger_messages",
+   "ok": true,
+   "bytes": 1518,
+   "file": "raw/rdb_trigger_messages.txt",
+   "cached": true
+  },
+  {
+   "id": "rdb_triggers",
+   "ok": true,
+   "bytes": 9696,
+   "file": "raw/rdb_triggers.txt",
+   "cached": true
+  },
+  {
+   "id": "recursive",
+   "ok": true,
+   "bytes": 3900,
+   "file": "raw/recursive.txt",
+   "cached": true
+  },
+  {
+   "id": "replace",
+   "ok": true,
+   "bytes": 1080,
+   "file": "raw/replace.txt",
+   "cached": true
+  },
+  {
+   "id": "returning",
+   "ok": true,
+   "bytes": 6854,
+   "file": "raw/returning.txt",
+   "cached": true
+  },
+  {
+   "id": "returns",
+   "ok": true,
+   "bytes": 600,
+   "file": "raw/returns.txt",
+   "cached": true
+  },
+  {
+   "id": "reverse",
+   "ok": true,
+   "bytes": 954,
+   "file": "raw/reverse.txt",
+   "cached": true
+  },
+  {
+   "id": "revoke",
+   "ok": true,
+   "bytes": 10500,
+   "file": "raw/revoke.txt",
+   "cached": true
+  },
+  {
+   "id": "right",
+   "ok": true,
+   "bytes": 836,
+   "file": "raw/right.txt",
+   "cached": true
+  },
+  {
+   "id": "role",
+   "ok": true,
+   "bytes": 483,
+   "file": "raw/role.txt",
+   "cached": true
+  },
+  {
+   "id": "round",
+   "ok": true,
+   "bytes": 2424,
+   "file": "raw/round.txt",
+   "cached": true
+  },
+  {
+   "id": "row_count",
+   "ok": true,
+   "bytes": 1635,
+   "file": "raw/row_count.txt",
+   "cached": true
+  },
+  {
+   "id": "rpad",
+   "ok": true,
+   "bytes": 971,
+   "file": "raw/rpad.txt",
+   "cached": true
+  },
+  {
+   "id": "samostojatelnaja_sborka_snapshota_firebird",
+   "ok": true,
+   "bytes": 3027,
+   "file": "raw/samostojatelnaja_sborka_snapshota_firebird.txt",
+   "cached": true
+  },
+  {
+   "id": "script_alert_script",
+   "ok": true,
+   "bytes": 650,
+   "file": "raw/script_alert_script.txt",
+   "cached": true
+  },
+  {
+   "id": "second",
+   "ok": true,
+   "bytes": 375,
+   "file": "raw/second.txt",
+   "cached": true
+  },
+  {
+   "id": "select",
+   "ok": true,
+   "bytes": 3520,
+   "file": "raw/select.txt",
+   "cached": true
+  },
+  {
+   "id": "sequence",
+   "ok": true,
+   "bytes": 5607,
+   "file": "raw/sequence.txt",
+   "cached": true
+  },
+  {
+   "id": "set_generator",
+   "ok": true,
+   "bytes": 3411,
+   "file": "raw/set_generator.txt",
+   "cached": true
+  },
+  {
+   "id": "set_statistics",
+   "ok": true,
+   "bytes": 1987,
+   "file": "raw/set_statistics.txt",
+   "cached": true
+  },
+  {
+   "id": "set_term",
+   "ok": true,
+   "bytes": 2954,
+   "file": "raw/set_term.txt",
+   "cached": true
+  },
+  {
+   "id": "shadow",
+   "ok": true,
+   "bytes": 2964,
+   "file": "raw/shadow.txt",
+   "cached": true
+  },
+  {
+   "id": "sidebar",
+   "ok": true,
+   "bytes": 3081,
+   "file": "raw/sidebar.txt",
+   "cached": true
+  },
+  {
+   "id": "sign",
+   "ok": true,
+   "bytes": 2343,
+   "file": "raw/sign.txt",
+   "cached": true
+  },
+  {
+   "id": "similar_to",
+   "ok": true,
+   "bytes": 13072,
+   "file": "raw/similar_to.txt",
+   "cached": true
+  },
+  {
+   "id": "sin",
+   "ok": true,
+   "bytes": 2362,
+   "file": "raw/sin.txt",
+   "cached": true
+  },
+  {
+   "id": "singular",
+   "ok": true,
+   "bytes": 1263,
+   "file": "raw/singular.txt",
+   "cached": true
+  },
+  {
+   "id": "sinh",
+   "ok": true,
+   "bytes": 2419,
+   "file": "raw/sinh.txt",
+   "cached": true
+  },
+  {
+   "id": "sistemnye_tablicy",
+   "ok": true,
+   "bytes": 4232,
+   "file": "raw/sistemnye_tablicy.txt",
+   "cached": true
+  },
+  {
+   "id": "skript_dlja_rezervirovanija_bazy_dannyx_na_python",
+   "ok": true,
+   "bytes": 2121,
+   "file": "raw/skript_dlja_rezervirovanija_bazy_dannyx_na_python.txt",
+   "cached": true
+  },
+  {
+   "id": "skript_dlja_rezervirovanija_bazy_dannyx_na_shell",
+   "ok": true,
+   "bytes": 2405,
+   "file": "raw/skript_dlja_rezervirovanija_bazy_dannyx_na_shell.txt",
+   "cached": true
+  },
+  {
+   "id": "soglashenija_sintaksisa",
+   "ok": true,
+   "bytes": 3657,
+   "file": "raw/soglashenija_sintaksisa.txt",
+   "cached": true
+  },
+  {
+   "id": "sql001.otbor_mnozhestva_zapisej_po_kljucham",
+   "ok": true,
+   "bytes": 3744,
+   "file": "raw/sql001.otbor_mnozhestva_zapisej_po_kljucham.txt",
+   "cached": true
+  },
+  {
+   "id": "sql002.javljaetsja_li_stroka_chislom",
+   "ok": true,
+   "bytes": 1256,
+   "file": "raw/sql002.javljaetsja_li_stroka_chislom.txt",
+   "cached": true
+  },
+  {
+   "id": "sql003.summa_propisju",
+   "ok": true,
+   "bytes": 10727,
+   "file": "raw/sql003.summa_propisju.txt",
+   "cached": true
+  },
+  {
+   "id": "sql005._kak_v_firebird_vstavit_perenos_stroki_crlf",
+   "ok": true,
+   "bytes": 920,
+   "file": "raw/sql005._kak_v_firebird_vstavit_perenos_stroki_crlf.txt",
+   "cached": true
+  },
+  {
+   "id": "sql005._kak_v_stroku_vstavit_proizvolnyj_simovol",
+   "ok": true,
+   "bytes": 1226,
+   "file": "raw/sql005._kak_v_stroku_vstavit_proizvolnyj_simovol.txt",
+   "cached": true
+  },
+  {
+   "id": "sql007.otbor_mnozhestva_zapisej_po_kljucham_iz_drugoj_tablicy_obxod_konstrukcii_in",
+   "ok": true,
+   "bytes": 4374,
+   "file": "raw/sql007.otbor_mnozhestva_zapisej_po_kljucham_iz_drugoj_tablicy_obxod_konstrukcii_in.txt",
+   "cached": true
+  },
+  {
+   "id": "sql009._formirovanie_shtrix-koda_ean13_po_kodu_zapisi_v_tablice",
+   "ok": true,
+   "bytes": 1665,
+   "file": "raw/sql009._formirovanie_shtrix-koda_ean13_po_kodu_zapisi_v_tablice.txt",
+   "cached": true
+  },
+  {
+   "id": "sql010._vyborka_dannyx_iz_drevovidnoj_tablicy_s_uchetom_ierarxii_obektov",
+   "ok": true,
+   "bytes": 6006,
+   "file": "raw/sql010._vyborka_dannyx_iz_drevovidnoj_tablicy_s_uchetom_ierarxii_obektov.txt",
+   "cached": true
+  },
+  {
+   "id": "sql012._poschitat_kontrolnyj_razrjad_k_snils",
+   "ok": true,
+   "bytes": 1409,
+   "file": "raw/sql012._poschitat_kontrolnyj_razrjad_k_snils.txt",
+   "cached": true
+  },
+  {
+   "id": "sqrt",
+   "ok": true,
+   "bytes": 2115,
+   "file": "raw/sqrt.txt",
+   "cached": true
+  },
+  {
+   "id": "start",
+   "ok": true,
+   "bytes": 1513,
+   "file": "raw/start.txt",
+   "cached": true
+  },
+  {
+   "id": "substring",
+   "ok": true,
+   "bytes": 1217,
+   "file": "raw/substring.txt",
+   "cached": true
+  },
+  {
+   "id": "sum",
+   "ok": true,
+   "bytes": 1641,
+   "file": "raw/sum.txt",
+   "cached": true
+  },
+  {
+   "id": "sweep",
+   "ok": true,
+   "bytes": 894,
+   "file": "raw/sweep.txt",
+   "cached": true
+  },
+  {
+   "id": "table",
+   "ok": true,
+   "bytes": 363,
+   "file": "raw/table.txt",
+   "cached": true
+  },
+  {
+   "id": "tablicy_monitoringa",
+   "ok": true,
+   "bytes": 2024,
+   "file": "raw/tablicy_monitoringa.txt",
+   "cached": true
+  },
+  {
+   "id": "tan",
+   "ok": true,
+   "bytes": 2393,
+   "file": "raw/tan.txt",
+   "cached": true
+  },
+  {
+   "id": "tanh",
+   "ok": true,
+   "bytes": 2464,
+   "file": "raw/tanh.txt",
+   "cached": true
+  },
+  {
+   "id": "tipy_dannyx",
+   "ok": true,
+   "bytes": 5941,
+   "file": "raw/tipy_dannyx.txt",
+   "cached": true
+  },
+  {
+   "id": "transfer_table",
+   "ok": true,
+   "bytes": 6182,
+   "file": "raw/transfer_table.txt",
+   "cached": true
+  },
+  {
+   "id": "trim",
+   "ok": true,
+   "bytes": 1816,
+   "file": "raw/trim.txt",
+   "cached": true
+  },
+  {
+   "id": "trunc",
+   "ok": true,
+   "bytes": 2425,
+   "file": "raw/trunc.txt",
+   "cached": true
+  },
+  {
+   "id": "update",
+   "ok": true,
+   "bytes": 3177,
+   "file": "raw/update.txt",
+   "cached": true
+  },
+  {
+   "id": "update_or_insert",
+   "ok": true,
+   "bytes": 2123,
+   "file": "raw/update_or_insert.txt",
+   "cached": true
+  },
+  {
+   "id": "upper",
+   "ok": true,
+   "bytes": 1423,
+   "file": "raw/upper.txt",
+   "cached": true
+  },
+  {
+   "id": "user",
+   "ok": true,
+   "bytes": 4048,
+   "file": "raw/user.txt",
+   "cached": true
+  },
+  {
+   "id": "ustanovka_apache_php_firebird",
+   "ok": true,
+   "bytes": 3807,
+   "file": "raw/ustanovka_apache_php_firebird.txt",
+   "cached": true
+  },
+  {
+   "id": "ustanovka_apache_php_firebird_na_ubuntu",
+   "ok": true,
+   "bytes": 2319,
+   "file": "raw/ustanovka_apache_php_firebird_na_ubuntu.txt",
+   "cached": true
+  },
+  {
+   "id": "ustanovka_firebird_iz_snapshota",
+   "ok": true,
+   "bytes": 2118,
+   "file": "raw/ustanovka_firebird_iz_snapshota.txt",
+   "cached": true
+  },
+  {
+   "id": "ustanovka_firebird_na_linux",
+   "ok": true,
+   "bytes": 3428,
+   "file": "raw/ustanovka_firebird_na_linux.txt",
+   "cached": true
+  },
+  {
+   "id": "utils",
+   "ok": true,
+   "bytes": 207,
+   "file": "raw/utils.txt",
+   "cached": true
+  },
+  {
+   "id": "uuid_to_char",
+   "ok": true,
+   "bytes": 1231,
+   "file": "raw/uuid_to_char.txt",
+   "cached": true
+  },
+  {
+   "id": "view",
+   "ok": true,
+   "bytes": 745,
+   "file": "raw/view.txt",
+   "cached": true
+  },
+  {
+   "id": "vremennye_tablicy",
+   "ok": true,
+   "bytes": 2877,
+   "file": "raw/vremennye_tablicy.txt",
+   "cached": true
+  },
+  {
+   "id": "vstroennye_funkcii",
+   "ok": true,
+   "bytes": 1840,
+   "file": "raw/vstroennye_funkcii.txt",
+   "cached": true
+  },
+  {
+   "id": "vstroennye_funkcii_po_gruppam",
+   "ok": true,
+   "bytes": 10436,
+   "file": "raw/vstroennye_funkcii_po_gruppam.txt",
+   "cached": true
+  },
+  {
+   "id": "weekday",
+   "ok": true,
+   "bytes": 375,
+   "file": "raw/weekday.txt",
+   "cached": true
+  },
+  {
+   "id": "when",
+   "ok": true,
+   "bytes": 1196,
+   "file": "raw/when.txt",
+   "cached": true
+  },
+  {
+   "id": "while",
+   "ok": true,
+   "bytes": 1068,
+   "file": "raw/while.txt",
+   "cached": true
+  },
+  {
+   "id": "year",
+   "ok": true,
+   "bytes": 449,
+   "file": "raw/year.txt",
+   "cached": true
+  },
+  {
+   "id": "yearday",
+   "ok": true,
+   "bytes": 452,
+   "file": "raw/yearday.txt",
+   "cached": true
+  }
+ ],
+ "media": []
+}

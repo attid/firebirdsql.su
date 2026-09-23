@@ -1,0 +1,14 @@
+<dom_search_condition> = {\\
+VALUE <operator> value\\
+ | VALUE [NOT] BETWEEN value AND value\\
+ | VALUE [NOT] LIKE value [ESCAPE value]\\
+ | VALUE [NOT] IN (value [, value …])\\
+ | VALUE IS [NOT] NULL\\
+ | VALUE [NOT] CONTAINING value\\
+ | VALUE [NOT] STARTING [WITH] value\\
+ | (//<dom_search_condition>//)\\
+ | NOT //<dom_search_condition>//\\
+ | //<dom_search_condition>// OR //<dom_search_condition>//\\
+ | //<dom_search_condition>// AND //<dom_search_condition>//\\
+}
+{{page>operator}}

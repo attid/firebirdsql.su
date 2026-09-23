@@ -1,0 +1,41 @@
+﻿====== SQL012. Посчитать контрольный разряд к СНИЛС ======
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Пример =====
+<code sql>
+WITH RECURSIVE
+S1 AS (
+  SELECT '112-233-445 95' AS SNILS FROM RDB$DATABASE UNION ALL
+  SELECT '165-300-180 28' AS SNILS FROM RDB$DATABASE UNION ALL
+  SELECT '999-999-999 95' AS SNILS FROM RDB$DATABASE
+),
+S2 AS (
+  SELECT S1.SNILS, REPLACE(SUBSTRING(S1.SNILS FROM 1 FOR 11),'-','') N, RIGHT(S1.SNILS,2) TO_CHECK
+  FROM S1
+),
+R AS(
+  SELECT 1 I FROM RDB$DATABASE UNION ALL SELECT R.I+1 FROM R WHERE R.I<9
+),
+C AS (
+  SELECT S2.SNILS, S2.N, S2.TO_CHECK
+        ,SUM((10-R.I) * CAST( SUBSTRING(S2.N FROM R.I FOR 1) AS SMALLINT )) DSUM
+  FROM   S2 CROSS JOIN R
+  GROUP BY S2.SNILS,S2.N,S2.TO_CHECK
+),
+D AS (
+  SELECT C.SNILS, C.N, C.TO_CHECK
+        ,IIF( C.DSUM < 100, C.DSUM, IIF(C.DSUM IN(100,101), 0,  COALESCE(NULLIF(MOD(C.DSUM, 101), 100),0)  ) ) CHECKED
+  FROM C
+)
+SELECT D.SNILS, D.TO_CHECK, D.CHECKED, IIF(D.TO_CHECK = D.CHECKED, 'OK', 'X') RESULT
+FROM D
+</code>
+
+===== Автор =====
+Таблоид, http://www.sql.ru/forum/actualutils.aspx?action=gotomsg&tid=1145734&msg=17348339

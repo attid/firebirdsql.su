@@ -1,0 +1,11 @@
+ <datatype> = {SMALLINT|INTEGER|FLOAT|DOUBLE PRECISION}[//<array_dim>//]\\
+ | {DATE|TIME|TIMESTAMP}[//<array_dim>//]\\
+ | {DECIMAL | NUMERIC} [(precision [, scale])] [//<array_dim>//]\\
+ | {CHAR | CHARACTER | CHARACTER VARYING | VARCHAR} [(int)] [//<array_dim>//] [CHARACTER SET charname]\\
+ | {NCHAR | NATIONAL CHARACTER | NATIONAL CHAR} [VARYING] [(int)] [//<array_dim>//]\\
+ | BLOB [SUB_TYPE {int | subtype_name}] [SEGMENT SIZE int] [CHARACTER SET charname]\\
+ | BLOB [(seglen [, subtype])]\\
+
+{{page>array_dim}}
+
+подробнее смотреть [[tipy_dannyx]] 

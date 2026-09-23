@@ -1,0 +1,33 @@
+﻿====== ALTER EXTERNAL FUNCTION ======
+
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  Да  |  Да  |  Да  |  Да  |  ?  |  ?  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]]
+
+===== Формат =====
+<code>
+ALTER EXTERNAL FUNCTION funcname
+   <modification> [<modification>]
+
+<modification>  ::=  ENTRY_POINT 'new-entry-point'
+                     | MODULE_NAME 'new-module-name'
+</code>
+===== Описание =====
+Изменяет имя модуля внешней функции и/или точку входа. Существующие зависимости при этом сохраняются.
+
+===== Пример =====
+<code sql>
+ALTER EXTERNAL FUNCTION MY_ROUND  
+    MODULE_NAME 'my_other_lib';
+</code>
+
+===== См. также =====
+[[DECLARE EXTERNAL FUNCTION]]
+
+===== Источник =====
+refdocs

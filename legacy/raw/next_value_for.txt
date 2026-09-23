@@ -1,0 +1,30 @@
+﻿
+====== NEXT VALUE FOR ======
+
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  +  |  +  |  +  |  +  |  +  |  +  |
+
+===== Формат =====
+<code>
+NEXT VALUE FOR <sequence_name>
+</code>
+^ Аргумент ^ Описание ^
+|sequence_name | Имя существующей последовательности (генератора). |
+===== Описание =====
+Функция работает аналогично gen_id(<sequence_name>, 1): увеличивает значение последовательности <sequence_name> на 1 и возвращает его.
+
+===== Пример =====
+<code sql>
+  SELECT NEXT VALUE FOR <sequence_name> FROM RDB$DATABASE
+</code>
+
+PSQL:
+<code sql>
+  <variable> = NEXT VALUE FOR <sequence_name>;
+</code>
+
+===== См. также =====
+[[GEN_ID]]

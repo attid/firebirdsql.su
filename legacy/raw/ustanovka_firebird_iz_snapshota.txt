@@ -1,0 +1,35 @@
+﻿====== Установка Firebird из снапшота ======
+
+В данной статье рассматривается пример установки Firebird вручную из архива или из архива снапшота.
+
+===== Windows =====
+
+Задача: установить Firebird a) SuperServer или SuperClassicServer, б) ClassicServer в каталог "c:\appl\firebird" из архива (архива снапшота).
+
+:!: **Примечание:** При установке на "голую" операционную систему возможно понадобиться предварительная установка Visual C+ Runtime библиотек. Для этого воспользуйтесь утилитами: [[http://www.microsoft.com/downloads/details.aspx?FamilyId=32BC1BEE-A3F9-4C13-9C99-220B62A191EE&displaylang=en|Microsoft Visual C++ 2005 Redistributable Package (x86)]] или [[http://www.microsoft.com/downloads/details.aspx?familyid=90548130-4468-4BBC-9673-D6ACABD5D13B&displaylang=en|Microsoft Visual C++ 2005 Redistributable Package (x64)]] в зависимости от версии Вашей операционной системы.
+
+Установка:
+
+  - Скачиваем дистрибутив Firebird [[http://firebirdsql.org/downloads/snapshot_builds/win/|с официального сайта]].
+  - При помощи программы архиватора распаковываем архив в каталог "c:\appl\firebird"
+  - Настраиваем сервер, внося изменения в файле "c:\appl\firebird\firebird.conf"
+  - Запускаем программу "Командная строка"
+  - Выполняем команды:
+  * Для установки SuperServer или SuperClassicServer
+<code>
+ > cd c:\appl\firebird\bin
+ > install_super.bat
+</code>
+  * Для установки ClassicServer
+<code>
+ > cd c:\appl\firebird\bin
+ > install_classic.bat
+</code>
+
+  Все, сервер установлен и запущен.
+
+===== LINUX =====
+
+
+===== См. также =====
+[[]]

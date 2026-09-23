@@ -1,0 +1,37 @@
+﻿====== RDB$TRIGGER_MESSAGES ======
+
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|ESQL]],  [[raznovidnosti_jazyka_sql|ISQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+<code sql>
+CREATE TABLE RDB$TRIGGER_MESSAGES (
+    RDB$TRIGGER_NAME    CHAR(31) CHARACTER SET UNICODE_FSS,
+    RDB$MESSAGE_NUMBER  SMALLINT,
+    RDB$MESSAGE         VARCHAR(1021) CHARACTER SET NONE
+);
+
+CREATE INDEX RDB$INDEX_35 ON RDB$TRIGGER_MESSAGES (RDB$TRIGGER_NAME);
+</code>
+
+===== Описание =====
+Системная таблица RDB$TRIGGER_MESSAGES хранит определения сообщений триггеров (для системного использования). 
+
+^ Имя столбца ^ Тип ^ Описание ^
+| RDB$TRIGGER_NAME  | СНАR(З1)  | Имя триггера, с которым ассоциировано сообщение.  |
+| RDB$MESSAGE_NUMBER  | SMALLINT  | Номер сообщения (от 1 до 32767)  |
+| RDB$MESSAGE  | VARCHAR(1021)  | Текст сообщения триггера.  |
+
+===== Пример =====
+
+
+===== См. также =====
+[[sistemnye_tablicy|Системные таблицы]], [[RDB$TRIGGERS]], [[CREATE TRIGGER]], [[DROP TRIGGER]]
+
+===== Источник =====

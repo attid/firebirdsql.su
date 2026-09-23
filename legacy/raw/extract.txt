@@ -1,0 +1,90 @@
+====== EXTRACT ======
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  ?  |
+
+===== Формат =====
+  EXTRACT (part FROM value)
+
+где 
+
+value должно быть следующего типа : [[tipy_dannyx|DATE]], [[tipy_dannyx|TIME]], [[tipy_dannyx|TIMESTAMP]]. 
+
+
+===== Описание =====
+Встроенная функция. Позволяет извлекать дату и время. Извлекаемая часть должна присутствовать в значении. Например, не стоит извлекать год из данных, где хранится время.
+  EXTRACT (YEAR FROM aTime)
+выдаст ошибку.
+
+Значения, которые можно извлекать, представлены в следующей таблице
+
+^ Служебное слово ^ Тип данных ^ Значение ^
+|YEAR        | [[tipy_dannyx|SMALLINT]]  | Год, 1-9999  |
+|MONTH       | [[tipy_dannyx|SMALLINT]]  | Месяц, 1-12  |
+|DAY         | [[tipy_dannyx|SMALLINT]]  | День, 1-31   |
+|HOUR        | [[tipy_dannyx|SMALLINT]]  | Час, 0-23  |
+|MINUTE      | [[tipy_dannyx|SMALLINT]]  | Минут, 0-59  |
+|SECOND      | [[tipy_dannyx|NUMERIC(9,4)]]  |Секунд, 0.0000-59.9999  |
+|MILLISECOND | [[tipy_dannyx|NUMERIC(9,1)]]  |Миллисекунд, 0.0–999.9 (начиная с версии 2.1.2)  |
+|WEEK        | [[tipy_dannyx|SMALLINT]]  |Номер недели года, 1–53 (начиная с версии 2.1) |
+|WEEKDAY     | [[tipy_dannyx|SMALLINT]]  |День недели, 0-6 (начиная с Воскресенья)  |
+|YEARDAY     | [[tipy_dannyx|SMALLINT]]  | День года, 0-365  |
+
+
+
+
+===== Пример =====
+процедура, возвращающая дату и время в текстовом виде в формате '00.00.0000 00:00'
+<code sql>CREATE OR ALTER PROCEDURE BDATE_TIME(
+    DT TIMESTAMP)
+RETURNS (
+    RESULT VARCHAR(16))
+AS
+begin
+  --извлекаем день 
+  select l.result||'.' from lpad(extract(day from :dt),2,'0') l into result;
+
+  --извлекаем месяц
+  select :result||l.result||'.' from lpad(extract(month from :dt),2,'0') l into result;
+
+  --извлекаем год 
+  select :result||l.result||' ' from lpad(extract(year from :dt),4,'0') l into result;
+
+  --извлекаем час 
+  select :result||l.result||':' from lpad(extract(hour from :dt),2,'0') l into result;
+
+  --извлекаем минута 
+  select :result||l.result from lpad(extract(minute from :dt),2,'0') l into result;
+
+  --result = '00.00.0000 00:00';
+
+  suspend;
+
+end
+</code>
+
+два варианта получания номера квартала из даты
+<code sql>
+SELECT CAST(EXTRACT(MONTH FROM CURRENT_TIMESTAMP)/3 + 0.3 AS INTEGER) FROM RDB$DATABASE
+SELECT (EXTRACT(MONTH FROM CURRENT_TIMESTAMP)-1)/3+1 FROM RDB$DATABASE
+</code>
+
+Получение номера недели в году, источник [[http://www.volny.cz/iprenosil/interbase/ip_ib_code_timestamp.htm|Date functions]]
+
+<code sql>
+
+CREATE PROCEDURE YearWeek (D DATE)
+  RETURNS (WEEK_NO INTEGER) AS
+BEGIN
+  D = D - EXTRACT(WEEKDAY FROM D-1) + 3;  /* move to thursday */
+  WEEK_NO = (EXTRACT(YEARDAY FROM D) - EXTRACT(WEEKDAY FROM D-1) + 7) / 7e0;
+  SUSPEND;
+END
+</code>
+===== См. также =====
+[[matematicheskie_operacii_s_datoj|Математические операции с датой и временем]], [[ADDMILLISECOND()]], [[ADDSECOND()]], [[ADDMINUTE()]], [[ADDDAY()]], [[ADDWEEK]], [[ADDMONTH()]], [[ADDYEAR()]]
+
+===== Источник =====
+ib60releasenotes.pdf 

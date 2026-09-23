@@ -1,0 +1,35 @@
+﻿====== CURRENT_USER ======
+
+
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |
+
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]], [[raznovidnosti_jazyka_sql|ESQL]], [[raznovidnosti_jazyka_sql|ISQL]], [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+CURRENT_USER
+
+===== Описание =====
+Контекстная переменная возвращает имя текущего пользователя, от имени которого было выполнено текущее подключения к базе данных.
+
+===== Пример =====
+<code sql>
+SELECT CURRENT_USER FROM RDB$DATABASE
+</code>
+
+===== Аналог =====
+То же самое значение может быть получено при выполнении оператора
+<code sql>
+SELECT RDB$GET_CONTEXT('SYSTEM','CURRENT_USER') FROM RDB$DATABASE
+</code>
+
+===== Смотри также =====
+[[RDB$GET_CONTEXT()]], [[RDB$SET_CONTEXT()]], [[CURRENT_CONNECTION]], [[CURRENT_ROLE]]
+
+===== Источник =====
+

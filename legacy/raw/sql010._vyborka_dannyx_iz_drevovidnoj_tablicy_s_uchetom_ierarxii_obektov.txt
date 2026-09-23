@@ -1,0 +1,136 @@
+﻿====== SQL010. Выборка данных из "древовидной таблицы" с учетом иерархии объектов ======
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  Да  |  Да  |  Да  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]]
+
+===== Описание =====
+Требуется из древовидной таблицы отобрать все значения родительского ключа, а также значения всех подчиненных элементов с учетом "вложения" элементов в родительский ключ.
+
+Наиболее иллюстративным является пример, предложенный [[http://www.sql.ru/forum/memberinfo.aspx?mid=133365|Таблоидом]] на очередной вопрос на формуе SQL.RU.
+
+**Скрипт для создания тестовых данных**
+<code sql>
+recreate global temporary table tmp$dynasty(id int not null, pid int, name varchar(40))
+on commit preserve rows;
+-- ID`шники намеренно введены с нарушениями последовательности натурального ряда
+insert into tmp$dynasty(id,pid,name)values(777,null,'Саваоф');
+insert into tmp$dynasty(id,pid,name)values(159,777,'Адам');
+insert into tmp$dynasty(id,pid,name)values(77,159,'Каин');
+insert into tmp$dynasty(id,pid,name)values(4,159,'Авель');
+insert into tmp$dynasty(id,pid,name)values(351,159,'Сиф');
+insert into tmp$dynasty(id,pid,name)values(373,77,'Енох');
+
+insert into tmp$dynasty(id,pid,name)values(11,373,'Ирад');
+insert into tmp$dynasty(id,pid,name)values(12,11,'Мехиаэль');
+
+insert into tmp$dynasty(id,pid,name)values(109,351,'Енос');
+insert into tmp$dynasty(id,pid,name)values(14,109,'Каинан');
+insert into tmp$dynasty(id,pid,name)values(515,14,'Малелеил');
+insert into tmp$dynasty(id,pid,name)values(16,515,'Иаред');
+insert into tmp$dynasty(id,pid,name)values(17,16,'Ламех');
+insert into tmp$dynasty(id,pid,name)values(203,17,'Ной');
+insert into tmp$dynasty(id,pid,name)values(19,203,'Сим');
+insert into tmp$dynasty(id,pid,name)values(20,203,'Хам');
+insert into tmp$dynasty(id,pid,name)values(21,203,'Иафет');
+
+insert into tmp$dynasty(id,pid,name)values(421,19,'Арфаксад');
+insert into tmp$dynasty(id,pid,name)values(23,421,'Елам');
+insert into tmp$dynasty(id,pid,name)values(24,421,'Ассур');
+insert into tmp$dynasty(id,pid,name)values(25,421,'Луд');
+insert into tmp$dynasty(id,pid,name)values(69,421,'Арам');
+
+insert into tmp$dynasty(id,pid,name)values(327,19,'Сала');
+insert into tmp$dynasty(id,pid,name)values(28,327,'Евер');
+insert into tmp$dynasty(id,pid,name)values(29,28,'Фалек');
+
+insert into tmp$dynasty(id,pid,name)values(30,28,'Иоктан');
+
+insert into tmp$dynasty(id,pid,name)values(31,69,'Уц');
+insert into tmp$dynasty(id,pid,name)values(32,69,'Хул');
+insert into tmp$dynasty(id,pid,name)values(33,69,'Гефер');
+insert into tmp$dynasty(id,pid,name)values(34,69,'Маш');
+
+insert into tmp$dynasty(id,pid,name)values(55,29,'Рагав');
+insert into tmp$dynasty(id,pid,name)values(536,55,'Серух');
+insert into tmp$dynasty(id,pid,name)values(37,536,'Нахор');
+insert into tmp$dynasty(id,pid,name)values(38,37,'Фарра');
+commit;
+</code>
+
+**Скрипт запроса к базе данных**
+<code sql>
+with recursive c as (select null id from from rdb$database)
+,r as(
+ select
+   t.pid parent_id
+   ,t.id
+   ,t.name
+   ,1 lev
+   ,cast(lpad(cast(t.id as varchar(12)),12,'0')||'#' as varchar(2000)) fpath
+   ,cast(t.name as varchar(2000)) fname
+ from tmp$dynasty t
+ left join tmp$dynasty p on t.pid=p.id
+ where t.pid is null
+ UNION ALL
+ select
+   t.pid
+   ,t.id
+   ,t.name
+   ,r.lev+1
+   ,r.fpath || lpad(cast(t.id as varchar(12)),12,'0')||'#'
+   ,lpad('',3*(r.lev+1),'.') || t.name
+   from tmp$dynasty t
+   join r on t.pid=r.id
+)
+select c.id_from,r.id,r.fname --,r.fpath
+from r, c
+where c.id_from is null or r.fpath like '%'||lpad(cast(c.id_from as varchar(12)),12,'0')||'#%'
+order by fpath
+</code>
+
+**Результат выполнения скрипта запроса**
+<code>
+ID_FROM	ID	FNAME
+	777	Саваоф
+	159	......Адам
+	4	.........Авель
+	77	.........Каин
+	373	............Енох
+	11	...............Ирад
+	12	..................Мехиаэль
+	351	.........Сиф
+	109	............Енос
+	14	...............Каинан
+	515	..................Малелеил
+	16	.....................Иаред
+	17	........................Ламех
+	203	...........................Ной
+	19	..............................Сим
+	327	.................................Сала
+	28	....................................Евер
+	29	.......................................Фалек
+	55	..........................................Рагав
+	536	.............................................Серух
+	37	................................................Нахор
+	38	...................................................Фарра
+	30	.......................................Иоктан
+	421	.................................Арфаксад
+	23	....................................Елам
+	24	....................................Ассур
+	25	....................................Луд
+	69	....................................Арам
+	31	.......................................Уц
+	32	.......................................Хул
+	33	.......................................Гефер
+	34	.......................................Маш
+	20	..............................Хам
+	21	..............................Иафет
+</code>
+
+===== Источник =====
+
+[[http://www.sql.ru/forum/actualthread.aspx?bid=2&tid=873434|http://www.sql.ru/forum/actualthread.aspx?bid=2&tid=873434]]

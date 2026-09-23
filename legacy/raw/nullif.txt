@@ -1,0 +1,32 @@
+====== NULLIF ======
+
+===== Версии сервера =====
+Firebird 1.5, Firebird 2.0 
+
+===== Доступно в =====
+DSQL  ESQL  ISQL  PSQL
+
+===== Формат =====
+NULLIF (значение1, значение2)
+
+===== Описание =====
+Встроенная функция.
+Возвращает значение первого аргумента, если он не эквивалентен второму, иначе возвратит NULL.
+
+===== Пример =====
+<code sql>SELECT
+  NULLIF(1,1) A,
+  NULLIF(1,2) B,
+  NULLIF(NULL, NULL) C,
+  NULLIF(1, NULL) D,
+  NULLIF(NULL, 1) E
+FROM
+  RDB$DATABASE
+</code>
+
+Вернет
+^A^B^C^D^E^
+|NULL|1|NULL|1|NULL|
+
+===== См. также =====
+[[CASE]] [[COALESCE]] [[DECODE]] [[IIF]]

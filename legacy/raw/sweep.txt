@@ -1,0 +1,34 @@
+﻿====== SWEEP ======
+
+===== Версии сервера =====
+все
+
+===== Доступно в =====
+
+===== Формат =====
+
+===== Описание =====
+Sweep это так называемая сборка мусора.
+
+Что такое sweep и с чем его едят хорошо расписано [[http://www.ibase.ru/devinfo/sweep.htm|на сайте iBase]]
+
+управлять им мы можем ключами к программе [[gfix]]
+
+произвести sweep 
+  gfix -sweep database.fdb
+отключит автоматический sweep
+  gfix database.fdb -housekeeping 0
+включить автоматический sweep 
+  gfix database.fdb -housekeeping 20000
+
+
+===== Пример =====
+<code sql>
+  gfix -sweep 127.0.0.1:emploey -user sysdba -password masterkey
+</code>
+
+===== См. также =====
+
+
+===== Источник =====
+[[http://ibase.ru]] 

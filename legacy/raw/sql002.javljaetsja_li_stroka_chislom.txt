@@ -1,0 +1,48 @@
+﻿====== SQL002. Является ли строка числом ======
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |
+
+===== Описание =====
+Данная хранимя процедура, проверяет, является ли строка, переданная в качестве параметра числом
+
+===== Пример =====
+<code sql>
+CREATE PROCEDURE IS_NUMBER (
+  a_value varchar(32)
+)returns (
+  result varchar(10)
+)AS
+  declare variable i integer;
+  declare variable j integer;
+begin
+  result = 'Фиг';
+  a_value = trim(a_value);
+  IF (a_value IS NULL OR char_length(a_value) = 0) then begin
+    suspend;
+    exit;
+  end
+  i = 1;
+  j = CHAR_LENGTH(a_value);
+  while (i <= j) do begin
+    IF (substring(a_value FROM i FOR 1) BETWEEN '0' AND '9'
+     OR (i =1 AND substring(a_value FROM 1 FOR 1) IN ('-', '+')
+       AND CHAR_LENGTH(a_value) > 1 )) then
+      result = 'Это число';
+    else begin
+      result = 'Фиг';
+      Break;
+    end
+    i = i + 1;
+  end
+  suspend;
+end
+</code>
+
+===== См. также =====
+[[]]
+
+===== Источник =====
+2009-01-31irebird\doc\

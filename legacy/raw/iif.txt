@@ -1,0 +1,25 @@
+====== IIF() ======
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  ?  |  ?  |  ?  |  ?  |  ?  |  +  |  +  |  +  |  +  |  +  |  +  |
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+===== Формат =====
+<code sql>IIF(<поисковое условие>, <значение1>, <значение2>)</code>
+===== Описание =====
+[[Встроенные функции|Встроенная функция]].\\ 
+Если <поисковое условие> верно то возвращается <значение1> иначе <значение2>.
+
+IIF - упрощенная форма [[CASE]], к примеру
+<code sql>IIF(SC, V1, V2)</code>
+можно заменить на
+<code sql>CASE WHEN SC THEN V1 ELSE V2 END</code> 
+===== Пример =====
+<code sql>
+  SELECT e.full_name, IIF(e.hire_date > current_date, 'Работает', 'Уволен') FROM employee e
+</code>
+===== См. также =====
+[[IF]], [[CASE]], [[COALESCE]]
+===== Источник =====
+%Firebird%\doc\sql.extensions\README.iif.txt \\ 
+http://www.firebirdsql.org/refdocs/langrefupd20-iif.html

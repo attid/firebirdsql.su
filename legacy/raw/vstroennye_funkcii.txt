@@ -1,0 +1,215 @@
+﻿====== Встроенные функции ======
+
+==== A ====
+[[ABS()]]
+
+[[ACOS()]]
+
+[[ADDMILLISECOND()]] 
+
+[[ADDSECOND()]] 
+
+[[ADDMINUTE()]] 
+
+[[ADDDAY()]] 
+
+[[ADDWEEK()]] 
+
+[[ADDMONTH()]] 
+
+[[ADDYEAR()]]
+
+[[ASCII_CHAR()]]
+
+[[ASCII_VAL()]]
+
+[[ASIN()]]
+
+[[ATAN()]]
+
+[[ATAN2()]]
+
+[[AVG()]]
+
+==== B ====
+
+[[BIN_AND()]]
+
+[[BIN_OR()]]
+
+[[BIN_SHL()]]
+
+[[BIN_SHR()]]
+
+[[BIN_XOR()]]
+
+[[BIT_LENGTH()]]
+
+==== C ====
+
+[[CASE]]
+
+[[CAST()]]
+
+[[ceiling|CEIL()]]
+
+[[CEILING()]]
+
+[[CHAR_LENGTH()]]
+
+[[CHAR_TO_UUID()]]
+
+[[char_length|CHARACTER_LENGTH()]]
+
+[[CHECK_POINT_LEN]]
+
+[[COALESCE]]
+
+[[COS()]]
+
+[[COSH()]]
+
+[[COT()]]
+
+[[COUNT()]]
+
+==== D ====
+
+[[extract|DAY]]
+
+[[dow|DAY OF WEEK]]
+
+[[DIV()]]
+
+[[DOW()]]
+
+==== E ====
+
+[[EXP()]]
+
+[[extract|EXTRACT()]]
+
+==== F ====
+First(N)  выбирает из результата запроса N - первых строк
+==== G ====
+
+[[GEN_ID()]]
+
+[[GEN_UUID()]]
+
+==== H ====
+
+[[HASH()]]
+
+[[extract|HOUR]]
+
+==== I ====
+
+[[IIF()]]
+
+==== L ====
+
+[[trim|LEADING]]
+
+[[LEFT()]]
+
+[[LIST()]]
+
+[[LOWER()]]
+
+==== M ====
+
+[[MAX()]]
+
+[[MIN()]]
+
+[[extract|MINUTE]]
+
+[[MOD()]]
+
+[[extract|MONTH]]
+
+==== N ====
+[[NULLIF()]]
+==== O ====
+
+[[OCTET_LENGTH()]]
+
+[[OVERLAY()]]
+
+==== P ====
+
+[[PI()]]
+
+[[POSITION()]]
+
+[[POWER()]]
+
+==== R ====
+
+[[RAND()]]
+
+[[rdb_get_context|RDB$GET_CONTEXT()]]
+
+[[rdb_set_context|RDB$SET_CONTEXT()]]
+
+[[replace|REPLACE()]]
+
+[[reverse|REVERSE()]]
+
+[[ROUND()]]
+
+==== S ====
+
+[[extract|SECOND]]
+
+[[SIGN()]]
+
+[[SIN()]]
+
+[[SINH()]]
+
+[[SQRT()]]
+
+[[SUBSTRING()]]
+
+[[SUM()]]
+
+==== T ====
+
+[[TAN()]]
+
+[[TANH()]]
+
+[[trim|TRAILING]]
+
+[[trim|TRIM()]]
+
+[[TRUNC()]]
+
+==== U ====
+
+[[UPPER()]]
+
+[[UUID_TO_CHAR()]]
+
+==== V ====
+
+==== W ====
+[[extract|WEEKDAY]]
+ 	
+[[WHEN]]
+ 	
+[[select|WHERE]]
+	
+[[WHILE]]
+ 	
+[[select|WITH LOCK]]
+ 	
+[[recursive|WITH RECURSIVE]]
+==== Y ====
+
+[[extract|YEAR]]
+
+[[extract|YEARDAY]]
+

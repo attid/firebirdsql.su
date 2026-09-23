@@ -1,0 +1,12 @@
+﻿
+====== Утилиты Firebird ======
+
+  * [[GBAK|GBAK]] edited
+  * [[GFIX]]
+  * [[GSEC]]
+  * [[GSTAT]]
+  * [[instclient.exe]]
+  * [[instreg.exe]]
+  * [[instsvc.exe]]
+  * [[isql.exe|ISQL]]
+  * [[SWEEP]]

@@ -1,0 +1,846 @@
+====== Глоссарий ======
+
+==== Введение ====
+[[О сайте]]
+
+[[Источники и авторы]]
+
+[[Соглашения синтаксиса]]
+
+[[Разновидности языка SQL]]
+
+[[Типы данных]]
+
+
+==== Статьи и часто задаваемые вопросы ====
+
+=== Установка и настройка ===
+
+[[Самостоятельная сборка снапшота Firebird]]
+
+[[Установка Firebird из снапшота]]
+
+[[Установка Firebird на Linux]]
+
+[[Скрипт для резервирования базы данных на Python]]
+
+[[Скрипт для резервирования базы данных на shell]]
+
+[[Как установить на LINUX второй экземпляр Firebird ?]]
+
+[[Подключение к базе данных из 1С]]
+
+=== Обработка ошибок ===
+
+[[Обработка ошибок]]
+
+[[gdscodes|Коды ошибок Firebird]]
+
+[[Ошибки при создании метаданных]]
+
+=== Полезные запросы SQL ===
+
+[[matematicheskie_operacii_s_datoj|SQL000. Математические операции с датой]]
+
+[[SQL001.Отбор множества записей по ключам]]
+
+[[SQL002.Является ли строка числом]]
+
+[[SQL003.Сумма прописью]]
+
+[[execute_statement|SQL004. Можно ли в Firebird делать запросы к нескольким базам данных]]
+
+[[SQL005. Как в строку вставить произвольный симовол ?]]
+
+[[sql005._kak_v_stroku_vstavit_proizvolnyj_simovol|SQL006. Как в строку вставить перенос строки (CRLF) ?]]
+
+[[SQL007.Отбор множества записей по ключам из другой таблицы (обход конструкции IN)]]
+
+[[indices_maintenance|SQL008. Полезные хранимые процедуры для обслуживание индексов]]
+
+[[SQL009. Формирование штрих-кода EAN13 по коду записи в таблице]]
+
+[[SQL012. Посчитать контрольный разряд к СНИЛС]]
+
+[[SQL010. Выборка данных из "древовидной таблицы" с учетом иерархии объектов]]
+
+[[transfer_table|SQL011. Обмен данными между базами с помощью EXTENDENT (экспортируемых) таблиц]]
+
+==== Тематические группы ====
+
+[[utils|Утилиты Firebird]]
+
+[[Системные таблицы]]
+
+[[tablicy_monitoringa|Таблицы мониторинга]]
+
+[[Встроенные функции]]
+
+[[Встроенные функции по группам]]
+
+[[Операторы конструкции SELECT]]
+
+[[Не используемые ключевые слова]]
+
+[[Установка Apache+php+Firebird на Ubuntu]]
+==== A ====
+[[ABS()]]
+
+[[ACOS()]]
+
+[[constraint|ACTION]]
+
+[[ADDMILLISECOND()]] 
+
+[[ADDSECOND()]] 
+
+[[ADDMINUTE()]] 
+
+[[ADDDAY()]] 
+
+[[ADDWEEK()]] 
+
+[[ADDMONTH()]] 
+
+[[ADDYEAR()]]
+
+[[ALTER CHARACTER SET]]
+
+[[ALTER DATABASE]]
+
+[[ALTER DOMAIN]]
+
+[[ALTER EXCEPTION]]
+
+[[select|ALL]]
+
+[[ALTER EXTERNAL FUNCTION]]
+
+[[ALTER INDEX]]
+
+[[ALTER PROCEDURE]]
+
+[[ALTER SEQUENCE]]
+
+[[ALTER TABLE]]
+
+[[ALTER TRIGGER]]
+
+[[user|ALTER USER]]
+
+[[select|ANY]]
+
+[[ASCII_CHAR()]]
+
+[[ASCII_VAL()]]
+
+[[ASIN()]]
+
+[[ATAN()]]
+
+[[ATAN2()]]
+
+[[AUTONOMOUS TRANSACTION]]
+
+[[AUTODDL]]
+
+[[AVG()]]
+
+==== B ====
+[[BACKUP]]
+
+[[BASENAME]]
+
+[[tipy_dannyx|BIGINT]]
+
+[[BIN_AND()]]
+
+[[BIN_OR()]]
+
+[[BIN_SHL()]]
+
+[[BIN_SHR()]]
+
+[[BIN_XOR()]]
+
+[[BIT_LENGTH()]]
+
+[[tipy_dannyx|BLOB]]
+
+[[execute_block|BLOCK]]
+
+[[trim|BOTH]]
+
+[[BREAK]]
+
+==== C ====
+[[CACHE]]
+
+[[constraint|CASCADE]]
+
+[[CASE]]
+
+[[CAST()]]
+
+[[ceiling|CEIL()]]
+
+[[CEILING()]]
+
+[[tipy_dannyx|CHAR]]
+
+[[tipy_dannyx|CHAR VARYING]]
+
+[[CHAR_LENGTH()]]
+
+[[CHAR_TO_UUID()]]
+
+[[tipy_dannyx|CHARACTER]]
+
+[[tipy_dannyx|CHARACTER VARYING]]
+
+[[char_length|CHARACTER_LENGTH()]]
+
+[[constraint|CHECK]]
+
+[[CHECK_POINT_LEN]]
+
+[[declare_cursor|CLOSE]]
+
+[[COALESCE]]
+
+[[COLLATION]]
+
+[[COMMENT]]
+
+[[COMMIT]]
+
+[[CONNECT]]
+
+[[select|CONTAINING]]
+
+[[CONSTRAINT]]
+
+[[COS()]]
+
+[[COSH()]]
+
+[[COT()]]
+
+[[COUNT()]]
+
+[[CREATE COLLATION]]
+
+[[CREATE DATABASE]]
+
+[[CREATE DOMAIN]]
+
+[[CREATE EXCEPTION]]
+
+[[CREATE GENERATOR]]
+
+[[CREATE GLOBAL TEMPORARY TABLE]]
+
+[[CREATE INDEX]]
+
+[[CREATE PROCEDURE]]
+
+[[CREATE ROLE]]
+
+[[CREATE SHADOW]]
+
+[[CREATE TABLE]]
+
+[[CREATE TRIGGER]]
+
+[[user|CREATE USER]]
+
+[[CREATE VIEW]]
+
+[[select|CROSS]]
+
+[[CURRENT_CONNECTION]]
+
+[[CURRENT_DATE]]
+
+[[CURRENT_ROLE]]
+
+[[current_timestamp|CURRENT_TIME]]
+
+[[CURRENT_TIMESTAMP]]
+
+[[CURRENT_TRANSACTION]]
+
+[[CURRENT_USER]]
+
+[[declare_cursor|CURSOR]]
+
+
+
+
+
+
+
+
+
+==== D ====
+[[tipy_dannyx|DATE]]
+
+[[DATEADD]]
+
+[[DATEDIFF]]
+
+[[extract|DAY]]
+
+[[dow|DAY OF WEEK]]
+
+[[tipy_dannyx|DECIMAL(n,m)]]
+
+[[DECLARE CURSOR]]
+
+[[DECLARE CURSOR (BLOB)]]
+
+[[DECLARE EXTERNAL FUNCTION]]
+
+[[DECLARE FILTER]]
+
+[[DECLARE STATEMENT]]
+
+[[DECLARE TABLE]]
+
+[[DECODE]]
+
+[[DELETE]]
+
+[[inserting_updating_deleting|DELETING]]
+
+[[DESCRIBE]]
+
+[[DESCRIPTOR]]
+
+[[DIFFERENCE]]
+
+[[DISCONNECT]]
+
+[[DISTINCT]]
+
+[[DIV()]]
+
+[[tipy_dannyx|DOUBLE PRECISION]]
+
+[[DOW()]]
+
+[[DROP DATABASE]]
+
+[[DROP DOMAIN]]
+
+[[DROP EXCEPTION]]
+
+[[DROP EXTERNAL FUNCTION]]
+
+[[DROP FILTER]]
+
+[[DROP GENERATOR]]
+
+[[DROP INDEX]]
+
+[[DROP PROCEDURE]]
+
+[[DROP ROLE]]
+
+[[DROP SHADOW]]
+
+[[DROP TABLE]]
+
+[[DROP TRIGGER]]
+
+[[user|DROP USER]]
+
+[[DROP VIEW]]
+
+[[raznovidnosti_jazyka_sql|DSQL]]
+
+
+==== E ====
+[[EXCEPTION]]
+
+[[EXECUTE BLOCK]]
+
+[[EXECUTE PROCEDURE]]
+
+[[EXECUTE STATEMENT]]
+
+[[EXISTS]]
+
+[[EXIT]]
+
+[[EXP()]]
+
+[[EXTERNAL]]
+
+[[extract|EXTRACT()]]
+
+==== F ====
+[[.fdb]]
+
+[[declare_cursor|FETCH]]
+
+[[FETCH(BLOB)]]
+
+[[select|FIRST]]
+
+[[tipy_dannyx|FLOAT]]
+
+[[FOR]]
+
+[[constraint|FOREIGN KEY]]
+
+[[udf|FREE_IT]]
+
+[[select|FROM]]
+
+==== G ====
+[[.GDB]]
+
+[[.GDBA]]
+
+[[gbak]]
+
+[[GDSCODE]]
+
+[[gdscodes|GDSCODES]]
+
+[[GEN_ID()]]
+
+[[GEN_UUID()]]
+
+[[GFIX]]
+
+[[GRANT]]
+
+[[GROUP_COMMIT_WAIT]]
+
+[[select|GROUP BY]]
+
+[[GSEC]]
+
+[[GSTAT]]
+
+[[create_global_temporary_table|GTT]]
+==== H ====
+[[select|HAVING]]
+
+[[HASH()]]
+
+[[extract|HOUR]]
+
+
+
+
+
+==== I ====
+[[.ib]]
+
+[[instclient.exe]]
+
+[[instclient.exe]]
+
+[[instreg.exe]]
+
+[[instsvc.exe]]
+
+[[isql.exe|ISQL]]
+
+[[IF]]
+
+[[IIF()]]
+
+[[select|IN]]
+
+[[INDEX]]
+
+[[select|INNER]]
+
+[[INSERT]]
+
+[[INSERTING, UPDATING, DELETING]]
+
+[[IS [NOT] DISTINCT FROM]]
+
+[[tipy_dannyx|INT64]]
+
+[[tipy_dannyx|INTEGER]]
+
+[[autonomous_transaction|IN AUTONOMOUS TRANSACTION]]
+
+==== J ====
+[[JOIN|JOIN]]
+
+==== L ====
+[[select|LAST]]
+
+[[trim|LEADING]]
+
+[[LEAVE]]
+
+[[LEFT()]]
+
+[[LIKE]]
+
+[[LIST()]]
+
+[[LOCK]]
+
+[[LOG_BUF_SIZE]]
+
+[[LOGFILE]]
+
+[[LOWER()]]
+
+[[LPAD()]]
+
+==== M ====
+[[MAX()]]
+
+[[MERGE]]
+
+[[MIN()]]
+
+[[extract|MINUTE]]
+
+[[extract|MONTH]]
+
+[[MON$ATTACHMENTS]]
+
+[[MON$CALL_STACK]]
+
+[[MON$CONTEXT]]
+
+[[MON$CONTEXT_VARIABLES]]
+
+[[MON$DATABASE]]
+
+[[MON$IO_STATS]]
+
+[[MON$METADATA]]
+
+[[MON$MEMORY_USAGE]]
+
+[[MON$RECORD_STATS]]
+
+[[MON$STATEMENTS]]
+
+[[MON$TRANSACTIONS]]
+
+
+
+
+
+
+
+==== N ====
+[[tipy_dannyx|NATIONAL CHAR(n)]]
+
+[[tipy_dannyx|NATIONAL CHARACTER(n)]]
+
+[[tipy_dannyx|NCHAR(n)]]
+
+[[NEW, OLD]]
+
+[[NEXT]]
+
+[[NEXT VALUE FOR]]
+
+[[constraint|NO ACTION]]
+
+[[NULLIF]]
+
+[[select|NULLS]]
+
+[[NUM_LOG_BUFS]]
+
+[[tipy_dannyx|NUMERIC(n,m)]]
+
+==== O ====
+[[OCTET_LENGTH()]]
+
+[[new_old|OLD]]
+
+[[declare_cursor|OPEN]]
+
+[[select|ORDER BY]]
+
+[[select|OUTER]]
+
+[[OVERLAY()]]
+
+==== P ====
+[[PI()]]
+
+[[select|PLAN]]
+
+[[POSITION()]]
+
+[[POWER()]]
+
+[[constraint|PRIMARY KEY]]
+
+[[PROCEDURE]]
+
+[[raznovidnosti_jazyka_sql|PSQL]]
+
+
+
+==== R ====
+[[RAND()]]
+
+[[RAW_PARTITIONS]]
+
+[[RDB$ADMIN]]
+
+[[RDB$BACKUP_HISTORY]]        
+
+[[RDB$CHARACTER_SETS]]        
+
+[[RDB$CHECK_CONSTRAINTS]]     
+
+[[RDB$COLLATIONS]]            
+
+[[RDB$DATABASE]]              
+
+[[RDB$DEPENDENCIES]]          
+
+[[RDB$EXCEPTIONS]]            
+
+[[RDB$FIELDS]]                
+
+[[RDB$FIELD_DIMENSIONS]]      
+
+[[RDB$FILES]]                 
+
+[[RDB$FILTERS]]               
+
+[[RDB$FORMATS]]               
+
+[[RDB$FUNCTIONS]]             
+
+[[RDB$FUNCTION_ARGUMENTS]]    
+
+[[RDB$GENERATORS]]            
+
+[[RDB$INDEX_SEGMENTS]]        
+
+[[RDB$INDICES]]               
+
+[[RDB$LOG_FILES]]             
+
+[[RDB$PAGES]]                 
+
+[[RDB$PROCEDURES]]            
+
+[[RDB$PROCEDURE_PARAMETERS]]  
+
+[[RDB$REF_CONSTRAINTS]]       
+
+[[RDB$RELATIONS]]             
+
+[[RDB$RELATION_CONSTRAINTS]]  
+
+[[RDB$RELATION_FIELDS]]       
+
+[[RDB$ROLES]]                 
+
+[[RDB$SECURITY_CLASSES]]      
+
+[[RDB$TRANSACTIONS]]          
+
+[[RDB$TRIGGERS]]              
+
+[[RDB$TRIGGER_MESSAGES]]      
+
+[[RDB$TYPES]]                 
+
+[[RDB$USER_PRIVILEGES]]       
+
+[[RDB$VIEW_RELATIONS]]     
+
+[[rdb_get_context|RDB$GET_CONTEXT()]]
+
+[[rdb_set_context|RDB$SET_CONTEXT()]]
+
+[[RECREATE]]
+
+[[create_exception|RECREATE EXCEPTION]]
+
+[[RECREATE TRIGGER]]
+
+[[RECURSIVE]]
+
+[[RELEASE]]
+
+[[replace|REPLACE()]]
+
+[[RESTART]]
+
+[[RESTRICT]]
+
+[[RETURNS]]
+
+[[RETURNING]]
+
+[[reverse|REVERSE()]]
+
+[[REVOKE]]
+
+[[ROLE]]
+
+[[ROLLBACK]]
+
+[[ROUND()]]
+
+[[ROW_COUNT]]
+
+[[RPAD()]]
+
+[[select|ROWS]]
+
+[[RIGHT]]
+
+
+
+
+
+
+
+
+
+
+==== S ====
+[[SAVEPOINT]]
+
+[[SCALAR_ARRAY]]
+
+[[extract|SECOND]]
+
+[[SELECT]]
+
+[[SEQUENCE]]
+
+[[constraint|SET DEFAULT]]
+
+[[SET GENERATOR]]
+
+[[constraint|SET NULL]]
+
+[[SET STATISTICS]]
+
+[[SET TERM]]
+
+[[SHADOW]]
+
+[[SIGN()]]
+
+[[SIMILAR TO]]
+
+[[SIN()]]
+
+[[SINGULAR]]
+
+[[SINH()]]
+
+[[select|SKIP]]
+
+[[tipy_dannyx|SMALLINT]]
+
+[[select|SOME]]
+
+[[raznovidnosti_jazyka_sql|SQL]]
+
+[[SQLCODE]]
+
+[[SQRT()]]
+
+[[STARTING WITH]]
+
+[[execute_statement|STATEMENT]]
+
+[[SUBSTRING()]]
+
+[[SUM()]]
+
+[[SWEEP]]
+
+[[SYSDBA]]
+
+
+
+
+==== T ====
+[[TABLE]]
+
+[[TAN()]]
+
+[[TANH()]]
+
+[[tipy_dannyx|TIME]]
+
+[[tipy_dannyx|TIMESTAMP]]
+
+[[trim|TRAILING]]
+
+[[TRANSACTION]]
+
+[[trim|TRIM()]]
+
+[[TRUNC()]]
+
+[[TYPE]]
+
+
+
+
+
+
+==== U ====
+[[UDF]]
+
+[[select|UNION]]
+
+[[constraint|UNIQUE]]
+
+[[UPDATE]]
+
+[[UPDATE OR INSERT]]
+
+[[inserting_updating_deleting|UPDATING]]
+
+[[UPPER()]]
+
+[[USER]]
+
+[[constraint|USING]]
+
+[[UUID_TO_CHAR()]]
+
+==== V ====
+[[tipy_dannyx|VARCHAR(n)]]
+
+[[VIEW]]
+
+
+==== W ====
+[[extract|WEEKDAY]]
+
+[[WHEN]]
+
+[[select|WHERE]]
+
+[[WHILE]]
+
+[[select|WITH LOCK]]
+
+[[recursive|WITH RECURSIVE]]
+
+==== Y ====
+[[extract|YEAR]]
+
+[[extract|YEARDAY]]

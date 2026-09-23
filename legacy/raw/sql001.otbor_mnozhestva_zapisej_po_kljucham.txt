@@ -1,0 +1,100 @@
+﻿====== SQL001. Отбор множества записей по ключам ======
+
+
+===== Описание =====
+
+Если нужно отобрать записи по ключам, то намного быстрее будет засунуть эти ID в строку, распарсить и вытягивать каждую запись по по ключу по отдельности в цикле.
+
+Областью применения данного способа отбора записей может быть подготовка набора данных, записи которого выбираются на основании другого набора данных, указанных пользователем. 
+
+Например, при построении отчета "Движение товарно-материальных ценностей по складу", когда пользователь указывает (ставит галочки) в клиентском приложении по каким именно товарно-материальным ценностям отбирать объекты-движения. Клиентское приложение на основании отмеченных пользователем записей формирует строку-параметр, в которой через запятую перечислены коды элементов (записей) справочника "Товарно-материальные ценности".
+
+===== Пример =====
+<code sql>
+CREATE PROCEDURE CONVERT_IDS_TO_ROWS(
+  IDS VARCHAR(32700)
+)RETURNS (
+  ID INTEGER
+)AS
+  DECLARE I INTEGER = 1;
+  DECLARE J INTEGER = 1;
+BEGIN
+  IDS = TRIM(:IDS);
+  WHILE (:I <= CHAR_LENGTH(:IDS)) DO
+  BEGIN
+    IF (',' = SUBSTRING(:IDS FROM :I FOR 1)) THEN
+    BEGIN
+      ID = SUBSTRING(:IDS FROM :J FOR :I - :J);
+      SUSPEND;
+      I = :I + 1;
+      J = :I;
+    END
+    I = :I + 1;
+  END
+  IF (:I > :J) THEN
+  BEGIN
+    ID = SUBSTRING(:IDS FROM :J FOR :I - :J);
+    SUSPEND;
+  END
+END
+
+ 
+CREATE PROCEDURE LIST_TO_ROWS (
+    A_LST BLOB SUB_TYPE TEXT,
+    A_DELIMITER CHAR(1) = ',',
+    A_NULL VARCHAR(1) = '')
+RETURNS (
+    LINE INTEGER,
+    ITEM VARCHAR(32000))
+AS
+  DECLARE POS_   INTEGER;
+  DECLARE OFFSET INTEGER = 1;
+  DECLARE BEG    INTEGER;
+  DECLARE BUF    VARCHAR(32000);
+BEGIN
+  IF (A_LST IS NULL) THEN EXIT;
+  LINE = 0;
+
+  WHILE (0=0) DO BEGIN
+    BUF = SUBSTRING(A_LST FROM OFFSET FOR 32000);
+    POS_ = 1; BEG = 1;
+    WHILE (POS_ <= CHAR_LENGTH(BUF) AND POS_ <= 32000) DO BEGIN
+      IF (SUBSTRING(BUF FROM POS_ FOR 1) = A_DELIMITER) THEN BEGIN
+        IF (POS_ > BEG) THEN
+          ITEM = SUBSTRING(BUF FROM BEG FOR POS_ - BEG);
+        ELSE
+          ITEM = A_NULL;
+        SUSPEND;
+        LINE = LINE + 1;
+        BEG = POS_ + 1;
+      END
+      POS_ = POS_ + 1;
+    END
+    IF (BEG = 1 AND POS_ > 32000) THEN LEAVE;
+    IF (OFFSET + POS_ - 2 = CHAR_LENGTH(A_LST)) THEN LEAVE;
+    OFFSET = OFFSET + BEG - 1;
+    IF (OFFSET > CHAR_LENGTH(A_LST)) THEN LEAVE;
+  END
+
+  IF (BEG = 1 AND POS_ > 32000) THEN BEGIN
+    ITEM = '#N/A';
+  END
+  ELSE IF (POS_ > BEG) THEN BEGIN
+    ITEM = SUBSTRING(BUF FROM BEG FOR POS_ - BEG);
+  END
+  ELSE BEGIN
+    ITEM = A_NULL;
+  END
+  SUSPEND;
+END
+</code>
+
+===== См. также =====
+[[SUBSTRING()]], [[CHAR_LENGTH()]], [[LEFT()]],  [[RIGHT()]],  [[overlay|OVERLAY()]],  [[POSITION()]]
+
+
+[[SQL007.Отбор множества записей по ключам из другой таблицы (обход конструкции IN)]]
+
+===== Источник =====
+
+Форум [[http://www.sql.ru/forum/actualtopics.aspx?bid=2|SQL.RU]], автор: [[http://www.sql.ru/forum/memberinfo.aspx?mid=68203|WildSery]]

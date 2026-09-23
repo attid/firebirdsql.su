@@ -1,0 +1,41 @@
+﻿====== CURRENT_TIMESTAMP ======
+
+
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |  Да  |
+
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]], [[raznovidnosti_jazyka_sql|ESQL]], [[raznovidnosti_jazyka_sql|ISQL]], [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+
+CURRENT_TIME [(//<seconds_precision>//)]
+
+CURRENT_TIMESTAMP [(//<seconds_precision>//)]
+
+===== Описание =====
+Контекстная переменная возвращает текущую дату и время начиная с версии 2,0 можно параметром задать кол-во возвращаемых миллисекунд по умолчанию 3
+возможные значения 0,1,2,3
+
+===== Пример =====
+<code sql>
+select
+  current_timestamp,
+  current_timestamp(0),
+  current_timestamp(1),
+  current_timestamp(2),
+  current_timestamp(3)
+from rdb$database
+</code>
+
+===== Смотри также =====
+[[CURRENT_DATE]]
+
+===== Источник =====
+2.0 Release Notes
+
+($firebird)/doc/sql.extensions/README.current_time.txt

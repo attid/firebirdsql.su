@@ -1,0 +1,25 @@
+﻿====== RIGHT() ======
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5 ^ 2.0 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  +  |  +  |  +  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|ESQL]],  [[raznovidnosti_jazyka_sql|ISQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+right(<строка>, <длина>)
+
+===== Описание =====
+Возвращает правую (конечную) часть строки <строка>, длиной <длина>
+
+===== Пример =====
+<code sql>
+  SELECT right('ABCDEFG',1) FROM rdb$database
+</code>
+Возвращает последнюю букву строки (G)
+===== См. также =====
+[[POSITION()]], [[substring()]], [[left()]], [[char_length()]]
+
+===== Источник =====
+%Firebird%\doc\

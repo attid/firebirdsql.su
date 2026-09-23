@@ -1,0 +1,48 @@
+﻿====== PROCEDURE ======
+
+===== Версии сервера =====
+все
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|ESQL]],  [[raznovidnosti_jazyka_sql|ISQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+PROCEDURE
+
+===== Описание =====
+PROCEDURE - зарезервированное слово SQL, служащее для обращения в работе с хранимыми процедурами.
+
+===== Пример =====
+<code sql>CREATE OR ALTER PROCEDURE PRO$POS (
+    SUBSTR VARCHAR(100),
+    STR VARCHAR(100))
+RETURNS (
+    POS INTEGER)
+AS
+DECLARE VARIABLE SUBSTR2 VARCHAR(201);
+DECLARE VARIABLE TMP VARCHAR(100);
+BEGIN
+  IF (SubStr IS NULL OR Str IS NULL)
+  THEN BEGIN Pos = NULL; EXIT; END
+
+  SubStr2 = SubStr || '%';
+  Tmp = '';
+  Pos = 1;
+  WHILE (Str NOT LIKE SubStr2 AND Str NOT LIKE Tmp) DO BEGIN
+    SubStr2 = '_' || SubStr2;
+    Tmp = Tmp || '_';
+    Pos = Pos + 1;
+  END
+
+  IF (Str LIKE Tmp) THEN Pos = 0;
+
+  SUSPEND;
+END</code>
+<code sql>SELECT POS from PRO$POS('e', 'test')</code>
+<code sql>DROP PROCEDURE PRO$POS</code>
+
+===== См. также =====
+[[CREATE PROCEDURE]],  [[DROP PROCEDURE]],  [[ALTER PROCEDURE]]
+
+===== Источник =====
+%Firebird%\doc\

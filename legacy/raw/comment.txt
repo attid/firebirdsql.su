@@ -1,0 +1,37 @@
+﻿====== COMMENT ======
+
+===== Формат =====
+<code>
+COMMENT ON
+{ DATABASE IS {'<текст>' | NULL}
+| <базовый тип> <имя> IS {'<текст>' | NULL}
+| COLUMN <таблица>.<столбец> IS
+{'<текст>' | NULL}
+| PARAMETER <процедура>.<параметр> IS
+{'<текст>' | NULL} };
+<базовый тип> ::=
+{ DOMAIN
+| TABLE
+| VIEW
+| PROCEDURE
+| TRIGGER
+| EXTERNAL FUNCTION
+| FILTER
+| EXCEPTION
+| GENERATOR
+| SEQUENCE
+| INDEX
+| ROLE
+| CHARACTER SET
+| COLLATION
+}
+</code>
+
+===== Описание =====
+
+Оператор COMMENT позволяет создавать примечания, комментарии, для объектов базы данных. Если текст примечания задать в виде двух подряд идущих апострофов '', то это равносильно заданию NULL, то есть удалению существующего примечания.
+
+===== Пример =====
+<code sql>
+  COMMENT ON TABLE EMPLOYEE IS '"Employee" table'
+</code>

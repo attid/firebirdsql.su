@@ -1,0 +1,41 @@
+﻿
+====== Операторы конструкции SELECT ======
+[[CASE]]
+
+[[COALESCE]]
+
+[[CONTAINING]]
+
+[[CROSS]]
+
+[[EXISTS]]
+
+[[FIRST]]
+
+[[GROUP BY]]
+
+[[HAVING]]
+
+[[IS [NOT] DISTINCT FROM]]
+
+[[LAST]]
+
+[[LEADING]]
+
+[[LIKE]]
+
+[[LOCK]]
+
+[[ORDER BY]]
+
+[[PLAN]]
+
+[[ROW_COUNT]]
+
+[[ROWS]]
+
+[[SELECT]]
+
+[[SKIP]]
+
+[[UNION]]

@@ -1,0 +1,77 @@
+﻿
+====== SQL007. Отбор множества записей по ключам из другой таблицы (обход конструкции IN) ======
+
+
+===== Описание =====
+
+Если требуется отобрать записи из таблицы, одно из полей которых FIELD1 должно принадлежать заданному множеству значений, то лучше не использовать конструкцию [[select|IN]] в условии [[select|WHERE]], т.к. парсер запросов внутри себя превращает ее в конструкцию OR(FIELD1 = <...>)OR(FIELD1 = <...>)OR(FIELD1 = <...>)..........OR(FIELD1 = <...>).
+
+Гораздо эффективней по скорости выборки данных способ предложенный **Ded**-ом:
+  - Список значений упаковывается в строковую константу с разделителем: как правило, мало-используемым символом, например: **~** (тильда).
+  - В условии [[select|WHERE]] ищется вхождение значения поля FIELD1 текущей записи в список значений.
+
+Например:
+<code sql>
+SELECT T.FIEDL1, T.FIEDL2, ...., T.FIEDLN
+FROM   MY_TABLE T
+WHERE  ('~1~22~4~555~6~7~8~99~0~54~3324~' CONTAINING  '~' || T.FIELD1 || '~' )
+</code>
+
+На небольшом наборе отбираемого множества значений или статически заданном множестве прирост в скорости не так ощутим, как например в тех случаях, когда отбираемый набор формируется при помощи оператора [[select|SELECT]], например как WHERE (T.FIELD1 IN (SELECT T2.ID FROM MY_TABLE2 T2)). Если же требуется отобрать значения из древовидного справочника MY_TABLE2 учитывая вложенность записей, то скорость выполнения оператора SELECT возрастает в разы !
+
+Например: пусть существуют в базе данных группирующая "древовидная" таблица MY_GROUP_TABLE и таблица с записями MY_TABLE. 
+<code sql>
+CREATE TABLE MY_GROUP_TABLE (
+   ID        INTEGER NOT NULL PRIMARY KEY
+  ,NAME      VARCHAR(50)
+  ,PARENT_ID INTEGER
+);
+
+CREATE TABLE MY_TABLE (
+  ID       INTEGER NOT NULL
+ ,NAME     VARCHAR(50)
+ ,GROUP_ID INTEGER NOT NULL FOREIGN KEY REFERENCES MY_GROUP_TABLE(ID)
+);
+</code>
+
+Тогда, чтобы отобрать записи из таблицы MY_TABLE начиная от заданного узла GROUP_ID и учитывая все вложенные узлы из таблицы MY_GROUP_TABLE
+<code sql>
+CREATE OR ALTER PROCEDURE MY_PROC(
+   Q_GROUP_ID INTEGER
+)RETURNS(
+   ID       INTEGER
+  ,NAME     VARCHAR(50)
+  ,GROUP_ID INTEGER
+)AS
+  DECLARE VARIABLE IDS BLOB SUBTYPE TEXT; /* BLOB потому, что фиг его знает, сколько записей отберется */
+BEGIN
+  -- 1. Формируем список значений для отбора, учитывая вложенность
+  WITH RECURSIVE TREE_STMT AS (
+    SELECT T1.ID, T1.PARENT_ID FROM MY_GROUP_TABLE T1 WHERE (T1.ID = :Q_GROUP_ID)
+    UNION ALL
+    SELECT T2.ID, T2.PARENT_ID FROM MY_GROUP_TABLE T2, TREE_STMT T3 WHERE (T2.PARENT_ID = T3.ID)
+  )
+  SELECT '~' || LIST(REF.ID, '~') || '~' FROM TREE_STMT REF INTO :IDS;
+
+  -- 2. Отбираем значения из таблицы MY_TABLE
+  FOR
+    SELECT TB.ID, TB.NAME, TB.GROUP_ID
+    FROM   MY_TABLE TB
+    WHERE  (:IDS CONTAINING '~'||TB.GROUP_ID||'~' )
+    INTO   :ID, :NAME, :GROUP_ID
+  DO
+    SUSPEND;
+END
+</code>
+
+===== См. также =====
+[[SELECT]], [[recursive|WITH RECURSIVE]]
+
+
+[[SQL001.Отбор множества записей по ключам]]
+
+===== Источник =====
+
+[[http://groups.google.com.ua/group/ru-firebird/topics?hl=ru&start=|Конференция разработчиков Firebird]], автор: Ded
+
+[[http://www.ibase.ru/ibfaq.htm#inparam|http://ibase.ru/]] - другое применение указанного способа

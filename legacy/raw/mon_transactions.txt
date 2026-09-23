@@ -1,0 +1,44 @@
+﻿
+====== MON$TRANSACTIONS ======
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  +  |  +  |  +  |  +  |
+
+===== Доступно в =====
+[[raznovidnosti_jazyka_sql|DSQL]],  [[raznovidnosti_jazyka_sql|ESQL]],  [[raznovidnosti_jazyka_sql|ISQL]],  [[raznovidnosti_jazyka_sql|PSQL]]
+
+===== Формат =====
+MON$TRANSACTIONS (активные транзакции) хранит информацию об активных в текущий момент транзакциях. В текущий версии сервера ТОЛЬКО ЧТЕНИЕ
+    MON$TRANSACTION_ID идентификатор транзакции
+    MON$ATTACHMENT_ID идентификатор подключения из таблицы MON$ATTACHMENTS
+    MON$STATE состояние транзакции
+        0: idle
+        1: active
+        принимает одно из значений поля RDB$TYPE набора данных, возвращаемых SQL-скриптом
+        SELECT T.RDB$TYPE, T.RDB$TYPE_NAME FROM RDB$TYPES T WHERE (T.RDB$FIELD_NAME ='MON$STATE')
+
+    MON$TIMESTAMP время старта транзакции
+    MON$TOP_TRANSACTION (top transaction)
+    MON$OLDEST_TRANSACTION (local OIT number)
+    MON$OLDEST_ACTIVE (local OAT number)
+    MON$ISOLATION_MODE уровень изоляции транзакции
+        0: consistency
+        1: concurrency
+        2: read committed record version
+        3: read committed no record version
+        принимает одно из значений поля RDB$TYPE набора данных, возвращаемых SQL-скриптом
+        SELECT T.RDB$TYPE, T.RDB$TYPE_NAME FROM RDB$TYPES T WHERE (T.RDB$FIELD_NAME ='MON$ISOLATION_MODE')
+
+    MON$LOCK_TIMEOUT таймаут блокировки записей
+        -1: infinite wait (бесконечно)
+        0: no wait (не ожидать разрешения конфликта)
+        N: timeout N (ожидать разрешение конфликта)
+    MON$READ_ONLY транзакция открыла набор данных "только для чтения"
+    MON$AUTO_COMMIT признак автоматического подтверждения транзакции
+    MON$AUTO_UNDO признак автоматического отката транзакции
+
+===== Описание =====
+
+===== Источник =====
+%Firebird%\doc\

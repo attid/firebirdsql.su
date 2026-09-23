@@ -1,0 +1,216 @@
+﻿====== SQL003. Сумма прописью ======
+
+
+===== Версии сервера =====
+^ 0.9 ^ 1.0 ^ 1.5.3 ^ 1.5.4 ^ 1.5.5 ^ 2.0 ^ 2.0.3 ^ 2.0.4 ^ 2.1 ^ 2.5 ^ 3.0 ^
+|  -  |  -  |  -  |  -  |  -  |  -  |  -  |  -  |  Да  |  Да  |  Да  |
+
+===== Описание =====
+
+Данная хранимая процедура преобразует переданное ей в качестве параметра значение суммы в текстовое представление. 
+
+Ограничения:
+  - В области строковых констант хранимая процедура может быть изменена под любой язык, но корректно алгоритм будет работать только на восточно-славянской группе языков (русский, белорусский, украинский), имеющих одинаковые правила склонения числительных.
+  - Данная хранимая процедура будет корректно работать только на "двухуровневых" валютах (доллар-цент, рубль-копейка, грывня-копийка) с отношением 1/100 старшего уровня к младшему (на момент написания данной статьи это практически все валюты мира). Данная хранимая процедура не может использоваться в многоуровневых валютах (например, валюта Соединеннго Королевства до реформы 1972г., имевшая в составе несколько уровней: фунт-шиллинг(стерлинг)-пенс) и валютах, имеющих отношение верхнего уровня к нижнему, отличное от 1/100 (например, валюта Соединеннго Королевства до реформы 1972г., где: 1 фунт = 12 шиллингов(стерлингов)).
+
+===== Пример =====
+<code sql>
+SET TERM ^ ;
+
+create or alter procedure CURRENCYSTR (
+    VAL numeric(15,2),
+    LANG varchar(2),
+    SHOWCURRENCY integer)
+returns (
+    CURR_STR varchar(1000))
+as
+declare variable RAZRYAD varchar(50);
+declare variable RAZRYAD_IDX varchar(28);
+declare variable HUNDREDS varchar(64);
+declare variable HUNDREDS_IDX varchar(30);
+declare variable TENS varchar(69);
+declare variable TENS_IDX varchar(40);
+declare variable ONES varchar(139);
+declare variable ONES_IDX varchar(100);
+declare variable SIGN_OF_VAL varchar(6);
+declare variable RAZ integer;
+declare variable CENTS varchar(3);
+declare variable VAL_STR varchar(20);
+declare variable NUM varchar(20);
+declare variable I integer;
+declare variable BUF varchar(200);
+declare variable BUF1 varchar(200);
+declare variable CURR_ABR varchar(5);
+declare variable MINUS_STR varchar(10);
+begin
+  lang = upper(lang);
+  /* Константы */
+  if (lang is null) then lang = 'UA';
+  if (:lang = 'UA') then
+  begin
+    curr_abr = 'грн.';
+    minus_str = 'мінус';
+    razryad_idx = /* 2.2 */ '0100010506071307200828113911';
+    razryad = 'тисячмільйонмільярдтрильйонквадрильйонквінтильйон';
+    hundreds_idx = /* 2.1 */ '010013046106169257318396458539';
+    hundreds = 'стодвістітристачотиристап''ятсотшістсотсімсотвісімсотдев''ятсот';
+    tens_idx = /* 2.2 */ '0100010001080908170522093109400848105810';
+    tens = 'двадцятьтридцятьсорокп''ятдесятшістдесятсімдесятвісімдесятдев''яносто';
+    ones_idx = /* 3.2 */ '0010000100001000010300406010050150502003023050280703506041100511006110071120831109411105101151212713';
+    ones = 'тричотирип''ятьшістьсімвісімдев''ятьдесятьодинадцятьдванадцятьтринадцятьчотирнадцятьп''ятнадцятьшістнадцятьсімнадцятьвісімнадцятьдев''ятнадцять';
+  end
+  else if ((:lang = 'RU')) then
+  begin
+    curr_abr = 'руб.';
+    minus_str = 'минус';
+    razryad_idx = /* 2.2 */ '0100010506071308210829114011';
+    razryad = 'тисячміллионмиллиардтриллионквадриллионквинтиллион';
+    hundreds_idx = /* 2.1 */ '010013046106169257328407479569';
+    hundreds = 'стодвеститристачетырестапятьсотшестьсотсемьсотвосемьсотдевятьсот';
+    tens_idx = /* 2.2 */ '0100010001080908170522093110410950116109';
+    tens = 'двадцатьтридцатьсорокпятьдесятшестьдесятсемьдесятвосемьдесятдевяносто';
+    ones_idx = /* 3.2 */ '0010000100001000010300406010040140501904023060290603506041110521006210072120841009411105101151212712';
+    ones = 'тричетырепятьшестьсемьвосемьдевятьдесятьодиннадцатьдвенадцатьтринадцатьчетырнадцатьпятнадцатьшестнадцатьсемнадцатьвосемнадцатьдевятнадцать';
+  end
+
+  if (showcurrency is null) then showcurrency = 0;
+  curr_str = '';
+ 
+  /* Смотрим знак */
+  if (val < 0) then begin
+    sign_of_val = minus_str||' ';
+    val = -val;
+  end else
+    sign_of_val = '';
+ 
+  /* Выбираем и запоминаем копейки, убираем их из числа */
+  val_str = cast(val as varchar(20));
+  i = position('.' in val_str);
+  cents = lpad(substring(val_str from i+1 for 2), 2, '0');
+--  val_str = lpad(substring(val_str FROM 1 FOR i-1), ((i+1)/3*3), '0');
+  val_str = lpad(substring(val_str from 1 for i-1), (trunc((i+1)/3)*3), '0');
+ 
+  /* Разбираем число */
+  raz = 0; curr_str = '';
+  while (val_str != '') do begin
+    /* Берём триаду символов */
+    num = right(val_str, 3);
+    /* Если не нулевое число */
+    if (num != '000') then begin
+      /* Берём сотни */
+      i = cast(substring(num from 1 for 1) as int);
+      buf = substring(hundreds from cast(substring(hundreds_idx from i*3+1 for 2) as int)
+        for cast(substring(hundreds_idx from i*3+3 for 1) as int));
+ 
+      /* Далее десятки */
+      /* Для "десятнадцатых" упрощённая обработка */
+      if (substring(num from 2 for 1) = '1') then begin
+          /* Вставляем нужную "десятнадцать" */
+          i = cast(substring(num from 2 for 2) as int);
+          buf1 = substring(ones from cast(substring(ones_idx from i*5+1 for 3) as int) for cast(substring(ones_idx from i*5+4 for 2) as int));
+          if (buf != '') then buf = buf || ' ';
+          buf = buf || buf1;
+      end else
+      /* Для "нормальных" чисел своя обработка */
+      begin
+        /* Десятки */
+        i = cast(substring(num from 2 for 1) as int);
+        buf1 = substring(tens from cast(substring(tens_idx from i*4+1 for 2) as int) for cast(substring(tens_idx from i*4+3 for 2) as int));
+        if (buf != '' and buf1 != '') then buf = buf || ' ';
+        buf = buf || buf1;
+ 
+        /* Единицы */
+        i = cast(substring(num from 3 for 1) as int);
+        /* Смотрим количество для нужного окончания */
+        if (i = 1) then begin
+          if (:lang = 'UA') then begin
+            if (raz in (0,1)) then buf1 = 'одна'; else buf1 = 'один';
+          end
+          else if (:lang = 'RU') then begin
+            if (raz = 1) then buf1 = 'одна'; else buf1 = 'один';
+          end
+        end else
+        if (i = 2) then begin
+          if (:lang = 'UA') then begin
+            if (raz in (0,1)) then buf1 = 'дві'; else buf1 = 'два';
+          end
+          else if (:lang = 'RU') then begin
+            if (raz = 1) then buf1 = 'две'; else buf1 = 'два';
+          end
+        end else
+          buf1 = substring(ones from cast(substring(ones_idx from i*5+1 for 3) as int) for cast(substring(ones_idx from i*5+4 for 2) as int));
+        if (buf != '' and buf1 != '') then buf = buf || ' ';
+        buf = buf || buf1;
+      end
+ 
+      /* Разряд числа */
+      buf1 = substring(razryad from cast(substring(razryad_idx from raz*4+1 for 2) as int) for cast(substring(razryad_idx from raz*4+3 for 2) as int));
+      if (buf1 != '') then begin
+        /* Подбор окончания для разряда */
+        if (:lang = 'UA') then begin
+          if (i = 1) then begin
+            if (raz = 1) then buf1 = buf1 || 'а';
+          end else
+          if (i in (2,3,4)) then begin
+            if (raz = 1) then buf1 = buf1 || 'и';
+            else if (raz > 1) then buf1 = buf1 || 'а';
+          end else
+            if (raz > 1) then buf1 = buf1 || 'ів';
+        end
+        else if (:lang = 'RU') then begin
+          if (i = 1) then begin
+            if (raz = 1) then buf1 = buf1 || 'а';
+          end else
+          if (i in (2,3,4)) then begin
+            if (raz = 1) then buf1 = buf1 || 'и';
+            else if (raz > 1) then buf1 = buf1 || 'а';
+          end else
+            if (raz > 1) then buf1 = buf1 || 'ов';
+        end
+        buf = buf || ' ' || buf1;
+      end
+    end else
+      buf = '';
+ 
+    /* Присоединяем обработанную триаду к результату */
+    if (curr_str != '' and buf != '') then buf = buf || ' ';
+    curr_str = buf || curr_str;
+    /* Переходим к следующей триаде */
+    val_str = left(val_str, char_length(val_str)-3);
+    /* Увеличиваем счётчик разряда */
+    raz = raz + 1;
+  end
+ 
+  /* Припысываем знак */
+  curr_str = sign_of_val || curr_str;
+  /* Делаем первую букву прописной */
+  curr_str = upper(substring(curr_str from 1 for 1)) || substring(curr_str from 2);
+ 
+  /* Флаг "показать название валюты" */
+  if (showcurrency != 0) then
+  begin
+    if (curr_str != '' ) then
+      curr_str = curr_str || ' '||curr_abr||' ';
+
+    curr_str = curr_str || cents || ' коп.';
+  end
+ 
+  suspend;
+end^
+
+SET TERM ; ^
+
+GRANT EXECUTE ON PROCEDURE CURRENCYSTR TO SYSDBA;
+</code>
+
+===== См. также =====
+[[]]
+
+===== Источник =====
+
+Форум: sql.ru, 
+
+Автор: WildSery, (Sp1r1t добавил поддержку украинской валюты)
+
+
+Пост: http://sql.ru/forum/actualthread.aspx?tid=628590&pg=-1#6717281
