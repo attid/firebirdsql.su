@@ -92,8 +92,8 @@ const description = metaDescription(entry.body ?? "");
   (function (c) {
     for (var i = 0; i < c.length; i++) {
       var d = document.createElement("script");
-      const name = c[i] === "embed" ? "web" : c[i];
-      d.src = "/remark42/" + name + ".js";
+      // канонический путь виджета remark42: /web/<component>.js
+      d.src = "/remark42/web/" + c[i] + ".js";
       d.defer = true;
       (document.head || document.body).appendChild(d);
     }
