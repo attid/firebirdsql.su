@@ -29,10 +29,10 @@ services:
       # --- авторизация (ADR-0006): Telegram + Яндекс + Google ---
       - AUTH_TELEGRAM=${AUTH_TELEGRAM:-true}
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN:-}
-      - AUTH_YANDEX=${AUTH_YANDEX:-true}
+      - AUTH_YANDEX=${AUTH_YANDEX:-false}
       - AUTH_YANDEX_CID=${AUTH_YANDEX_CID:-}
       - AUTH_YANDEX_CSEC=${AUTH_YANDEX_CSEC:-}
-      - AUTH_GOOGLE=${AUTH_GOOGLE:-true}
+      - AUTH_GOOGLE=${AUTH_GOOGLE:-false}
       - AUTH_GOOGLE_CID=${AUTH_GOOGLE_CID:-}
       - AUTH_GOOGLE_CSEC=${AUTH_GOOGLE_CSEC:-}
       # --- прочее ---
