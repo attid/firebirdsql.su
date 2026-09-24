@@ -18,22 +18,22 @@ firebird:
 
 ## Новые официальные Docker-образы
 
-7 мая официальный блог анонсировал **новое поколение Docker-образов Firebird** и обновление одношаговых установочных скриптов для Linux. Мы упоминали образы в апрельском выпуске по анонсу в группе — теперь это официальная новость: обновились и образы, и скрипты быстрой установки.
+7 мая официальный блог анонсировал [**новое поколение Docker-образов Firebird**](https://groups.google.com/g/firebird-general/c/5gPXXp7m1aM) и обновление одношаговых установочных скриптов для Linux. Мы упоминали образы в апрельском выпуске по анонсу в группе — теперь это официальная новость: обновились и образы, и скрипты быстрой установки.
 
 ## Firebird Web Client — браузерная IDE
 
-14 мая представили **Firebird Web Client** — открытый браузерный клиент для работы с базами Firebird: без установки, открывается страницей. Молодой проект, но ниша «быстро глянуть базу, ничего не ставя» раньше была пустой.
+14 мая представили [**Firebird Web Client**](https://groups.google.com/g/firebird-general/c/OpuOLdpgj-8) — открытый браузерный клиент для работы с базами Firebird: без установки, открывается страницей. Молодой проект, но ниша «быстро глянуть базу, ничего не ставя» раньше была пустой.
 
 ## tragach: eBPF-наблюдаемость для Firebird
 
-13 мая вышла бета **tragach** — инструмента наблюдаемости на eBPF, показывающего внутреннюю жизнь сервера Firebird (запросы, ожидания, ввод-вывод) без изменения конфигурации. Для админов, которым мало `MON$`-таблиц — многообещающе.
+13 мая вышла бета [**tragach**](https://groups.google.com/g/firebird-general/c/DnBNeDGaCUY) — инструмента наблюдаемости на eBPF, показывающего внутреннюю жизнь сервера Firebird (запросы, ожидания, ввод-вывод) без изменения конфигурации. Для админов, которым мало `MON$`-таблиц — многообещающе.
 
 ## Мелочью
 
-- **sqlalchemy-firebird-async 0.2.2** — асинхронный диалект Firebird для SQLAlchemy (Python).
-- **node-firebird-driver-wire** — новый wire-протокол драйвер для Node.js от кор-коммиттера Firebird.
-- **ext-table-gen 3.0** — генератор внешних таблиц.
-- **TurboBird 1.2.1** — обновление свободного GUI-клиента.
+- [**sqlalchemy-firebird-async 0.2.2**](https://groups.google.com/g/firebird-general/c/s2Vg1omIwMQ) — асинхронный диалект Firebird для SQLAlchemy (Python).
+- [**node-firebird-driver-wire**](https://groups.google.com/g/firebird-general/c/8wAGIC68dxE) — новый wire-протокол драйвер для Node.js от кор-коммиттера Firebird.
+- [**ext-table-gen 3.0**](https://groups.google.com/g/firebird-general/c/mirh-Nhfw7I) — генератор внешних таблиц.
+- [**TurboBird 1.2.1**](https://groups.google.com/g/firebird-general/c/q4nQSeQobNc) — обновление свободного GUI-клиента.
 
 ---
 
