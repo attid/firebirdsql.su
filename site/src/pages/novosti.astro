@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Хаб новостей: страницы секции news, свежие сверху.
+const news = (await getCollection("docs", ({ data }) => data.section === "news"))
+  .sort((a, b) => (a.data.date! < b.data.date! ? 1 : -1));
+---
+
+<BaseLayout
+  title="Новости Firebird"
+  description="Новости СУБД Firebird на русском: релизы, документация, инструменты и события — ежемесячные выпуски."
+>
+  <article class="doc-content">
+    <h1>Новости Firebird</h1>
+    <p>
+      Ежемесячные выпуски о самом важном: релизы, русская документация,
+      ключевые инструменты и события сообщества. Без шума про каждый биндинг.
+    </p>
+    <ul class="feed">
+      {news.map((entry) => (
+        <li>
+          <a href={`/${entry.id}/`}>{entry.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </article>
+</BaseLayout>
+
+<style>
+  .feed { list-style: none; padding: 0; }
+  .feed li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+</style>

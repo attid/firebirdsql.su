@@ -15,7 +15,7 @@ const docs = defineCollection({
   schema: z.object({
     title: z.string(),
     old_id: z.string(),
-    section: z.enum(["glossary", "intro", "install", "errors", "sql", "groups"]),
+    section: z.enum(["glossary", "intro", "install", "errors", "sql", "groups", "news"]),
     type: z.enum(["term", "article", "landing"]),
     // Даты для страницы «Что нового»: новые статьи обязаны нести date,
     // у legacy-страниц даты нет (миграция одним днём) — поля опциональны

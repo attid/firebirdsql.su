@@ -17,6 +17,7 @@ const sectionTitles: Record<string, string> = {
   errors: "Обработка ошибок",
   sql: "SQL-рецепты",
   groups: "Тематические группы",
+  news: "Новости",
 };
 const sectionTitle = sectionTitles[entry.data.section] ?? entry.data.section;
 const toc = headings.filter((h) => h.depth <= 3);
