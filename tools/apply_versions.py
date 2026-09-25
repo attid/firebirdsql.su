@@ -29,6 +29,7 @@ def main() -> int:
     dry = "--dry" in sys.argv
     data = json.loads((ROOT / "tools" / "version_matrix.json").read_text("utf-8"))
     matrix = data["matrix"]
+    wiki_tables = data.get("wiki_tables", {})
 
     changed, skipped, review = [], [], []
     for f in sorted(DOCS.glob("*.md")):
@@ -49,7 +50,7 @@ def main() -> int:
             present = [v for v in VERSIONS if rec["in"][v]]
             if present:
                 since, reasons = present[0], ["LR"]
-        wiki = (rec or {}).get("wiki_versions") or []
+        wiki = wiki_tables.get(pid) or (rec or {}).get("wiki_versions") or []
         if wiki:
             w = min(wiki, key=vkey)
             if since is None or vkey(w) < vkey(since):

@@ -4,7 +4,7 @@ old_id: interval
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "2.0.4"
   until: 
   deprecated: false
 ---

@@ -178,7 +178,7 @@ def wiki_version_tables() -> dict[str, list[str]]:
         for row in rows[2:]:  # rows[1] — разделитель
             cells = [c.strip() for c in row.strip("|").split("|")]
             for i in cols:
-                if i < len(cells) and cells[i] in ("Да", "**Да**"):
+                if i < len(cells) and cells[i] in ("Да", "**Да**", "+", "**+**"):
                     yes.append(header[i])
         if yes:
             out[f.stem] = sorted(set(yes),
@@ -233,7 +233,7 @@ def main() -> int:
         rec["wiki_versions"] = tables.get(name)
 
     (ROOT / "tools" / "version_matrix.json").write_text(
-        json.dumps({"matrix": matrix, "versions": VERSIONS},
+        json.dumps({"matrix": matrix, "versions": VERSIONS, "wiki_tables": tables},
                    ensure_ascii=False, indent=1), "utf-8")
 
     rep = ["# Матрица версий: Language Reference × наш контент", "",

@@ -1,116 +1,46 @@
-# Ручной разбор: страницы без доказательств версии
+# Разбор версий: страницы без автоматического since
 
-Ни таблицы «Версии сервера» в теле, ни вхождения в LR 2.5–6.0.
+Авто-заполнение (tools/apply_versions.py) покрывает доказанные случаи.
+Ниже — остальное, разбито по категориям с решениями (2026-09-24).
 
-- `1glossarij`
-- `addday`
-- `addmillisecond`
-- `addminute`
-- `addmonth`
-- `addsecond`
-- `addweek`
-- `addyear`
-- `autoddl`
-- `autonomous_transaction`
-- `chto_takoe_firebird`
-- `comment`
-- `connect`
-- `constraint`
-- `create_generator`
-- `create_global_temporary_table`
-- `day`
-- `distinct`
-- `dow`
-- `drop_generator`
-- `gbak`
-- `gdscodes`
-- `gfix`
-- `glossarij`
-- `gsec`
-- `hour`
-- `indices_maintenance`
-- `inserting_updating_deleting`
-- `instclient.exe`
-- `interval`
-- `is_not_distinct_from`
-- `istochniki_i_avtory`
-- `join`
-- `kak_ustanovit_na_linux_vtoroj_ehkzempljar_firebird`
-- `matematicheskie_operacii_s_datoj`
-- `minute`
-- `mon_attachments`
-- `mon_database`
-- `mon_transactions`
-- `month`
-- `ne_ispolzuemye_kljuchevye_slova`
-- `new_old`
-- `novosti-2026-04`
-- `novosti-2026-05`
-- `novosti-2026-06`
-- `novosti-2026-07`
-- `novosti-2026-08`
-- `novosti-2026-09`
-- `o_sajte`
-- `odbc`
-- `operatory_konstrukcii_select`
-- `oshibki_pri_sozdanii_metadannyx`
-- `podkljuchenie_k_baze_dannyx_iz_1s`
-- `polesnue_zaprosu`
-- `port_3050`
-- `pravila`
-- `python_async`
-- `raznovidnosti_jazyka_sql`
-- `rdb_check_constraints`
-- `rdb_database`
-- `rdb_fields`
-- `rdb_generators`
-- `rdb_get_context`
-- `rdb_index_segments`
-- `rdb_indices`
-- `rdb_ref_constraints`
-- `rdb_relation_constraints`
-- `rdb_relation_fields`
-- `rdb_relations`
-- `rdb_roles`
-- `rdb_security_classes`
-- `rdb_set_context`
-- `rdb_transactions`
-- `rdb_trigger_messages`
-- `rdb_triggers`
-- `recursive`
-- `returns`
-- `samostojatelnaja_sborka_snapshota_firebird`
-- `script_alert_script`
-- `second`
-- `set_term`
-- `sidebar`
-- `sistemnye_tablicy`
-- `skript_dlja_rezervirovanija_bazy_dannyx_na_python`
-- `skript_dlja_rezervirovanija_bazy_dannyx_na_shell`
-- `soglashenija_sintaksisa`
-- `sql001.otbor_mnozhestva_zapisej_po_kljucham`
-- `sql002.javljaetsja_li_stroka_chislom`
-- `sql003.summa_propisju`
-- `sql005._kak_v_firebird_vstavit_perenos_stroki_crlf`
-- `sql005._kak_v_stroku_vstavit_proizvolnyj_simovol`
-- `sql007.otbor_mnozhestva_zapisej_po_kljucham_iz_drugoj_tablicy_obxod_konstrukcii_in`
-- `sql009._formirovanie_shtrix-koda_ean13_po_kodu_zapisi_v_tablice`
-- `sql010._vyborka_dannyx_iz_drevovidnoj_tablicy_s_uchetom_ierarxii_obektov`
-- `sql012._poschitat_kontrolnyj_razrjad_k_snils`
-- `start`
-- `sweep`
-- `tablicy_monitoringa`
-- `tipy_dannyx`
-- `transfer_table`
-- `ustanovka_apache_php_firebird`
-- `ustanovka_apache_php_firebird_na_ubuntu`
-- `ustanovka_firebird_iz_snapshota`
-- `ustanovka_firebird_na_linux`
-- `ustanovka_firebird_na_windows`
-- `utils`
-- `vremennye_tablicy`
-- `vstroennye_funkcii`
-- `vstroennye_funkcii_po_gruppam`
-- `weekday`
-- `year`
-- `yearday`
+## Не применимо: статьи, лендинги, дайджесты (флаг версии не ставится)
+
+1glossarij, chto_takoe_firebird, indices_maintenance, istochniki_i_avtory,
+matematicheskie_operacii_s_datoj, novosti-2026-*, o_sajte, odbc,
+operatory_konstrukcii_select, oshibki_pri_sozdanii_metadannyx,
+podkljuchenie_k_baze_dannyx_iz_1s, polesnue_zaprosu, port_3050, pravila,
+python_async, samostojatelnaja_sborka_snapshota_firebird,
+script_alert_script, skript_dlja_rezervirovanija_*,
+soglashenija_sintaksisa, sql0xx.*, start, sidebar, sistemnye_tablicy,
+tablicy_monitoringa, tipy_dannyx, transfer_table, ustanovka_*, utils,
+vstroennye_funkcii, vstroennye_funkcii_po_gruppam
+
+## Не применимо: утилиты и isql-директивы (не серверные конструкции)
+
+autoddl (isql-опция), gbak, gfix, gsec, instclient.exe, set_term, sweep,
+gdscodes (коды ошибок)
+
+## Базовые конструкции SQL: есть во всех версиях, точная дата — InterBase-эра
+
+join, returns, distinct, constraint, interval, if (PSQL), new_old
+(NEW/OLD в триггерах), connect.
+Пока since пуст — страница показывается при любом фильтре. Ставить
+доказанное «≤2.5» как точный бейдж нельзя (ввело бы в заблуждение).
+
+## EXTRACT-семейство: ключевые слова EXTRACT, присутствуют во всех версиях
+
+hour, minute, month, second, year, weekday. Родственная страница day
+получила since 0.9 по своей таблице; у этих таблицы в другом формате
+(список версий без Да/−) — при желании привести к общему виду.
+
+## Есть в LR 2.5+, точная дата требует release notes (оставлено пустым)
+
+create_generator, rdb_generators, rdb_index_segments, rdb_ref_constraints.
+CREATE GENERATOR / RDB$GENERATORS — InterBase-эра, но доказательства в
+наших источниках только «≤2.5».
+
+## Разобрано вручную
+
+- comment → since: "2.0" (Firebird 2.0 release notes, DDL раздел)
+- autonomous_transaction → since: "2.5" (таблица в теле страницы +
+  синтаксис WITH {AUTONOMOUS | COMMON} TRANSACTION в книге 2.5)

@@ -4,7 +4,7 @@ old_id: rdb_set_context
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "2.0"
   until: 
   deprecated: false
 ---

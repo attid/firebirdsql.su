@@ -4,7 +4,7 @@ old_id: ne_ispolzuemye_kljuchevye_slova
 section: groups
 type: landing
 firebird:
-  since: 
+  since: "2.1"
   until: 
   deprecated: false
 ---

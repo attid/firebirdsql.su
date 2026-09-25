@@ -4,7 +4,7 @@ old_id: kak_ustanovit_na_linux_vtoroj_ehkzempljar_firebird
 section: install
 type: article
 firebird:
-  since: 
+  since: "2.5"
   until: 
   deprecated: false
 ---
