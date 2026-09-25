@@ -1,8 +1,8 @@
 # Матрица версий: Language Reference × наш контент
 
-Конструкций в руководствах (объединённо): 572; страниц у нас: 256; совпало: 156.
+Конструкций в руководствах (объединённо): 575; страниц у нас: 256; совпало: 157.
 
-## У нас (type=term), но нет в руководствах — кандидаты deprecated/until: 53
+## У нас (type=term), но нет в руководствах — кандидаты deprecated/until: 52
 
 - `addday` — ADDDAY()
 - `addmillisecond` — ADDMILLISECOND()
@@ -17,7 +17,6 @@
 - `connect` — CONNECT
 - `constraint` — CONSTRAINT
 - `create_generator` — CREATE GENERATOR\\SEQUENCE
-- `create_global_temporary_table` — CREATE GLOBAL TEMPORARY TABLE
 - `day` — DAY
 - `distinct` — DISTINCT
 - `dow` — DOW()
@@ -108,7 +107,7 @@
 - `vstroennye_funkcii` (groups/landing) — Встроенные функции
 - `vstroennye_funkcii_po_gruppam` (groups/landing) — Встроенные функции по типам
 
-## В руководствах, но нет у нас — кандидаты в новые статьи: 428
+## В руководствах, но нет у нас — кандидаты в новые статьи: 430
 
 - `acosh` — ACOSH (есть в: 3.0, 4.0, 5.0, 6.0)
 - `administratory` — Администраторы (есть в: 2.5, 3.0)
@@ -124,7 +123,7 @@
 - `alter_mapping` — ALTER MAPPING (есть в: 3.0, 4.0, 5.0, 6.0)
 - `alter_package` — ALTER PACKAGE (есть в: 3.0, 4.0, 5.0, 6.0)
 - `alter_package_body` — alter_package_body (есть в: 6.0)
-- `alter_role` — ALTER ROLE (есть в: 2.5, 3.0)
+- `alter_role` — ALTER ROLE (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `alter_schema` — alter_schema (есть в: 6.0)
 - `alter_session_reset` — alter_session_reset (есть в: 4.0, 5.0, 6.0)
 - `alter_user` — ALTER USER (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
@@ -200,7 +199,7 @@
 - `declare` — DECLARE (есть в: 3.0, 4.0, 5.0, 6.0)
 - `declare_aggregate_function` — declare_aggregate_function (есть в: 6.0)
 - `declare_filter` — DECLARE FILTER (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
-- `declare_function` — DECLARE FUNCTION (есть в: 3.0, 4.0, 6.0)
+- `declare_function` — DECLARE FUNCTION (есть в: 3.0, 4.0, 5.0, 6.0)
 - `declare_local_temporary_table` — declare_local_temporary_table (есть в: 6.0)
 - `declare_procedure` — DECLARE PROCEDURE (есть в: 3.0, 4.0, 5.0, 6.0)
 - `declare_variable` — DECLARE VARIABLE (есть в: 3.0, 4.0, 5.0, 6.0)
@@ -216,7 +215,7 @@
 - `drop_filter` — DROP FILTER (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `drop_function` — DROP FUNCTION (есть в: 3.0, 4.0, 5.0, 6.0)
 - `drop_index` — DROP INDEX (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
-- `drop_mapping` — DROP MAPPING (есть в: 3.0)
+- `drop_mapping` — DROP MAPPING (есть в: 3.0, 4.0, 5.0, 6.0)
 - `drop_package` — DROP PACKAGE (есть в: 3.0, 4.0, 5.0, 6.0)
 - `drop_package_body` — DROP PACKAGE BODY (есть в: 3.0, 4.0, 5.0, 6.0)
 - `drop_schema` — drop_schema (есть в: 6.0)
@@ -244,6 +243,7 @@
 - `funkcii_linejnoj_regressii` — Функции линейной регрессии (есть в: 3.0)
 - `funkcii_pobitovyx_operacij` — Функции побитовых операций (есть в: 2.5, 3.0)
 - `funkcii_preobrazovanija_tipov` — Функции преобразования типов (есть в: 2.5, 3.0)
+- `generate_series` — generate_series (есть в: 6.0)
 - `globalnye_vremennye_tablicy` — Глобальные временные таблицы (GTT) (есть в: 3.0)
 - `greatest` — greatest (есть в: 6.0)
 - `group_by` — GROUP BY (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
@@ -438,14 +438,14 @@
 - `regr_sxy` — REGR_SXY (есть в: 3.0, 4.0, 5.0, 6.0)
 - `regr_syy` — REGR_SYY (есть в: 3.0, 4.0, 5.0, 6.0)
 - `rekursivnye_cte` — Рекурсивные CTE (есть в: 2.5)
-- `release_savepoint` — RELEASE SAVEPOINT (есть в: 2.5, 3.0)
+- `release_savepoint` — RELEASE SAVEPOINT (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `reserving` — RESERVING (есть в: 2.5, 3.0)
 - `resetting` — resetting (есть в: 4.0, 5.0, 6.0)
 - `return` — return (есть в: 4.0, 5.0, 6.0)
 - `revoke_all_on_all` — revoke_all_on_all (есть в: 4.0, 5.0, 6.0)
 - `roli` — Роли (есть в: 2.5)
-- `rollback` — ROLLBACK (есть в: 2.5, 3.0)
-- `rollback_to_savepoint` — ROLLBACK TO SAVEPOINT (есть в: 2.5, 3.0)
+- `rollback` — ROLLBACK (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
+- `rollback_to_savepoint` — ROLLBACK TO SAVEPOINT (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `row_number` — ROW_NUMBER (есть в: 3.0, 4.0, 5.0, 6.0)
 - `rows` — ROWS (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `rsa_decrypt` — rsa_decrypt (есть в: 4.0, 5.0, 6.0)
@@ -455,7 +455,7 @@
 - `rsa_sign_hash` — rsa_sign_hash (есть в: 4.0, 5.0, 6.0)
 - `rsa_verify_hash` — rsa_verify_hash (есть в: 4.0, 5.0, 6.0)
 - `rtrim` — rtrim (есть в: 6.0)
-- `savepoint` — SAVEPOINT (есть в: 2.5, 3.0)
+- `savepoint` — SAVEPOINT (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `secdb_creators` — secdb_creators (есть в: 4.0, 5.0, 6.0)
 - `secglobal_auth_mapping` — SEC$GLOBAL_AUTH_MAPPING (есть в: 3.0, 4.0, 5.0, 6.0)
 - `secuser_attributes` — SEC$USER_ATTRIBUTES (есть в: 3.0, 4.0, 5.0, 6.0)
@@ -469,7 +469,7 @@
 - `set_role` — SET ROLE (есть в: 3.0, 4.0, 5.0, 6.0)
 - `set_search_path_to` — set_search_path_to (есть в: 6.0)
 - `set_time_zone` — set_time_zone (есть в: 4.0, 5.0, 6.0)
-- `set_transaction` — SET TRANSACTION (есть в: 2.5, 3.0)
+- `set_transaction` — SET TRANSACTION (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `set_trusted_role` — SET TRUSTED ROLE (есть в: 3.0, 4.0, 5.0, 6.0)
 - `shifrovanie_bazy_dannyx` — Шифрование базы данных (есть в: 3.0)
 - `simvolnye_tipy_dannyx` — Символьные типы данных (есть в: 2.5, 3.0)
@@ -511,6 +511,7 @@
 - `unicode_char` — unicode_char (есть в: 5.0, 6.0)
 - `unicode_val` — unicode_val (есть в: 5.0, 6.0)
 - `union` — UNION (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
+- `unlist` — unlist (есть в: 6.0)
 - `updating` — UPDATING (есть в: 2.5, 3.0, 4.0, 5.0, 6.0)
 - `upravlenie_polzovateljami` — Управление пользователями (есть в: 2.5)
 - `using` — using (есть в: 6.0)

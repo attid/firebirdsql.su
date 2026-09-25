@@ -59,11 +59,22 @@ def compact(name: str) -> str:
 # может быть несколько имён через запятую («CHAR_LENGTH()», «CHARACTER_LENGTH()»)
 # или аргументы («CHAR_LENGTH( <string> )»). Подсекции с текстом до бэктиков
 # («Ограничение `NOT NULL`») не начинаются с бэктика и отсекаются.
+# Второй вид: заголовки капсом БЕЗ бэктиков («== SET TRANSACTION») в главах
+# transaction/dml старших версий.
 ADOC_HEADING = re.compile(r"^={2,3}\s+`")
+ADOC_HEADING_CAPS = re.compile(r"^={2,3}\s+([A-Z][A-Z0-9 ()\[\]<>|,._\-]*[A-Z0-9)\]])\s*$")
 
 
 def adoc_names(line: str) -> list[str]:
     return re.findall(r"`([^`]+)`", line)
+
+
+def heading_names(line: str) -> list[str]:
+    """Имена из заголовка: бэктик-спаны либо капс-текст."""
+    if "`" in line:
+        return adoc_names(line)
+    m = ADOC_HEADING_CAPS.match(ln if (ln := line.strip()) else "")
+    return [m.group(1)] if m else []
 
 
 def extract_adoc(version: str) -> dict[str, dict]:
@@ -74,19 +85,23 @@ def extract_adoc(version: str) -> dict[str, dict]:
         cur_keys = []
         pending_avail = False
         for ln in text.split("\n"):
-            if ADOC_HEADING.match(ln):
-                cur_keys = [norm(n) for n in adoc_names(ln)]
+            stripped = ln.strip()
+            is_btick = ADOC_HEADING.match(ln)
+            is_caps_m = ADOC_HEADING_CAPS.match(stripped) if "`" not in ln else None
+            if is_btick or is_caps_m:
+                names = adoc_names(ln) if is_btick else [is_caps_m.group(1)]
+                cur_keys = [norm(n) for n in names]
                 cur_keys = [k for k in cur_keys if k]
                 for k in cur_keys:
                     rec = out.setdefault(k, {"name": k, "files": set()})
                     rec["files"].add(f.name)
                 pending_avail = False
                 continue
-            if cur_keys and ln.strip() == ".Доступно в":
+            if cur_keys and stripped == ".Доступно в":
                 pending_avail = True
                 continue
-            if cur_keys and pending_avail and ln.strip():
-                avail = ln.strip()
+            if cur_keys and pending_avail and stripped:
+                avail = stripped
                 for k in cur_keys:
                     out[k]["available"] = avail
                 pending_avail = False
