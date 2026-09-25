@@ -4,7 +4,7 @@ old_id: funkcii_dlja_raboty_s_datoj_i_vremenem
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "2.5"
   until: 
   deprecated: false
 ---

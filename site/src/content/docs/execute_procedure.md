@@ -4,7 +4,7 @@ old_id: execute_procedure
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "1.0"
   until: 
   deprecated: false
 ---

@@ -4,7 +4,7 @@ old_id: sum
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "0.9"
   until: 
   deprecated: false
 ---

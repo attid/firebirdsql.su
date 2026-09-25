@@ -21,3 +21,6 @@ deploy/.env
 # Метрики базлайна (Метрика/GSC выгрузки) — только локально, в публичный
 # репозиторий не попадают: трафик по страницам не для чужих глаз
 docs/metrics-baseline/
+
+# Исходники Language Reference (клонируются tools/parse_langref.py, см. docstring)
+docs/langref-src/

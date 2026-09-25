@@ -4,7 +4,7 @@ old_id: case
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "1.5"
   until: 
   deprecated: false
 ---

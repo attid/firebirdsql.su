@@ -4,7 +4,7 @@ old_id: execute_statement
 section: sql
 type: article
 firebird:
-  since: 
+  since: "2.5"
   until: 
   deprecated: false
 ---

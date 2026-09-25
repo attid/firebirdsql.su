@@ -4,7 +4,7 @@ old_id: role
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "3.0"
   until: 
   deprecated: false
 ---

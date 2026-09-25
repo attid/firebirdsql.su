@@ -4,7 +4,7 @@ old_id: gdscode
 section: glossary
 type: term
 firebird:
-  since: 
+  since: "1.5.3"
   until: 
   deprecated: false
 ---
