@@ -22,6 +22,12 @@ const sectionTitles: Record<string, string> = {
 const sectionTitle = sectionTitles[entry.data.section] ?? entry.data.section;
 const toc = headings.filter((h) => h.depth <= 3);
 
+// Версионная полоса (ADR-0005): показывается, когда есть доказанные данные
+const fb = entry.data.firebird;
+const since = (fb.since ?? "").trim() || null;
+const until = (fb.until ?? "").trim() || null;
+const deprecated = fb.deprecated === true;
+
 // Мета-описание из первого содержательного абзаца тела: механически,
 // без редактуры (ADR-0004). Практически у всех страниц глоссария это
 // раздел «Описание» либо вводный абзац.
@@ -47,6 +53,27 @@ const description = metaDescription(entry.body ?? "");
     <a href="/">Главная</a> / <a href="/glossarij/">Справочник</a> / {sectionTitle}
   </div>
   <article class="doc-content" data-pagefind-body>
+    {(since || until || deprecated) && (
+      <div
+        class="fb-meta"
+        data-since={since ?? ""}
+        data-until={until ?? ""}
+        data-deprecated={deprecated ? "1" : ""}
+      >
+        {since && (
+          <span class="chip chip-since" title="Версия, в которой конструкция появилась (самое раннее доказанное упоминание)">
+            с Firebird {since}
+          </span>
+        )}
+        {until && (
+          <span class="chip chip-until" title="Последняя версия, в которой конструкция работала">
+            убрана в Firebird {until}
+          </span>
+        )}
+        {deprecated && <span class="chip chip-depr">устарело</span>}
+        <span class="fb-meta-hint">ваша версия: <span class="fb-user-version">любая</span></span>
+      </div>
+    )}
     {toc.length > 2 && (
       <nav class="toc" aria-label="Содержание">
         <strong>Содержание</strong>

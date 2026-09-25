@@ -198,6 +198,50 @@ pre.astro-code:hover .copy-btn { opacity: 1; }
 .card h2 { margin: 0 0 0.4rem; font-size: 1.05rem; border: none; }
 .card p { margin: 0; color: var(--fg-muted); font-size: 0.9rem; }
 
+/* ---------- «Моя версия» (ADR-0005) ---------- */
+
+.fb-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+}
+.chip {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.chip-since { border-color: var(--accent); color: var(--accent); }
+.chip-until { border-color: #c0392b; color: #c0392b; }
+.chip-depr  { border-color: #c0392b; background: #c0392b22; color: #c0392b; }
+.fb-meta-hint { color: var(--fg-muted); }
+.fb-user-version { color: var(--fg); font-weight: 600; }
+
+.fb-banner {
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  font-size: 0.9rem;
+}
+
+.fb-version-select {
+  background: transparent;
+  border: 1px solid var(--header-fg);
+  color: var(--header-fg);
+  border-radius: 6px;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.88rem;
+}
+.fb-version-select option { color: #1f2328; }
+
 /* ---------- Pagefind ---------- */
 
 .pagefind-ui__search-input {

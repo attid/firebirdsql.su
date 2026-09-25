@@ -52,6 +52,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         <a href="/novoe/">Что нового</a>
         <a href="/o_sajte/">О сайте</a>
       </nav>
+      <select class="fb-version-select" aria-label="Ваша версия Firebird">
+        <option value="">версия: любая</option>
+        <option value="2.5">Firebird 2.5</option>
+        <option value="3.0">Firebird 3.0</option>
+        <option value="4.0">Firebird 4.0</option>
+        <option value="5.0">Firebird 5.0</option>
+        <option value="6.0">Firebird 6.0</option>
+      </select>
       <button class="theme-toggle" aria-label="Переключить тему">
         <span class="theme-icon">◐</span>
       </button>
@@ -84,6 +92,42 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         });
         pre.appendChild(btn);
       });
+
+      // --- «Моя версия» (ADR-0005): селектор в шапке + баннер совместимости ---
+      const vcmp = (a, b) => {
+        const pa = a.split(".").map(Number), pb = b.split(".").map(Number);
+        for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+          const d = (pa[i] || 0) - (pb[i] || 0);
+          if (d) return Math.sign(d);
+        }
+        return 0;
+      };
+      const select = document.querySelector(".fb-version-select");
+      select.value = localStorage.getItem("fb-version") || "";
+      const hint = document.querySelector(".fb-user-version");
+      const applyVersion = () => {
+        const v = select.value;
+        if (hint) hint.textContent = v || "любая";
+        const meta = document.querySelector(".fb-meta");
+        const old = document.querySelector(".fb-banner");
+        if (old) old.remove();
+        if (!meta || !v) return;
+        const since = meta.dataset.since, until = meta.dataset.until;
+        let msg = null;
+        if (since && vcmp(since, v) > 0) msg = `эта конструкция появилась в Firebird ${since} — в вашей версии ${v} её ещё нет`;
+        else if (until && vcmp(until, v) < 0) msg = `в вашей версии ${v} этой конструкции уже нет (работала до Firebird ${until})`;
+        if (msg && !meta.dataset.deprecated) {
+          const b = document.createElement("div");
+          b.className = "fb-banner";
+          b.textContent = `⚠ Ваша версия: Firebird ${v}. ${msg}.`;
+          meta.after(b);
+        }
+      };
+      select.addEventListener("change", () => {
+        localStorage.setItem("fb-version", select.value);
+        applyVersion();
+      });
+      applyVersion();
     </script>
   </body>
 </html>
