@@ -92,8 +92,8 @@ def extract_adoc(version: str) -> dict[str, dict]:
                 names = adoc_names(ln) if is_btick else [is_caps_m.group(1)]
                 cur_keys = [norm(n) for n in names]
                 cur_keys = [k for k in cur_keys if k]
-                for k in cur_keys:
-                    rec = out.setdefault(k, {"name": k, "files": set()})
+                for raw, k in zip(names, cur_keys):
+                    rec = out.setdefault(k, {"name": raw.strip(), "files": set()})
                     rec["files"].add(f.name)
                 pending_avail = False
                 continue
