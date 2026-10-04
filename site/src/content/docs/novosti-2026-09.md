@@ -36,6 +36,10 @@ firebird:
 - [**Laravel Firebird driver v4.0.0-rc.1**](https://groups.google.com/g/firebird-general/c/IYHryqT2e3s) (28 сентября) — независимо поддерживаемое продолжение Laravel-драйвера для Firebird, автор зовёт тестировщиков. Для PHP-сообщества важная новость: драйвер получает вторую жизнь.
 - [**Kuberbird 0.3.0**](https://groups.google.com/g/firebird-general/c/goDYu1cN1tU) (26 сентября) — третья версия Kubernetes-оператора за месяц (0.1.0 → 0.2.0 → 0.3.0): проект развивается быстро.
 
+## Дайджест III квартала
+
+Официальный [обзор новостей за Q3 2026](https://firebirdsql.org/en/news/digest-of-of-q3-2026-firebird-news) вышел на границе квартала — июль–сентябрь одним списком: релизы, драйверы, инструменты и события лета-осени. Если по нашим выпускам что-то пропустил — у проекта теперь есть собственная сводка, сверьтесь с ней.
+
 ## Мелочью
 
 - На стыке месяцев (31 августа) вышел [**Kubebird 0.2.0**](https://groups.google.com/g/firebird-general/c/TGMWYT3PAHE) — Kubernetes-оператор для Firebird: база как k8s-ресурс, со всем положенным.
