@@ -35,6 +35,7 @@ firebird:
 - **EmberWings 2026/3** (28 сентября) — осенний номер официального журнала Firebird Foundation: [анонс в группе](https://groups.google.com/g/firebird-general/c/3oYFHYXDbZw). Foundation выпускает журнал стабильно раз в квартал, читать бесплатно.
 - [**Laravel Firebird driver v4.0.0-rc.1**](https://groups.google.com/g/firebird-general/c/IYHryqT2e3s) (28 сентября) — независимо поддерживаемое продолжение Laravel-драйвера для Firebird, автор зовёт тестировщиков. Для PHP-сообщества важная новость: драйвер получает вторую жизнь.
 - [**Kuberbird 0.3.0**](https://groups.google.com/g/firebird-general/c/goDYu1cN1tU) (26 сентября) — третья версия Kubernetes-оператора за месяц (0.1.0 → 0.2.0 → 0.3.0): проект развивается быстро.
+- [**FibPlus 7.9**](https://github.com/madorin/fibplus/releases/tag/v7.9.0) — первое обновление легендарной Delphi-библиотеки доступа к Firebird/InterBase за 12 лет: проект подхвачен сообществом на базе последних исходников Devrace (7.632, февраль 2014). В пакет добавлена поддержка типов и возможностей Firebird 4 и 5, сборки для Delphi 13. Для десятков тысяч Delphi-приложений на Firebird — возвращение с того света.
 
 ## Дайджест III квартала
 
