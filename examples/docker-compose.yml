@@ -1,0 +1,58 @@
+# Примеры подключения к Firebird из разных языков.
+# Всё запускается в контейнерах — на хост ничего не ставится.
+#
+#   ./init.sh                     # поднять firebird + инициализировать employee.fdb (идемпотентно)
+#   docker compose run --rm go    # прогнать один пример
+#   docker compose run --rm python
+#   docker compose run --rm php
+#   docker compose run --rm fpc
+#
+# Канонический сценарий каждого примера одинаков: подключиться к
+# employee.fdb (штатная демо-база Firebird) и вывести топ-5 сотрудников
+# по зарплате.
+
+services:
+  firebird:
+    image: firebirdsql/firebird:5.0.4
+    environment:
+      FIREBIRD_ROOT_PASSWORD: masterkey
+      FIREBIRD_DATABASE: employee.fdb
+    volumes:
+      - fbdata:/var/lib/firebird/data
+      - ./firebird:/scripts:ro
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'SELECT 1 FROM RDB$$DATABASE;' | isql -user SYSDBA -password masterkey localhost:/var/lib/firebird/data/employee.fdb >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+
+  go:
+    build: ./go
+    profiles: [go]
+    depends_on:
+      firebird:
+        condition: service_healthy
+
+  python:
+    build: ./python
+    profiles: [python]
+    depends_on:
+      firebird:
+        condition: service_healthy
+
+  php:
+    build: ./php
+    profiles: [php]
+    depends_on:
+      firebird:
+        condition: service_healthy
+
+  fpc:
+    build: ./fpc
+    profiles: [fpc]
+    depends_on:
+      firebird:
+        condition: service_healthy
+
+volumes:
+  fbdata:
