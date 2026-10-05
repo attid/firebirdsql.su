@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Подключение к Firebird из популярных языков"
+  description="Как подключиться к СУБД Firebird из Go, Python, PHP и Free Pascal: драйверы, DSN, примеры кода. Все примеры проверены в Docker."
+>
+  <article class="doc-content">
+    <h1>Подключение к Firebird из популярных языков</h1>
+    <p>
+      Короткие статьи по подключению: какой драйвер, формат DSN, рабочий код.
+      <strong>Каждый пример проверен в Docker</strong> — исходники с Dockerfile
+      лежат в <a href="https://github.com/attid/firebirdsql.su/tree/main/examples">
+      репозитории сайта</a> рядом с Firebird 5.0.4 и демо-базой employee.
+    </p>
+    <ul class="cards">
+      <li><a href="/go/">Go — nakagami/firebirdsql (pure Go)</a></li>
+      <li><a href="/python/">Python — firebirdsql (pure Python)</a></li>
+      <li><a href="/php/">PHP — pdo_firebird (сборка из исходников)</a></li>
+      <li><a href="/fpc/">Free Pascal — SQLdb из комплекта FPC</a></li>
+      <li><a href="/python_async/">Python — асинхронно (SQLAlchemy)</a></li>
+    </ul>
+    <h2>Общее для всех языков</h2>
+    <ul>
+      <li>Сервер слушает <a href="/port_3050/">порт 3050/TCP</a>.</li>
+      <li>Для кириллицы указывайте кодировку подключения (UTF8) — в каждом
+          примере это есть.</li>
+      <li>Демо-база <code>employee.fdb</code> собирается штатными скриптами
+          Firebird — см. examples/ в репозитории.</li>
+    </ul>
+  </article>
+</BaseLayout>
+
+<style>
+  .cards { list-style: none; padding: 0; }
+  .cards li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
