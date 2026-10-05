@@ -4,7 +4,7 @@ old_id: current_connection
 section: glossary
 type: term
 firebird:
-  since: "1.5.3"
+  since: 
   until: 
   deprecated: false
 ---
@@ -23,7 +23,7 @@ firebird:
 CURRENT_CONNECTION
 
 ## Описание
-Контекстная переменная возвращает идентификатор текущего подключения к базе данных. Идентификатор подключения является значением столбца MON$ATTACHMENT_ID одной из записей (соответствующей текущему подключению) таблицы MON$ATTACHMENTS.
+Контекстная переменная возвращает идентификатор текущего подключения к базе данных. Идентификатор подключения является значением столбца MON$ATTACHMENT_ID одной из записей (соответствующей текущему подключению) таблицы [MON$ATTACHMENTS](/mon_attachments/).
 
 ## Пример
 ```sql
@@ -37,7 +37,7 @@ SELECT RDB$GET_CONTEXT('SYSTEM','SESSION_ID') FROM RDB$DATABASE
 ```
 
 ## Смотри также
-MON$ATTACHMENTS, RDB$GET_CONTEXT(), RDB$SET_CONTEXT(), [CURRENT_TRANSACTION](/current_transaction/), [CURRENT_USER](/current_user/), [CURRENT_ROLE](/current_role/)
+[MON$ATTACHMENTS](/mon_attachments/), [RDB$GET_CONTEXT()](/rdb_get_context/), [RDB$SET_CONTEXT()](/rdb_set_context/), [CURRENT_TRANSACTION](/current_transaction/), [CURRENT_USER](/current_user/), [CURRENT_ROLE](/current_role/)
 
 ## Источник
 2.0 Release Notes

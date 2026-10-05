@@ -4,7 +4,7 @@ old_id: update_or_insert
 section: glossary
 type: term
 firebird:
-  since: "2.1"
+  since: 
   until: 
   deprecated: false
 ---

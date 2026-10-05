@@ -4,7 +4,7 @@ old_id: mon_transactions
 section: glossary
 type: term
 firebird:
-  since: "2.0"
+  since: 
   until: 
   deprecated: false
 ---

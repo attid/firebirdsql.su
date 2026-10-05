@@ -4,7 +4,7 @@ old_id: alter_database
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---
@@ -52,7 +52,7 @@ ADD FILE "employee.gd1"
     LENGTH 10000;
 ```
 ## См. также
-[CREATE DATABASE](/create_database/),  [DROP DATABASE](/drop_database/),  MON$DATABASE
+[CREATE DATABASE](/create_database/),  [DROP DATABASE](/drop_database/),  [MON$DATABASE](/mon_database/)
 
 ## Источник
 langref.pdf

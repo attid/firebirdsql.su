@@ -4,7 +4,7 @@ old_id: role
 section: glossary
 type: term
 firebird:
-  since: "3.0"
+  since: 
   until: 
   deprecated: false
 ---
@@ -18,4 +18,4 @@ Firebird v0.9       Firebird v1.0       Firebird v1.5       Firebird v2.0       
 Зарезервированное слово языка SQL, служащее для указания роли доступа к объектам базы данных Firebird.
 
 ## См. также
-[CREATE ROLE](/create_role/),  [DROP ROLE](/drop_role/),  [GRANT](/grant/),  [REVOKE](/revoke/),  [CONNECT](/connect/), RDB$ROLES
+[CREATE ROLE](/create_role/),  [DROP ROLE](/drop_role/),  [GRANT](/grant/),  [REVOKE](/revoke/),  [CONNECT](/connect/), [RDB$ROLES](/rdb_roles/)

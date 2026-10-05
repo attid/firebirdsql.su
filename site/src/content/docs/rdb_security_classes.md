@@ -4,7 +4,7 @@ old_id: rdb_security_classes
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---
@@ -35,7 +35,7 @@ CREATE UNIQUE INDEX RDB$INDEX_7 ON RDB$SECURITY_CLASSES (RDB$SECURITY_CLASS);
 
 | Имя столбца | Тип | Описание |
 |---|---|---|
-| RDB$SECURITY_CLASS | СНАR(З1) | Имя класса безопасности. Это имя должно быть согласованным во всех местах, где оно используется: RDB$DATABASE, RDB$RELATIONS, RDB$RELATION_FIELDS |
+| RDB$SECURITY_CLASS | СНАR(З1) | Имя класса безопасности. Это имя должно быть согласованным во всех местах, где оно используется: [RDB$DATABASE](/rdb_database/), [RDB$RELATIONS](/rdb_relations/), [RDB$RELATION_FIELDS](/rdb_relation_fields/) |
 | RDB$ACL | BLOB | Список управления доступом, связанный с классом безопасности. Перечисляет пользователей и их полномочия. |
 | RDB$DESCRIPTION | BLOB | Служит для пользовательской документации по классу безопасности |
 

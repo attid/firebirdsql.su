@@ -9,15 +9,6 @@
  ],
  "pages_without_h1": [],
  "unresolved_links": {
-  "kak_ustanovit_na_linux_vtoroj_ehkzempljar_firebird_": [
-   "Как установить на LINUX второй экземпляр Firebird ?"
-  ],
-  "sql005._kak_v_stroku_vstavit_proizvolnyj_simovol_": [
-   "SQL005. Как в строку вставить произвольный симовол ?"
-  ],
-  "ustanovka_apachephpfirebird_na_ubuntu": [
-   "Установка Apache+php+Firebird на Ubuntu"
-  ],
   "backup": [
    "BACKUP"
   ],
@@ -37,7 +28,8 @@
    "CREATE COLLATION"
   ],
   "declare_cursor_blob": [
-   "DECLARE CURSOR (BLOB)"
+   "DECLARE CURSOR (BLOB)",
+   "DECLARE CURSOR(BLOB)"
   ],
   "declare_filter": [
    "DECLARE FILTER"
@@ -78,10 +70,10 @@
   "external": [
    "EXTERNAL"
   ],
-  ".fdb": [
+  "fdb": [
    ".fdb"
   ],
-  "fetchblob": [
+  "fetch_blob": [
    "FETCH(BLOB)"
   ],
   "for": [
@@ -91,10 +83,10 @@
    "FREE_IT",
    "UDF"
   ],
-  ".gdb": [
+  "gdb": [
    ".GDB"
   ],
-  ".gdba": [
+  "gdba": [
    ".GDBA"
   ],
   "group_commit_wait": [
@@ -104,7 +96,7 @@
    "GSTAT",
    "gstat"
   ],
-  ".ib": [
+  "ib": [
    ".ib"
   ],
   "instreg.exe": [
@@ -128,38 +120,29 @@
   "logfile": [
    "LOGFILE"
   ],
-  "monattachments": [
-   "MON$ATTACHMENTS"
-  ],
-  "moncall_stack": [
+  "mon_call_stack": [
    "MON$CALL_STACK"
   ],
-  "moncontext": [
+  "mon_context": [
    "MON$CONTEXT"
   ],
-  "moncontext_variables": [
+  "mon_context_variables": [
    "MON$CONTEXT_VARIABLES"
   ],
-  "mondatabase": [
-   "MON$DATABASE"
-  ],
-  "monio_stats": [
+  "mon_io_stats": [
    "MON$IO_STATS"
   ],
-  "monmetadata": [
+  "mon_metadata": [
    "MON$METADATA"
   ],
-  "monmemory_usage": [
+  "mon_memory_usage": [
    "MON$MEMORY_USAGE"
   ],
-  "monrecord_stats": [
+  "mon_record_stats": [
    "MON$RECORD_STATS"
   ],
-  "monstatements": [
+  "mon_statements": [
    "MON$STATEMENTS"
-  ],
-  "montransactions": [
-   "MON$TRANSACTIONS"
   ],
   "next": [
    "NEXT"
@@ -170,106 +153,61 @@
   "raw_partitions": [
    "RAW_PARTITIONS"
   ],
-  "rdbadmin": [
+  "rdb_admin": [
    "RDB$ADMIN"
   ],
-  "rdbbackup_history": [
+  "rdb_backup_history": [
    "RDB$BACKUP_HISTORY"
   ],
-  "rdbcharacter_sets": [
+  "rdb_character_sets": [
    "RDB$CHARACTER_SETS"
   ],
-  "rdbcheck_constraints": [
-   "RDB$CHECK_CONSTRAINTS"
-  ],
-  "rdbcollations": [
+  "rdb_collations": [
    "RDB$COLLATIONS"
   ],
-  "rdbdatabase": [
-   "RDB$DATABASE"
-  ],
-  "rdbdependencies": [
+  "rdb_dependencies": [
    "RDB$DEPENDENCIES"
   ],
-  "rdbexceptions": [
+  "rdb_exceptions": [
    "RDB$EXCEPTIONS"
   ],
-  "rdbfields": [
-   "RDB$FIELDS"
-  ],
-  "rdbfield_dimensions": [
+  "rdb_field_dimensions": [
    "RDB$FIELD_DIMENSIONS"
   ],
-  "rdbfiles": [
+  "rdb_files": [
    "RDB$FILES"
   ],
-  "rdbfilters": [
+  "rdb_filters": [
    "RDB$FILTERS"
   ],
-  "rdbformats": [
+  "rdb_formats": [
    "RDB$FORMATS"
   ],
-  "rdbfunctions": [
+  "rdb_functions": [
    "RDB$FUNCTIONS"
   ],
-  "rdbfunction_arguments": [
+  "rdb_function_arguments": [
    "RDB$FUNCTION_ARGUMENTS"
   ],
-  "rdbgenerators": [
-   "RDB$GENERATORS"
-  ],
-  "rdbindex_segments": [
-   "RDB$INDEX_SEGMENTS"
-  ],
-  "rdbindices": [
-   "RDB$INDICES"
-  ],
-  "rdblog_files": [
+  "rdb_log_files": [
    "RDB$LOG_FILES"
   ],
-  "rdbpages": [
+  "rdb_pages": [
    "RDB$PAGES"
   ],
-  "rdbprocedures": [
+  "rdb_procedures": [
    "RDB$PROCEDURES"
   ],
-  "rdbprocedure_parameters": [
+  "rdb_procedure_parameters": [
    "RDB$PROCEDURE_PARAMETERS"
   ],
-  "rdbref_constraints": [
-   "RDB$REF_CONSTRAINTS"
-  ],
-  "rdbrelations": [
-   "RDB$RELATIONS"
-  ],
-  "rdbrelation_constraints": [
-   "RDB$RELATION_CONSTRAINTS"
-  ],
-  "rdbrelation_fields": [
-   "RDB$RELATION_FIELDS"
-  ],
-  "rdbroles": [
-   "RDB$ROLES"
-  ],
-  "rdbsecurity_classes": [
-   "RDB$SECURITY_CLASSES"
-  ],
-  "rdbtransactions": [
-   "RDB$TRANSACTIONS"
-  ],
-  "rdbtriggers": [
-   "RDB$TRIGGERS"
-  ],
-  "rdbtrigger_messages": [
-   "RDB$TRIGGER_MESSAGES"
-  ],
-  "rdbtypes": [
+  "rdb_types": [
    "RDB$TYPES"
   ],
-  "rdbuser_privileges": [
+  "rdb_user_privileges": [
    "RDB$USER_PRIVILEGES"
   ],
-  "rdbview_relations": [
+  "rdb_view_relations": [
    "RDB$VIEW_RELATIONS"
   ],
   "recreate": [
@@ -347,17 +285,6 @@
   "declare_variable": [
    "DECLARE VARIABLE"
   ],
-  "rdbget_context": [
-   "RDB$GET_CONTEXT",
-   "RDB$GET_CONTEXT()"
-  ],
-  "rdbset_context": [
-   "RDB$SET_CONTEXT",
-   "RDB$SET_CONTEXT()"
-  ],
-  "declare_cursorblob": [
-   "DECLARE CURSOR(BLOB)"
-  ],
   "prepare": [
    "PREPARE"
   ],
@@ -426,13 +353,13 @@
   "double_precision": [
    "DOUBLE PRECISION"
   ],
-  "decimalnm": [
+  "decimal_n_m": [
    "DECIMAL(n,m)"
   ],
-  "numericnm": [
+  "numeric_n_m": [
    "NUMERIC(n,m)"
   ],
-  "file:c:program20filesfirebirdfirebird_2_0doc": [
+  "file:_c:_program_20files_firebird_firebird_2_0_doc": [
    "file:///c:/Program%20Files/Firebird/Firebird_2_0/doc/"
   ],
   "cross": [
@@ -465,7 +392,7 @@
   "collate": [
    "COLLATE"
   ],
-  "rdbdb_key": [
+  "rdb_db_key": [
    "RDB$DB_KEY"
   ],
   "primary_key": [

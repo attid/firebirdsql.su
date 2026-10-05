@@ -4,7 +4,7 @@ old_id: raznovidnosti_jazyka_sql
 section: intro
 type: article
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---

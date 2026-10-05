@@ -4,7 +4,7 @@ old_id: atan2
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---

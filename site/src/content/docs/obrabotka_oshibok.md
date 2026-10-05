@@ -4,7 +4,7 @@ old_id: obrabotka_oshibok
 section: errors
 type: article
 firebird:
-  since: "2.5"
+  since: 
   until: 
   deprecated: false
 ---

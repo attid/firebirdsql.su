@@ -4,7 +4,7 @@ old_id: rdb_set_context
 section: glossary
 type: term
 firebird:
-  since: "2.0"
+  since: 
   until: 
   deprecated: false
 ---
@@ -21,7 +21,7 @@ RDB$SET_CONTEXT( "пространство имён", переменная, зн
 
 ## Описание
 Встроенная функция
-Позволяет задавать пользовательские переменые внутри транзакции или подключения значение которых можно получить при помощи RDB$GET_CONTEXT
+Позволяет задавать пользовательские переменые внутри транзакции или подключения значение которых можно получить при помощи [RDB$GET_CONTEXT](/rdb_get_context/)
 
 ⚠️ "Пространства имен" и переменые являются регистро зависимые 
 
@@ -43,6 +43,6 @@ select rdb$get_context('USER_SESSION','MY') from rdb$database
 select rdb$set_context('USER_SESSION','MY',NULL) from rdb$database
 
 ## См. также
-RDB$GET_CONTEXT
+[RDB$GET_CONTEXT](/rdb_get_context/)
 ## Источник
 %Firebird%\doc\sql.extensions\README.context_variables2.txt

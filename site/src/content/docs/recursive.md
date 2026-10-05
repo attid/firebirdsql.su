@@ -4,7 +4,7 @@ old_id: recursive
 section: glossary
 type: term
 firebird:
-  since: "2.1"
+  since: 
   until: 
   deprecated: false
 ---

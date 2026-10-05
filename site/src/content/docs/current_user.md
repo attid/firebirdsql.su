@@ -4,7 +4,7 @@ old_id: current_user
 section: glossary
 type: term
 firebird:
-  since: "1.5.3"
+  since: 
   until: 
   deprecated: false
 ---
@@ -37,6 +37,6 @@ SELECT RDB$GET_CONTEXT('SYSTEM','CURRENT_USER') FROM RDB$DATABASE
 ```
 
 ## Смотри также
-RDB$GET_CONTEXT(), RDB$SET_CONTEXT(), [CURRENT_CONNECTION](/current_connection/), [CURRENT_ROLE](/current_role/)
+[RDB$GET_CONTEXT()](/rdb_get_context/), [RDB$SET_CONTEXT()](/rdb_set_context/), [CURRENT_CONNECTION](/current_connection/), [CURRENT_ROLE](/current_role/)
 
 ## Источник

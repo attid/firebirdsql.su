@@ -46,7 +46,7 @@ firebird:
 
 <u>**ВНИМАНИЕ!**</u> для передачи данных создается внешняя (EXTERNAL) таблица на которую накладываются ограничения связанные с таким объектом. В частности невозможна передача объектов типа [BLOB](/tipy_dannyx/). Подробности см. в соответствующей статье [CREATE TABLE](/create_table/)
 
-Часть кода взята из статьи RDB$FIELDS
+Часть кода взята из статьи [RDB$FIELDS](/rdb_fields/)
 
 ## Пример
 ```sql
@@ -117,7 +117,7 @@ end
 ```
 
 ## См. также
-[EXECUTE STATEMENT](/execute_statement/) [CREATE TABLE](/create_table/) [EXTERNAL](/create_table/) RDB$FIELDS
+[EXECUTE STATEMENT](/execute_statement/) [CREATE TABLE](/create_table/) [EXTERNAL](/create_table/) [RDB$FIELDS](/rdb_fields/)
 
 ## Источник
 %Firebird%\doc\565

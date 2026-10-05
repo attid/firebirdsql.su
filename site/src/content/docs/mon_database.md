@@ -4,7 +4,7 @@ old_id: mon_database
 section: glossary
 type: term
 firebird:
-  since: "2.1"
+  since: 
   until: 
   deprecated: false
 ---
@@ -93,7 +93,7 @@ WHERE (T.RDB$FIELD_NAME ='MON$SHUTDOWN_MODE')
 ## Пример
 
 ## См. также
-[Таблицы мониторинга](/tablicy_monitoringa/), MON$ATTACHMENTS, MON$CALL_STACK, MON$CONTEXT, MON$DATABASE, MON$IO_STATS, MON$RECORD_STATS, MON$STATEMENTS,  MON$TRANSACTIONS
+[Таблицы мониторинга](/tablicy_monitoringa/), [MON$ATTACHMENTS](/mon_attachments/), MON$CALL_STACK, MON$CONTEXT, [MON$DATABASE](/mon_database/), MON$IO_STATS, MON$RECORD_STATS, MON$STATEMENTS,  [MON$TRANSACTIONS](/mon_transactions/)
 
 ## Источник
 ($firebird)/doc/README.monitoring_tables.txt

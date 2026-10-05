@@ -91,13 +91,15 @@ TRANSLIT = {
 
 
 def clean_id(raw: str) -> str:
-    """Нормализация цели ссылки как в DokuWiki cleanID с транслитерацией:
-    lower, кириллица -> латиница, пробел->_, выкидывание символов вне
-    [a-z0-9_.:-]."""
+    """Нормализация цели ссылки как в DokuWiki cleanID: lower, кириллица ->
+    латиница, спецсимволы -> подчёркивание (НЕ выкидывание: MON$ATTACHMENTS
+    -> mon_attachments), схлопывание повторов, трим подчёркиваний по краям
+    («...firebird_» -> «...firebird»)."""
     s = raw.strip().lower().split("#")[0]
     s = "".join(TRANSLIT.get(ch, ch) for ch in s)
-    s = s.replace(" ", "_")
-    return re.sub(r"[^a-z0-9_.:\-]", "", s)
+    s = re.sub(r"[^a-z0-9_.:\-]+", "_", s)
+    s = re.sub(r"_{2,}", "_", s).strip("_.")
+    return s
 
 
 def yaml_escape(s: str) -> str:

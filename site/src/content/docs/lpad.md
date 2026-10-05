@@ -4,7 +4,7 @@ old_id: lpad
 section: glossary
 type: term
 firebird:
-  since: "1.5"
+  since: 
   until: 
   deprecated: false
 ---

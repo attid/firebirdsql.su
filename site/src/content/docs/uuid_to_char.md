@@ -4,7 +4,7 @@ old_id: uuid_to_char
 section: glossary
 type: term
 firebird:
-  since: "2.5"
+  since: 
   until: 
   deprecated: false
 ---

@@ -4,7 +4,7 @@ old_id: alter_external_function
 section: glossary
 type: term
 firebird:
-  since: "2.0"
+  since: 
   until: 
   deprecated: false
 ---

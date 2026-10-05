@@ -4,7 +4,7 @@ old_id: current_transaction
 section: glossary
 type: term
 firebird:
-  since: "1.5.3"
+  since: 
   until: 
   deprecated: false
 ---
@@ -23,7 +23,7 @@ firebird:
 CURRENT_TRANSACTION
 
 ## Описание
-Контекстная переменная возвращает идентификатор текущей транзакции, в рамках которой выполняется оператор. Идентификатор транзакции является значением столбца MON$TRANSACTION_ID одной из записей (соответствующей текущей транзакции) таблицы MON$TRANSACTIONS.
+Контекстная переменная возвращает идентификатор текущей транзакции, в рамках которой выполняется оператор. Идентификатор транзакции является значением столбца MON$TRANSACTION_ID одной из записей (соответствующей текущей транзакции) таблицы [MON$TRANSACTIONS](/mon_transactions/).
 
 ## Пример
 ```sql
@@ -37,6 +37,6 @@ SELECT RDB$GET_CONTEXT('SYSTEM','TRANSACTION_ID') FROM RDB$DATABASE
 ```
 
 ## Смотри также
-MON$TRANSACTIONS, RDB$GET_CONTEXT(), RDB$SET_CONTEXT(), [CURRENT_CONNECTION](/current_connection/), [CURRENT_USER](/current_user/), [CURRENT_ROLE](/current_role/)
+[MON$TRANSACTIONS](/mon_transactions/), [RDB$GET_CONTEXT()](/rdb_get_context/), [RDB$SET_CONTEXT()](/rdb_set_context/), [CURRENT_CONNECTION](/current_connection/), [CURRENT_USER](/current_user/), [CURRENT_ROLE](/current_role/)
 
 ## Источник

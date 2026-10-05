@@ -4,7 +4,7 @@ old_id: drop_trigger
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---
@@ -40,7 +40,7 @@ DROP TRIGGER удаляет определенный пользователем 
 DROP TRIGGER POST_NEW_ORDER;
 ```
 ## См. также
-[CREATE TRIGGER](/create_trigger/),  [ALTER TRIGGER](/alter_trigger/),  RDB$TRIGGERS, [CREATE PROCEDURE](/create_procedure/),  [ALTER PROCEDURE](/alter_procedure/)
+[CREATE TRIGGER](/create_trigger/),  [ALTER TRIGGER](/alter_trigger/),  [RDB$TRIGGERS](/rdb_triggers/), [CREATE PROCEDURE](/create_procedure/),  [ALTER PROCEDURE](/alter_procedure/)
 
 ## Источник
 langref.pdf

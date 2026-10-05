@@ -4,7 +4,7 @@ old_id: ascii_val
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---

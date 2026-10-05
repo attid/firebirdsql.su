@@ -4,7 +4,7 @@ old_id: alter_index
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---

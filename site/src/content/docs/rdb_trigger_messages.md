@@ -4,7 +4,7 @@ old_id: rdb_trigger_messages
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---
@@ -42,6 +42,6 @@ CREATE INDEX RDB$INDEX_35 ON RDB$TRIGGER_MESSAGES (RDB$TRIGGER_NAME);
 ## Пример
 
 ## См. также
-[Системные таблицы](/sistemnye_tablicy/), RDB$TRIGGERS, [CREATE TRIGGER](/create_trigger/), [DROP TRIGGER](/drop_trigger/)
+[Системные таблицы](/sistemnye_tablicy/), [RDB$TRIGGERS](/rdb_triggers/), [CREATE TRIGGER](/create_trigger/), [DROP TRIGGER](/drop_trigger/)
 
 ## Источник

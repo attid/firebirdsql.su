@@ -4,7 +4,7 @@ old_id: execute_block
 section: glossary
 type: term
 firebird:
-  since: "2.5"
+  since: 
   until: 
   deprecated: false
 ---

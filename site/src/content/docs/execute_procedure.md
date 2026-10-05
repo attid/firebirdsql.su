@@ -4,7 +4,7 @@ old_id: execute_procedure
 section: glossary
 type: term
 firebird:
-  since: "1.0"
+  since: 
   until: 
   deprecated: false
 ---
@@ -39,7 +39,7 @@ execute procedure set_context('skidder', 1);
 ```
 ## См. также
 [ALTER PROCEDURE](/alter_procedure/), [CREATE PROCEDURE](/create_procedure/), [DROP PROCEDURE](/drop_procedure/),\
-RDB$GET_CONTEXT, RDB$SET_CONTEXT
+[RDB$GET_CONTEXT](/rdb_get_context/), [RDB$SET_CONTEXT](/rdb_set_context/)
 
 ## Источник
 LANGREF.PDF

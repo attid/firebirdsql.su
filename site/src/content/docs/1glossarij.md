@@ -36,7 +36,7 @@ firebird:
 
 [Скрипт для резервирования базы данных на shell](/skript_dlja_rezervirovanija_bazy_dannyx_na_shell/)
 
-Как установить на LINUX второй экземпляр Firebird ?
+[Как установить на LINUX второй экземпляр Firebird ?](/kak_ustanovit_na_linux_vtoroj_ehkzempljar_firebird/)
 
 [Подключение к базе данных из 1С](/podkljuchenie_k_baze_dannyx_iz_1s/)
 
@@ -60,7 +60,7 @@ firebird:
 
 [SQL004. Можно ли в Firebird делать запросы к нескольким базам данных](/execute_statement/)
 
-SQL005. Как в строку вставить произвольный симовол ?
+[SQL005. Как в строку вставить произвольный симовол ?](/sql005._kak_v_stroku_vstavit_proizvolnyj_simovol/)
 
 [SQL006. Как в строку вставить перенос строки (CRLF) ?](/sql005._kak_v_stroku_vstavit_proizvolnyj_simovol/)
 
@@ -92,7 +92,7 @@ SQL005. Как в строку вставить произвольный сим�
 
 [Не используемые ключевые слова](/ne_ispolzuemye_kljuchevye_slova/)
 
-Установка Apache+php+Firebird на Ubuntu
+[Установка Apache+php+Firebird на Ubuntu](/ustanovka_apache_php_firebird_na_ubuntu/)
 # A
 [ABS()](/abs/)
 
@@ -506,7 +506,7 @@ LOGFILE
 
 [MONTH](/extract/)
 
-MON$ATTACHMENTS
+[MON$ATTACHMENTS](/mon_attachments/)
 
 MON$CALL_STACK
 
@@ -514,7 +514,7 @@ MON$CONTEXT
 
 MON$CONTEXT_VARIABLES
 
-MON$DATABASE
+[MON$DATABASE](/mon_database/)
 
 MON$IO_STATS
 
@@ -526,7 +526,7 @@ MON$RECORD_STATS
 
 MON$STATEMENTS
 
-MON$TRANSACTIONS
+[MON$TRANSACTIONS](/mon_transactions/)
 
 # N
 [NATIONAL CHAR(n)](/tipy_dannyx/)
@@ -590,17 +590,17 @@ RDB$BACKUP_HISTORY
 
 RDB$CHARACTER_SETS        
 
-RDB$CHECK_CONSTRAINTS     
+[RDB$CHECK_CONSTRAINTS](/rdb_check_constraints/)     
 
 RDB$COLLATIONS            
 
-RDB$DATABASE              
+[RDB$DATABASE](/rdb_database/)              
 
 RDB$DEPENDENCIES          
 
 RDB$EXCEPTIONS            
 
-RDB$FIELDS                
+[RDB$FIELDS](/rdb_fields/)                
 
 RDB$FIELD_DIMENSIONS      
 
@@ -614,11 +614,11 @@ RDB$FUNCTIONS
 
 RDB$FUNCTION_ARGUMENTS    
 
-RDB$GENERATORS            
+[RDB$GENERATORS](/rdb_generators/)            
 
-RDB$INDEX_SEGMENTS        
+[RDB$INDEX_SEGMENTS](/rdb_index_segments/)        
 
-RDB$INDICES               
+[RDB$INDICES](/rdb_indices/)               
 
 RDB$LOG_FILES             
 
@@ -628,23 +628,23 @@ RDB$PROCEDURES
 
 RDB$PROCEDURE_PARAMETERS  
 
-RDB$REF_CONSTRAINTS       
+[RDB$REF_CONSTRAINTS](/rdb_ref_constraints/)       
 
-RDB$RELATIONS             
+[RDB$RELATIONS](/rdb_relations/)             
 
-RDB$RELATION_CONSTRAINTS  
+[RDB$RELATION_CONSTRAINTS](/rdb_relation_constraints/)  
 
-RDB$RELATION_FIELDS       
+[RDB$RELATION_FIELDS](/rdb_relation_fields/)       
 
-RDB$ROLES                 
+[RDB$ROLES](/rdb_roles/)                 
 
-RDB$SECURITY_CLASSES      
+[RDB$SECURITY_CLASSES](/rdb_security_classes/)      
 
-RDB$TRANSACTIONS          
+[RDB$TRANSACTIONS](/rdb_transactions/)          
 
-RDB$TRIGGERS              
+[RDB$TRIGGERS](/rdb_triggers/)              
 
-RDB$TRIGGER_MESSAGES      
+[RDB$TRIGGER_MESSAGES](/rdb_trigger_messages/)      
 
 RDB$TYPES                 
 

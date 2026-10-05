@@ -4,7 +4,7 @@ old_id: alter_trigger
 section: glossary
 type: term
 firebird:
-  since: "0.9"
+  since: 
   until: 
   deprecated: false
 ---
@@ -94,7 +94,7 @@ END !!
 SET TERM ; !!
 ```
 ## См. также
-[CREATE TRIGGER](/create_trigger/), [DROP TRIGGER](/drop_trigger/), RDB$TRIGGERS, [SET TERM](/set_term/), [CREATE PROCEDURE](/create_procedure/)
+[CREATE TRIGGER](/create_trigger/), [DROP TRIGGER](/drop_trigger/), [RDB$TRIGGERS](/rdb_triggers/), [SET TERM](/set_term/), [CREATE PROCEDURE](/create_procedure/)
 
 ## Источник
 langref.pdf

@@ -4,7 +4,7 @@ old_id: inserting_updating_deleting
 section: glossary
 type: term
 firebird:
-  since: "1.5.3"
+  since: 
   until: 
   deprecated: false
 ---
@@ -50,7 +50,7 @@ SET TERM; !!!
 ```
 
 ## См. также
-[OLD](/new_old/), [NEW](/new_old/), [SET TERM](/set_term/), [CREATE TRIGGER](/create_trigger/), [ALTER TRIGGER](/alter_trigger/), RDB$TRIGGERS
+[OLD](/new_old/), [NEW](/new_old/), [SET TERM](/set_term/), [CREATE TRIGGER](/create_trigger/), [ALTER TRIGGER](/alter_trigger/), [RDB$TRIGGERS](/rdb_triggers/)
 
 ## Источник
 Firebird 1.5 Release Notes
