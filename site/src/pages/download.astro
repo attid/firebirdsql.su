@@ -1,92 +1,142 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const branches = [
+// Прямые ссылки на официальные бинарники с GitHub-релизов FirebirdSQL/firebird.
+// Имена файлов и размеры сверены с GitHub API 2026-11-03, ссылки проверены HEAD-запросами.
+// При выходе новых суб-релизов обновить вручную и поправить дату проверки.
+
+const G = "https://github.com/FirebirdSQL/firebird/releases/download";
+
+type File = { label: string; file: string; size: string; note?: string };
+type Branch = {
+  ver: string;
+  tag: string;
+  status: string;
+  desc: string;
+  files: File[];
+};
+
+const branches: Branch[] = [
   {
-    ver: "Firebird 5.0",
+    ver: "Firebird 5.0.4",
+    tag: "v5.0.4",
     status: "Актуальная стабильная ветка",
-    desc: "Рекомендуется для новых проектов: существенно переработан оптимизатор, ускорены соединения и массовые операции.",
+    desc: "Рекомендуется для новых проектов: существенно переработан оптимизатор, ускорены соединения и массовые операции. Релиз от 17.04.2026.",
+    files: [
+      { label: "Windows 64-bit, установщик", file: "Firebird-5.0.4.1812-0-windows-x64.exe", size: "25 МБ" },
+      { label: "Windows 64-bit, zip-архив", file: "Firebird-5.0.4.1812-0-windows-x64.zip", size: "24 МБ", note: "без установки, вручную или embedded" },
+      { label: "Windows 32-bit, установщик", file: "Firebird-5.0.4.1812-0-windows-x86.exe", size: "14 МБ" },
+      { label: "Linux 64-bit, tar.gz", file: "Firebird-5.0.4.1812-0-linux-x64.tar.gz", size: "17 МБ" },
+      { label: "macOS Intel, pkg", file: "Firebird-5.0.4.1812-0-macos-x64.pkg", size: "26 МБ" },
+      { label: "macOS Apple Silicon, pkg", file: "Firebird-5.0.4.1812-0-macos-arm64.pkg", size: "26 МБ" },
+    ],
   },
   {
-    ver: "Firebird 4.0",
+    ver: "Firebird 4.0.7",
+    tag: "v4.0.7",
     status: "Поддерживаемая ветка",
-    desc: "Появились оконные функции, PSQL-пакеты, тип BOOLEAN, расширенные таймстампы. Обновления безопасности выходят.",
+    desc: "Оконные функции, PSQL-пакеты, тип BOOLEAN, расширенные таймстампы. Обновления безопасности выходят. Релиз от 17.04.2026.",
+    files: [
+      { label: "Windows 64-bit, установщик", file: "Firebird-4.0.7.3271-0-x64.exe", size: "25 МБ" },
+      { label: "Windows 64-bit, zip-архив", file: "Firebird-4.0.7.3271-0-x64.zip", size: "23 МБ", note: "без установки, вручную или embedded" },
+      { label: "Windows 32-bit, установщик", file: "Firebird-4.0.7.3271-0-Win32.exe", size: "15 МБ" },
+      { label: "Linux 64-bit, tar.gz", file: "Firebird-4.0.7.3271-0.amd64.tar.gz", size: "19 МБ" },
+    ],
   },
   {
-    ver: "Firebird 3.0",
-    status: "Legacy",
-    desc: "Ветвь на минимальной поддержке. Если вы всё ещё на ней — планируйте переход на 5.x.",
+    ver: "Firebird 3.0.14",
+    tag: "v3.0.14",
+    status: "Legacy, минимальная поддержка",
+    desc: "Если вы всё ещё на 3.0 — планируйте переход на 5.x. Релиз от 17.04.2026.",
+    files: [
+      { label: "Windows 64-bit, установщик", file: "Firebird-3.0.14.33856-0-x64.exe", size: "10 МБ" },
+      { label: "Windows 64-bit, zip-архив", file: "Firebird-3.0.14.33856-0-x64.zip", size: "13 МБ", note: "без установки, вручную или embedded" },
+      { label: "Windows 32-bit, установщик", file: "Firebird-3.0.14.33856-0-Win32.exe", size: "7 МБ" },
+      { label: "Linux 64-bit, tar.gz", file: "Firebird-3.0.14.33856-0.amd64.tar.gz", size: "8 МБ" },
+    ],
   },
   {
-    ver: "Firebird 2.5",
-    status: "Legacy",
-    desc: "Официальная поддержка давно закончилась. Держится только ради старых проектов, включая связки с 1С.",
+    ver: "Firebird 2.5.9",
+    tag: "R2_5_9",
+    status: "Legacy, официальная поддержка давно закончилась",
+    desc: "Держится только ради старых проектов, включая связки с 1С. Не для новых установок: исправлений безопасности больше не выходит.",
+    files: [
+      { label: "Windows 64-bit, установщик", file: "Firebird-2.5.9.27139_0_x64.exe", size: "9 МБ" },
+      { label: "Windows 32-bit, установщик", file: "Firebird-2.5.9.27139_0_Win32.exe", size: "6 МБ" },
+      { label: "Windows 64-bit, embedded, zip", file: "Firebird-2.5.9.27139-0_x64_embed.zip", size: "4 МБ", note: "встроенный сервер без установки" },
+      { label: "Linux 64-bit SuperServer, tar.gz", file: "FirebirdSS-2.5.9.27139-0.amd64.tar.gz", size: "7 МБ" },
+    ],
   },
 ];
 ---
 
 <BaseLayout
   title="Скачать Firebird"
-  description="Где скачать Firebird: официальные бинарники всех поддерживаемых веток — Windows и Linux, сервер и клиент, актуальные сборки на firebirdsql.org."
+  description="Скачать Firebird по прямым ссылкам: официальные установщики Windows, Linux и macOS с GitHub-релизов проекта. Firebird 5.0.4, 4.0.7, 3.0.14, 2.5.9 — клик по ссылке и файл качается сразу."
 >
   <article class="doc-content">
     <h1>Скачать Firebird</h1>
     <p>
-      Мы не храним бинарники — все сборки всегда берите с официального сайта:
-      <a href="https://firebirdsql.org/en/downloads/" rel="noopener">
-        firebirdsql.org/en/downloads
-      </a>.
-      Там же — исходники, старые релизы и nightly-сборки.
+      Прямые ссылки на официальные бинарники из <strong>GitHub-релизов проекта
+      Firebird</strong>: клик по ссылке — и файл качается сразу, без переходов
+      на промежуточные сайты. Ссылки проверены 3 ноября 2026 года; если вышла
+      более свежая версия, все релизы всегда лежат в
+      <a href="https://github.com/FirebirdSQL/firebird/releases" rel="noopener">
+      официальном репозитории</a>.
     </p>
 
-    <h2>Ветки сервера</h2>
-    <table>
-      <thead>
-        <tr><th>Ветка</th><th>Статус</th><th>Что важно знать</th></tr>
-      </thead>
-      <tbody>
-        {branches.map((b) => (
-          <tr>
-            <td><strong>{b.ver}</strong></td>
-            <td>{b.status}</td>
-            <td>{b.desc}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    {branches.map((b) => (
+      <>
+        <h2>{b.ver}</h2>
+        <p>
+          <em>{b.status}.</em> {b.desc}{" "}
+          <a href={`https://github.com/FirebirdSQL/firebird/releases/tag/${b.tag}`} rel="noopener">
+            Все файлы этого релиза →
+          </a>
+        </p>
+        <table>
+          <thead>
+            <tr><th>Что качать</th><th>Размер</th><th>Примечание</th></tr>
+          </thead>
+          <tbody>
+            {b.files.map((f) => (
+              <tr>
+                <td>
+                  <a href={`${G}/${b.tag}/${f.file}`} rel="noopener"><strong>{f.label}</strong></a>
+                  <br />
+                  <code style="font-size: 0.85em;">{f.file}</code>
+                </td>
+                <td>{f.size}</td>
+                <td>{f.note ?? ""}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    ))}
 
-    <h2>Прямые ссылки</h2>
+    <h2>Что ещё есть</h2>
     <ul>
       <li>
+        <a href="https://github.com/FirebirdSQL/firebird/releases" rel="noopener">
+          Все релизы на GitHub
+        </a>{" "}— старые версии, сборки под Android, ARM и исходники.
+      </li>
+      <li>
         <a href="https://firebirdsql.org/en/downloads/" rel="noopener">
-          Скачать Firebird (актуальные версии)
-        </a> — сервер, клиент, embed для Windows и Linux
-      </li>
-      <li>
-        <a href="https://firebirdsql.org/en/firebird-5-0/" rel="noopener">
-          Страница ветки Firebird 5.0
-        </a>
-      </li>
-      <li>
-        <a href="https://firebirdsql.org/en/firebird-4-0/" rel="noopener">
-          Страница ветки Firebird 4.0
-        </a>
-      </li>
-      <li>
-        <a href="https://firebirdsql.org/en/previous-releases/" rel="noopener">
-          Предыдущие релизы (3.0, 2.5 и старше)
-        </a>
+          firebirdsql.org/en/downloads
+        </a>{" "}— официальный сайт: дополнительные пакеты, nightly-сборки
+        и зеркало (иногда бывает недоступен).
       </li>
     </ul>
 
     <h2>После установки</h2>
     <p>
-      Загляните в разделы
-      <a href="/ustanovka_firebird_na_linux/">Установка Firebird на Linux</a> и
-      <a href="/skript_dlja_rezervirovanija_bazy_dannyx_na_shell/">
-        резервное копирование БД
-      </a> — а глоссарий целиком начинается
-      <a href="/glossarij/">здесь</a>.
+      Первым делом смените пароль суперпользователя:
+      <a href="/sysdba/">SYSDBA в Firebird: пароль по умолчанию и как его сменить</a>.
+      Дальше — <a href="/ustanovka_firebird_na_linux/">установка на Linux</a>,
+      <a href="/gfix/">проверка базы gfix</a> и
+      <a href="/gbak/">резервное копирование gbak</a>.
     </p>
   </article>
 </BaseLayout>
