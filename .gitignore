@@ -24,3 +24,7 @@ docs/metrics-baseline/
 
 # Исходники Language Reference (клонируются tools/parse_langref.py, см. docstring)
 docs/langref-src/
+
+# Секреты аналитики
+.env
+ga4-sa.json
